@@ -446,20 +446,20 @@ mean(c(1,2,3,4))
 </ul>
 <details>
 <summary>
-Presiona el triángulo para mostrar u ocultar los lenguajes que pueden usar en R Markdown:
+Presiona este texto para mostrar u ocultar los lenguajes que pueden usar en Rmd.
 </summary>
 stata<br> R<br> c<br> python<br> julia<br> js<br> awk<br> bash<br> coffee<br> gawk<br> groovy<br> haskell<br> lein<br> mysql<br> node<br> octave<br> perl<br> psql<br> Rscript<br> ruby<br> sas<br> scala<br> sed<br> sh<br> zsh<br> highlight<br> Rcpp<br> tikz<br> dot<br> cc<br> fortran<br> fortran95<br> asy<br> cat<br> asis<br> stan<br> block<br> block2<br> css<br> sql<br> go<br> sass<br> scss<br> bslib<br> theorem<br> lemma<br> corollary<br> propositio<br> conjecture<br> definition<br> example<br> exercise<br> hypothesis<br> proof<br> remark<br> solution<br>
 </details>
 <p><br></p>
 <p>La tarea consiste en <span style="font-size: 28px;"> <strong> crear un documento o reporte parametrizado </strong> </span> , pero podrán elegir entre <strong>dos opciones</strong> por presentar.</p>
-<p>Les recomiendo revisar los documentos parametrizados <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactiva.Rmd">dos</a> <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/3-horario-parametrizado.Rmd">tres</a> y <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/4-certificado-parametrizado.Rmd">cuatro</a> que vimos en la segunda sesión, el <strong>encabezado YAML</strong> (donde definimos los parámetros) y los chunks con código de <strong>R</strong> (R chunk), donde empleo tales parámetros.<br> No es necesario que comprendan el resto del código en aquellos documentos, sino simplemente cómo usar comandos como <code>params$algun_parametro</code> o <code>params$parametro_A$algun_valor_del_parametro_A</code> .</p>
+<p>Les recomiendo revisar los documentos parametrizados <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactiva.Rmd">dos</a>, <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/3-horario-parametrizado.Rmd">tres</a>, y <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/4-certificado-parametrizado.Rmd">cuatro</a> que vimos en la segunda sesión, su <strong>encabezado YAML</strong> (donde definimos los parámetros) y los chunks con código de <strong>R</strong> (R chunk), donde empleo tales parámetros.<br> No es necesario que comprendan el resto del código en aquellos documentos, sino simplemente cómo usar comandos como <code>params$algun_parametro</code> o <code>params$parametro_A$algun_valor_del_parametro_A</code> .</p>
 <p><br></p>
 <p><strong>Opción 1</strong>:</p>
 <ul>
 <li>Documento parametrizado de <strong>temática totalmente libre</strong>.</li>
 <li>El objetivo es automatizar la creación de cierto documento que ustedas produzcan con frecuencia y cuyo modelo general (plantilla) no cambie mucho.</li>
-<li>Su documento parametrizado debe incluir al menos <strong>tres</strong> parámetros, uno de los cuales necesariamente debe ser definido con propiedades para ser escogido en un menú interactivo (via la opción <em>Knit with parameters</em>), similarmente a como se hizo en clase (reporte de temperaturas) para la variable asociada al <em>año</em> en este <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactiva.Rmd">archivo</a></li>
-<li>Realmente les recomiendo leer esta <a href="https://garrettgman.github.io/rmarkdown/developer_parameterized_reports.html">documentación</a> para aprender otras opciones de botones para asignar a nuestros parámetros en un menú interactivo.</li>
+<li>Su documento parametrizado debe incluir al menos <strong>tres</strong> parámetros, uno de los cuales necesariamente debe ser definido con propiedades para ser escogido en un menú interactivo (via la opción <em>Knit with parameters</em>), similarmente a como se hizo en clase (reporte de temperaturas) para la variable asociada al <em>año</em> en este <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactiva.Rmd">archivo</a>.</li>
+<li>Les recomiendo leer esta <a href="https://garrettgman.github.io/rmarkdown/developer_parameterized_reports.html">documentación</a> para aprender otras opciones de botones para asignar a nuestros parámetros en un menú interactivo.</li>
 </ul>
 <p><br></p>
 <p><strong>Opción 2</strong>:</p>
@@ -468,7 +468,7 @@ stata<br> R<br> c<br> python<br> julia<br> js<br> awk<br> bash<br> coffee<br> ga
 <li>Estructura de aquel reporte:
 <ol style="list-style-type: decimal">
 <li>Iniciamos fijando un mes en particular; esta es la variable que parametrizaremos.</li>
-<li>Incluir un gráfico de barras de las temperaturas promedio asociadas al mes fijado en (1), a lo largo de los años considerados en la data <em>temperaturas.xlsx</em> .</li>
+<li>Incluir un gráfico de barras de las temperaturas promedio asociadas al mes fijado en (1), a lo largo de los años considerados en la data <a href="https://github.com/lucio-cornejo/taller-r-markdown/blob/main/_material/clase-2/temperaturas.xlsx">temperaturas.xlsx</a>.</li>
 <li>Adjuntar como conclusión en qué año sucedió la máxima temperatura promedio mensual respecto al mes fijado en (1).</li>
 <li>Incorporar como conclusión en qué año sucedió la mínima temperatura promedio mensual respecto al mes fijado en (1).</li>
 </ol></li>

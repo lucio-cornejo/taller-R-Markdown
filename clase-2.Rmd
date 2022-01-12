@@ -75,7 +75,7 @@ las instrucciones de estos links:
 - <https://rstudio.github.io/reticulate/articles/r_markdown.html>
 
 <details>
-  <summary>Presiona el triángulo para mostrar u ocultar los lenguajes que pueden usar en R Markdown:</summary>
+  <summary>Presiona este texto para mostrar u ocultar los lenguajes que pueden usar en Rmd.</summary>
 
     stata<br>
     R<br>
@@ -146,12 +146,12 @@ La tarea consiste en
 , pero podrán elegir entre **dos opciones** por presentar.
 
 Les recomiendo revisar los documentos parametrizados 
-[dos](https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactiva.Rmd)
-[tres](https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/3-horario-parametrizado.Rmd)
+[dos](https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactiva.Rmd),
+[tres](https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/3-horario-parametrizado.Rmd),
 y
 [cuatro](https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/4-certificado-parametrizado.Rmd)
 que vimos en la segunda sesión,
-el **encabezado YAML** (donde definimos los parámetros) y los chunks con código de **R** (R chunk), 
+su **encabezado YAML** (donde definimos los parámetros) y los chunks con código de **R** (R chunk), 
 donde empleo tales parámetros.<br>
 No es necesario que comprendan el resto del código en aquellos documentos, sino simplemente 
 cómo usar comandos como `params$algun_parametro` o `params$parametro_A$algun_valor_del_parametro_A` .
@@ -167,8 +167,8 @@ cómo usar comandos como `params$algun_parametro` o `params$parametro_A$algun_va
     cuales necesariamente debe ser definido con propiedades para ser escogido
     en un menú interactivo (via la opción _Knit with parameters_), similarmente a como se
     hizo en clase (reporte de temperaturas) para la variable asociada al _año_ en este 
-    [archivo](https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactiva.Rmd)
-  - Realmente les recomiendo leer esta [documentación](https://garrettgman.github.io/rmarkdown/developer_parameterized_reports.html)
+    [archivo](https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactiva.Rmd).
+  - Les recomiendo leer esta [documentación](https://garrettgman.github.io/rmarkdown/developer_parameterized_reports.html)
     para aprender otras opciones de botones para asignar a nuestros parámetros en un menú interactivo.
 
 <br>
@@ -179,7 +179,8 @@ cómo usar comandos como `params$algun_parametro` o `params$parametro_A$algun_va
   - Estructura de aquel reporte:
     1. Iniciamos fijando un mes en particular; esta es la variable que parametrizaremos.
     1. Incluir un gráfico de barras de las temperaturas promedio asociadas al mes fijado en (1),
-         a lo largo de los años considerados en la data _temperaturas.xlsx_ .
+      a lo largo de los años considerados en la data
+      [temperaturas.xlsx](https://github.com/lucio-cornejo/taller-r-markdown/blob/main/_material/clase-2/temperaturas.xlsx).
     1. Adjuntar como conclusión en qué año sucedió la máxima temperatura promedio mensual respecto al mes fijado en (1).
     1. Incorporar como conclusión en qué año sucedió la mínima temperatura promedio mensual respecto al mes fijado en (1).
 
