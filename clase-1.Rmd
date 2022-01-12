@@ -19,7 +19,8 @@ video hasta el **minuto 3**.
 
 ## Introducción
 
-Comencemos copiando el contenido de [este](https://github.com/lucio-cornejo/r-markdown-summer-workshop/blob/main/_material/clase-1/ejemplo.Rmd)
+Comencemos copiando el contenido de
+[este](https://github.com/lucio-cornejo/taller-r-markdown/blob/main/_material/clase-1/ejemplo.Rmd)
 modelo de un archivo de tipo **R Markdown**.
 
 ## Diapositivas
@@ -30,7 +31,8 @@ y que no está en las diapositivas.
 
 ## Markdown
 
-Hagan click en el siguiente botón (triángulo negro) para ver el resumen de los comandos de Markdown que vimos en clase y que necesitaremos (algunos nomás) para los proyectos que realizaremos.
+Hagan click en el siguiente botón (triángulo negro) para ver el resumen de los comandos de Markdown
+que vimos en clase y que necesitaremos (algunos nomás) para los proyectos que realizaremos.
 
 <details>
 <summary>Resumen de comandos de Markdown</summary>

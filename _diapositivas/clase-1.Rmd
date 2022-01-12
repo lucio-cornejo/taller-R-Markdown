@@ -94,7 +94,7 @@ install.packages("rmarkdown")
 ## En accción
 
 Abrir **RStudio** y copiar el contenido del archivo **R Markdown**
-en este [link](https://github.com/lucio-cornejo/r-markdown-summer-workshop/blob/main/_material/clase-1/ejemplo.Rmd).
+en este [link](https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-1/ejemplo.Rmd).
 
 <p style="margin-bottom: -20px;"> &nbsp; </p>
 

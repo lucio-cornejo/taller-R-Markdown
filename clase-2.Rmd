@@ -146,9 +146,10 @@ La tarea consiste en
 , pero podrán elegir entre **dos opciones** por presentar.
 
 Les recomiendo revisar los documentos parametrizados 
-[dos](https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/2-parametrizacion-interactiva.Rmd),
-[tres](https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/3-horario-parametrizado.Rmd) y
-[cuatro](https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/4-certificado-parametrizado.Rmd)
+[dos](https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactiva.Rmd)
+[tres](https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/3-horario-parametrizado.Rmd)
+y
+[cuatro](https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/4-certificado-parametrizado.Rmd)
 que vimos en la segunda sesión,
 el **encabezado YAML** (donde definimos los parámetros) y los chunks con código de **R** (R chunk), 
 donde empleo tales parámetros.<br>
@@ -166,7 +167,7 @@ cómo usar comandos como `params$algun_parametro` o `params$parametro_A$algun_va
     cuales necesariamente debe ser definido con propiedades para ser escogido
     en un menú interactivo (via la opción _Knit with parameters_), similarmente a como se
     hizo en clase (reporte de temperaturas) para la variable asociada al _año_ en este 
-    [archivo](https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/2-parametrizacion-interactiva.Rmd).
+    [archivo](https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactiva.Rmd)
   - Realmente les recomiendo leer esta [documentación](https://garrettgman.github.io/rmarkdown/developer_parameterized_reports.html)
     para aprender otras opciones de botones para asignar a nuestros parámetros en un menú interactivo.
 

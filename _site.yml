@@ -15,8 +15,11 @@ navbar:
         - text: "Clase 1: Markdown y YAML"
           href: clase-1.html
         - text: '---------'
+        - text: "Clase 2: Reportes parametrizados"
+          href: clase-2.html
         # - text: "Clase 2: Reportes"
-        #   href: syllabus/index.html
+        #   href: clase-3.html
+
     - text: " Diapositivas"
       icon: far fa-object-ungroup
       menu:
@@ -27,11 +30,11 @@ navbar:
           href: _diapositivas/clase-2.html
     - text: "Archivos Rmd de las clases"
       icon: far fa-folder-open
-      href: https://github.com/lucio-cornejo/r-markdown-summer-workshop/tree/main/_material
+      href: https://github.com/lucio-cornejo/taller-r-markdown/tree/main/_material
     
     - text: "Código de los documentos del taller"
       icon: fa-code
-      href: https://github.com/lucio-cornejo/r-markdown-summer-workshop
+      href: https://github.com/lucio-cornejo/taller-r-markdown/tree/main/_diapositivas
 output:
   html_document:
     css: my-style.css
