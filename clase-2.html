@@ -395,6 +395,12 @@ div.tocify {
     background-repeat: no-repeat;
 }
 </style>
+<style>
+  /* Fix embedded video width for mobile */
+  @media (max-width: 767px) {
+    iframe { max-width: 90vw; }
+  }
+</style>
 <div id="video-resumen-de-la-sesión-2" class="section level2">
 <h2>Video resumen de la sesión 2</h2>
 <p>Las grabaciones de la sesión del lunes captaron el sonido de los asistentes, mas no el mío. Entonces, les he preparado un video de una hora aproximadamente donde resumo lo trabajado en la segunda sesión. Además, en la última parte del video (01:06:15), les muestro una posible manera de solucionar el error que no les permitía <code>knit</code> uno de los documentos de la primera sesión.</p>

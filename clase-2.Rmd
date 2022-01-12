@@ -6,6 +6,13 @@ output: html_document
 ```{r, child="_yoshi-TOC.Rmd"}
 ```
 
+<style>
+  /* Fix embedded video width for mobile */
+  @media (max-width: 767px) {
+    iframe { max-width: 90vw; }
+  }
+</style>
+
 ## Video resumen de la sesión 2
 
 Las grabaciones de la sesión del lunes captaron el sonido de
