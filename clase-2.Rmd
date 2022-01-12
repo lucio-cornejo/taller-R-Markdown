@@ -9,7 +9,7 @@ output: html_document
 <style>
   /* Fix embedded video width for mobile */
   @media (max-width: 767px) {
-    iframe { max-width: 50vw; }
+    iframe { max-width: 70vw; }
   }
 </style>
 
@@ -78,8 +78,11 @@ que sí conocen.<br>
 Por ejemplo, para incluir código de **Python** en **R Markdown**, pueden seguir
 las instrucciones de estos links:
 
-- <https://rstudio.github.io/reticulate/>
-- <https://rstudio.github.io/reticulate/articles/r_markdown.html>
+<div style="overflow: auto;">
+
+  - <https://rstudio.github.io/reticulate/>
+  - <https://rstudio.github.io/reticulate/articles/r_markdown.html>
+</div>
 
 <details>
   <summary>Presiona este texto para mostrar u ocultar los lenguajes que pueden usar en Rmd.</summary>
@@ -161,7 +164,13 @@ que vimos en la segunda sesión,
 su **encabezado YAML** (donde definimos los parámetros) y los chunks con código de **R** (R chunk), 
 donde empleo tales parámetros.<br>
 No es necesario que comprendan el resto del código en aquellos documentos, sino simplemente 
-cómo usar comandos como `params$algun_parametro` o `params$parametro_A$algun_valor_del_parametro_A` .
+cómo usar los siguientes comandos:
+
+<div style="overflow: auto;">
+
+- `params$algun_parametro`
+- `params$parametro_vector$algun_valor_del_parametro_vector`
+</div>
       
 <br>
 

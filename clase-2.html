@@ -398,7 +398,7 @@ div.tocify {
 <style>
   /* Fix embedded video width for mobile */
   @media (max-width: 767px) {
-    iframe { max-width: 50vw; }
+    iframe { max-width: 70vw; }
   }
 </style>
 <div id="video-resumen-de-la-sesión-2" class="section level2">
@@ -446,10 +446,12 @@ mean(c(1,2,3,4))
 <div id="tarea" class="section level2">
 <h2>Tarea</h2>
 <p>Aquellos asistentes al taller que no conozcan <strong>R</strong>, pueden buscar online cómo hacer que <strong>R Markdown</strong> reconozca código del lenguaje de programación que sí conocen.<br> Por ejemplo, para incluir código de <strong>Python</strong> en <strong>R Markdown</strong>, pueden seguir las instrucciones de estos links:</p>
+<div style="overflow: auto;">
 <ul>
 <li><a href="https://rstudio.github.io/reticulate/" class="uri">https://rstudio.github.io/reticulate/</a></li>
 <li><a href="https://rstudio.github.io/reticulate/articles/r_markdown.html" class="uri">https://rstudio.github.io/reticulate/articles/r_markdown.html</a></li>
 </ul>
+</div>
 <details>
 <summary>
 Presiona este texto para mostrar u ocultar los lenguajes que pueden usar en Rmd.
@@ -458,7 +460,13 @@ stata<br> R<br> c<br> python<br> julia<br> js<br> awk<br> bash<br> coffee<br> ga
 </details>
 <p><br></p>
 <p>La tarea consiste en <span style="font-size: 28px;"> <strong> crear un documento o reporte parametrizado </strong> </span> , pero podrán elegir entre <strong>dos opciones</strong> por presentar.</p>
-<p>Les recomiendo revisar los documentos parametrizados <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactiva.Rmd">dos</a>, <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/3-horario-parametrizado.Rmd">tres</a>, y <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/4-certificado-parametrizado.Rmd">cuatro</a> que vimos en la segunda sesión, su <strong>encabezado YAML</strong> (donde definimos los parámetros) y los chunks con código de <strong>R</strong> (R chunk), donde empleo tales parámetros.<br> No es necesario que comprendan el resto del código en aquellos documentos, sino simplemente cómo usar comandos como <code>params$algun_parametro</code> o <code>params$parametro_A$algun_valor_del_parametro_A</code> .</p>
+<p>Les recomiendo revisar los documentos parametrizados <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactiva.Rmd">dos</a>, <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/3-horario-parametrizado.Rmd">tres</a>, y <a href="https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/4-certificado-parametrizado.Rmd">cuatro</a> que vimos en la segunda sesión, su <strong>encabezado YAML</strong> (donde definimos los parámetros) y los chunks con código de <strong>R</strong> (R chunk), donde empleo tales parámetros.<br> No es necesario que comprendan el resto del código en aquellos documentos, sino simplemente cómo usar los siguientes comandos:</p>
+<div style="overflow: auto;">
+<ul>
+<li><code>params$algun_parametro</code></li>
+<li><code>params$parametro_vector$algun_valor_del_parametro_vector</code></li>
+</ul>
+</div>
 <p><br></p>
 <p><strong>Opción 1</strong>:</p>
 <ul>
