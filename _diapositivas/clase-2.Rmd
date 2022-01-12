@@ -138,7 +138,7 @@ trabajando todos juntos.
 **R Markdown** admite código de cualquiera de los siguiente lenguajes:
 
 <details>
-  <summary>Presionar el triángulo rotado para mostrarlos u octultarlos.</summary>
+  <summary>Presionar este texto para mostrarlos u octultarlos.</summary>
     
     awk<br>
     bash<br>
@@ -314,7 +314,7 @@ Guardar en ua misma carpeta todos los archivos R Markdown que crearemos ahora.
 
 ---
 
-<a href = "https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactica.Rmd" download="2-parametrizacion-interactiva">
+<a href = "https://raw.githubusercontent.com/lucio-cornejo/taller-r-markdown/main/_material/clase-2/2-parametrizacion-interactiva.Rmd" download="2-parametrizacion-interactiva">
 2-parametrizacion-interactiva.Rmd
 </a>
   - Objetivo: Crear un menú interactivo para definir los parámetros.
