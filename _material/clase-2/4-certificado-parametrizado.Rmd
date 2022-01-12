@@ -1,0 +1,66 @@
+---
+title: ""
+params: 
+  expositor: "Jaimito"
+output:
+  xaringan::moon_reader:
+    seal: false
+    nature:
+      ratio: 4:3
+---
+background-image: url("certificado-GEM.png")
+background-size: cover
+
+<style>
+.remark-slide-number { display: none; }
+.expositor > div {
+  margin-top: 340px;
+  
+}
+.expositor span {
+  font-size: 30px;
+  font-family: papyrus, sans-seriff;	
+}
+</style>
+
+.center[
+.middle[
+.expositor[
+<div>
+<span>
+`r params$expositor`
+</span>
+</div>
+]
+]
+]
+
+<!-- ############################################## R CHUNK ############################################## -->
+```{r, eval=FALSE, echo=FALSE}
+expositores <- c(
+                "PhD. Leyter Potenciano",
+                "PhD. Enrique Rojas",
+                "PhD. Alba Málaga"# ,
+                # "PhD. Roxana López",
+                # "PhD. Jesús Ramos",
+                # "Jimmy Espinoza",
+                # "PhD. Juan Peypouquet",
+                # "Rommel Bazalar",
+                # "Jafer Vito Gutiérrez"
+)
+
+# Crear certificado en HTML
+for(i in 1:length(expositores)){
+  rmarkdown::render(
+             input="4-certificado-parametrizado.Rmd",
+             output_file = paste("certificado",i,".html",sep=""),
+             params=list(expositor=expositores[i])
+  )
+}
+
+# Convertir certficado en HTML a PDF
+for(i in 1:length(expositores)){
+  pagedown::chrome_print(paste("certificado",i,".html",sep=""))
+}
+```
+<!-- ############################################## R CHUNK ############################################## -->

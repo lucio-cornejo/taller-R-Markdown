@@ -1,0 +1,144 @@
+---
+title: ejemplo
+output: 
+  # html_document:
+    # toc: true
+    # toc_float: true
+  # pdf_document:
+    # toc: true
+    # toc_depth: 3
+    # latex_engine: xelatex
+    # extra_dependencies: ["tikz-cd","tikz","pgfplots"]
+  # flexdashboard::flex_dashboard:
+  #   theme: united
+  #   orientation: rows
+  # bookdown::gitbook:
+    # number_sections: FALSE
+    # config:
+      # toc:
+        # toc_float:
+          # collapsed: TRUE
+  xaringan::moon_reader:
+    css: ["kunoichi","rladies"]
+    nature:
+      navigation:
+        scroll: false
+---
+
+```{r, include = FALSE}
+# Instalamos los paquetes necesarios para producir
+# todas las versiones (ver YAML) de este docmento
+
+# Version PDF
+if(!requireNamespace('tinytex')) {
+  install.packages('tinytex')
+  tinytex::install_tinytex()  # instalar TinyTeX (para usar comandos de LaTeX)
+}
+
+# Version dashboard
+if(!requireNamespace('flexdashboard')) {
+  install.packages('flexdashboard') # instalar paquete si no lo tienes instalado
+}
+library(flexdashboard)
+
+# Version libro
+if(!requireNamespace('bookdown')) {
+  install.packages('bookdown') 
+}
+library(bookdown)
+
+# Version diapositivas
+if(!requireNamespace('xaringan')) {
+  install.packages('xaringan') 
+}
+library(xaringan)
+```
+
+# Ejemplo
+
+### Markdown
+
+\*italic\* $\Rightarrow$ *italic*
+
+\_italic\_ $\Rightarrow$ _italic_
+
+\*\*negrita\*\* $\Rightarrow$ **negrita**
+
+\_\_negrita\_\_ $\Rightarrow$ __negrita__
+
+---
+
+### Listas
+
+- item a
+- item b
+  1. opción 1
+  1. opción 2
+  
+---
+
+### Tablas
+
+nombre | institución
+:---: | :---:
+Lucio | PUCP
+Yoshi | IRS
+
+---
+
+### Matemática
+
+La ecuación $e^{\pi i} +1 =0$ es una de las más famosas en el mundo.
+
+$$\int\limits_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt\pi$$
+
+```{r, eval=knitr::is_latex_output(), echo = FALSE, results = 'asis'}
+cat("
+## Diagrama conmutativo
+
+$$
+\\begin{tikzcd}
+A \\arrow{r}{\\varphi} \\arrow[swap]{d}{\\varrho_f} & B \\arrow{d}{\\varrho_g} \\\\%
+A_f \\arrow{r}{\\varphi_f}& B_g
+\\end{tikzcd}
+$$
+
+## Imagen via TikZ
+
+$$
+\\begin{tikzpicture}
+\\draw (0,0) circle (2cm);
+\\end{tikzpicture}
+$$
+
+## Tikz, de nuevo
+
+$$
+\\begin{tikzpicture}
+\\begin{axis}[xmax=9,ymax=9, samples=50]
+  \\addplot[blue, ultra thick] (x,x*x);
+  \\addplot[red,  ultra thick] (x*x,x);
+\\end{axis}
+\\end{tikzpicture}
+$$
+")
+```
+
+---
+
+# Código
+
+### Gráfica
+
+```{r}
+plot(pressure)
+```
+
+---
+
+### Tabla interactiva
+
+```{r, echo = FALSE}
+# eval= knitr::is_html_output()
+DT::datatable(iris)
+```

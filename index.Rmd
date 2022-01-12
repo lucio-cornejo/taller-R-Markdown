@@ -1,0 +1,130 @@
+---
+title: "Taller de R Markdown y desarrollo web"
+---
+
+```{r setup, include=FALSE}
+library(sass)
+sass(sass_file('my-style.scss'), output='my-style.css')
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<p style="margin-bottom: -50px;"> &nbsp; </p>
+
+## Iniciaremos el **3 de enero**
+
+<p style="margin-bottom: -50px;"> &nbsp; </p>
+<!--#region sesiones -->
+
+## Sesiones futuras
+```{scss, echo=FALSE}
+#sesiones {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    table-layout: fixed;
+
+    tr { background-color: rgb(200, 200, 200); }
+
+    td {
+        border: 2px solid black;
+
+        pre { 
+            border: collapse;
+            margin-top: 8%;
+            background-color: rgb(200, 200, 200);
+        } 
+    }
+}
+```
+
+<p style="margin-bottom: -10px;"> &nbsp; </p>
+
+<table id = "sesiones">
+    <tr>
+        <td><pre>Markdown y YAML</pre></td>
+        <td><pre>Blogdown, parte 2</pre></td>
+        <td><pre>JavaScript</pre></td>
+    </tr>
+    <tr>
+        <td><pre>Reportes parametrizados</pre></td>
+        <td><pre>Dashboards y htmlwidgets</pre></td>
+        <td><pre>Shiny</pre></td>
+    </tr>
+    <tr>
+        <td><pre>Bookdown y Blogdown</pre></td>
+        <td><pre>HTML y CSS</pre></td>
+        <td><pre>Xaringan</pre></td>
+    </tr>
+</table>
+<!--#endregion-->
+
+<!--#region Instalaciones -->
+## Instalaciones requeridas para el curso
+
+- Navegador web [Google Chrome](https://www.google.com/chrome/).
+- Lenguaje de programación [R](https://cloud.r-project.org/).
+- Entorno de desarollo integrado [RStudio](https://www.rstudio.com/products/rstudio/download/#download).
+- Editor de texto [Visual Studio Code](https://code.visualstudio.com/download).
+- Software [Git](https://git-scm.com/downloads) para seguimiento de alteraciones a archivos.
+
+Asimismo, deben crearse una cuenta en [Github](https://github.com/) y en [Netlify](https://app.netlify.com/).
+
+A finales del taller, es posible que se requiera instalar [Pandoc](https://pandoc.org/installing.html).
+<!--#endregion-->
+
+<!--#region bibliography -->
+## Bibliografía
+
+- Yihui Xie, Christophe Dervieux, Emily Riederer, 2020-09-21, 
+[R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/).
+
+- Michael Clark, 2019-11-06, 
+[Introduction to R Markdown](https://m-clark.github.io/Introduction-to-Rmarkdown/).
+
+- Yan Holtz, 10 December 2018, 
+[Pimp my RMD: a few tips for R Markdown](https://holtzy.github.io/Pimp-my-rmd/).
+
+- Yihui Xie, J. J. Allaire, Garrett Grolemund, 2020-10-14, 
+[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/).
+<!--#endregion-->
+
+<!--#region Yoshi logo and entrance animation -->
+<style>
+#yoshi {
+    height: 175px;
+	display: block;
+    margin-bottom: 20px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url("images/yoshi-logo-3.png"); 
+}
+</style>
+
+<script>
+    // Variables
+    let counter, tempo;
+    let smoothness = 100;
+    let duracion_segundos = 1;
+
+    // SLeep function
+    function sleep(miliseconds) {
+        return new Promise(resolve => setTimeout(resolve, miliseconds));
+    }
+            
+    // Incrementally increase "imagen"'s size
+    document.addEventListener('DOMContentLoaded', async function () {
+
+        document.querySelector('#TOC').insertAdjacentHTML('afterbegin','<div id="yoshi"></div>');
+        const imagen = document.querySelector('#yoshi');
+
+        for(counter = 0; counter < smoothness + 1; counter++) {
+            tempo = counter/smoothness;
+            imagen.style.transform = `scale(${tempo})`;
+            await sleep((1000*duracion_segundos)/smoothness);
+        }
+
+    });
+</script>
+<!--#endregion-->

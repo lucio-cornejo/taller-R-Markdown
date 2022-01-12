@@ -1,0 +1,48 @@
+name: "taller-r-markdown"
+author: "Autor: Lucio Cornejo"
+date: "Actualización más reciente:  `r format(Sys.time(),'%d / %m / %Y')`"
+output_dir: "."
+navbar:
+  title: "Taller de R Markdown"
+  # type: inverse
+  left:
+    - text: " Sílabo"
+      href:  syllabus/index.html
+      icon: fa-html5
+    - text: " Clases"
+      icon: fa-caret-square-down
+      menu:
+        - text: "Clase 1: Markdown y YAML"
+          href: clase-1.html
+        - text: '---------'
+        # - text: "Clase 2: Reportes"
+        #   href: syllabus/index.html
+    - text: " Diapositivas"
+      icon: far fa-object-ungroup
+      menu:
+        - text: "Clase 1: Markdown y YAML"
+          href: _diapositivas/clase-1.html
+        - text: '---------'
+        - text: "Clase 2: Reportes parametrizados"
+          href: _diapositivas/clase-2.html
+    - text: "Archivos Rmd de las clases"
+      icon: far fa-folder-open
+      href: https://github.com/lucio-cornejo/r-markdown-summer-workshop/tree/main/_material
+    
+    - text: "Código de los documentos del taller"
+      icon: fa-code
+      href: https://github.com/lucio-cornejo/r-markdown-summer-workshop
+output:
+  html_document:
+    css: my-style.css
+    highlight: pygments
+    theme: cosmo #flatly
+    code_download: false 
+    self_contained: false # If it's true, xaringanExtra::embed_xaringan() does not work properly.
+    toc: true
+    toc_depth: 2
+    toc_float:
+      smooth_scroll: true
+    includes:
+      in_header: icon-of-website.html
+      before_body: fontawesome-personal-script.html

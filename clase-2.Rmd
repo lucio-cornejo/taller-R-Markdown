@@ -1,0 +1,187 @@
+---
+title: Markdown y YAML
+output: html_document
+---
+
+```{r, child="_yoshi-TOC.Rmd"}
+```
+
+## Video resumen de la sesión 2
+
+Las grabaciones de la sesión del lunes captaron el sonido de
+los asistentes, mas no el mío. Entonces, les he preparado un video
+de una hora aproximadamente donde resumo lo trabajado en la segunda sesión.
+Además, en la última parte del video (01:06:15), les muestro una posible manera de 
+solucionar el error que no les permitía `knit` uno de los documentos de la primera sesión.
+
+<iframe width="800" height="400" src="https://www.youtube.com/embed/pD6ryYW_KGw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Diapositivas
+
+En el menú de la parte superior de este sitio web, pueden acceder a las 
+diapositivas de las sesiones del taller, vía su botón respectivo.<br>
+**Siempre** añadiré, los martes en la tarde, nuevo contenido a las diapositivas
+que vimos en clase. Esto con la finalidad de profundizar un poco más en detalles
+que no consideré vitales comentarles en las sesiones, pero que les pueden ser útiles
+para entender mejor los temas expuestos.
+
+## Chunks
+
+Es posible definir **propiedades globales** para los chunks de un mismo documento Rmd,
+es decir, propiedades como `echo=TRUE` que cada chunk insertado después del chunk donde
+se definieron tales **propiedades globales** poseerá sin necesidad de declararlas manualmente.
+
+Ejemplo:
+
+````
+---
+title: "titulo alguno"
+output: html_document
+---
+
+```{r}`r ''` 
+mean(c(1,2,3,4))
+# Por default, este chunk se ejecutará y se mostrará su
+# código y output (resultado) en el documento HTML creado.
+```
+
+```{r, include=FALSE}`r ''` 
+knitr::opts_chunk$set(eval = TRUE, echo = FALSE)
+# Ahora cada chunk después de este tendrá las propiedades
+# eval = TRUE y echo = FALSE,
+# salvo que declaremos lo contrario para algún chunk particular.
+```
+
+```{r chunk-1}`r ''` 
+mean(c(1,2,3,4))
+# Este chunk sí se ejecutará, pero no se mostrará su código.
+```
+
+```{r chunk-2, eval=FALSE, echo=TRUE}`r ''` 
+mean(c(1,2,3,4))
+# Este chunk no se ejecutará, pero sí se mostrará su código.
+```
+````
+
+## Tarea
+
+Aquellos asistentes al taller que no conozcan **R**, pueden buscar online
+cómo hacer que **R Markdown** reconozca código del lenguaje de programación
+que sí conocen.<br>
+Por ejemplo, para incluir código de **Python** en **R Markdown**, pueden seguir
+las instrucciones de estos links:
+
+- <https://rstudio.github.io/reticulate/>
+- <https://rstudio.github.io/reticulate/articles/r_markdown.html>
+
+<details>
+  <summary>Presiona el triángulo para mostrar u ocultar los lenguajes que pueden usar en R Markdown:</summary>
+
+    stata<br>
+    R<br>
+    c<br>
+    python<br>
+    julia<br>
+    js<br>
+    awk<br>
+    bash<br>
+    coffee<br>
+    gawk<br>
+    groovy<br>
+    haskell<br>
+    lein<br>
+    mysql<br>
+    node<br>
+    octave<br>
+    perl<br>
+    psql<br>
+    Rscript<br>
+    ruby<br>
+    sas<br>
+    scala<br>
+    sed<br>
+    sh<br>
+    zsh<br>
+    highlight<br>
+    Rcpp<br>
+    tikz<br>
+    dot<br>
+    cc<br>
+    fortran<br>
+    fortran95<br>
+    asy<br>
+    cat<br>
+    asis<br>
+    stan<br>
+    block<br>
+    block2<br>
+    css<br>
+    sql<br>
+    go<br>
+    sass<br>
+    scss<br>
+    bslib<br>
+    theorem<br>
+    lemma<br>
+    corollary<br>
+    propositio<br>
+    conjecture<br>
+    definition<br>
+    example<br>
+    exercise<br>
+    hypothesis<br>
+    proof<br>
+    remark<br>
+    solution<br>
+</details>
+
+<br>
+
+La tarea consiste en
+<span style="font-size: 28px;">
+  <strong>
+    crear un documento o reporte parametrizado
+  </strong>
+</span>
+, pero podrán elegir entre **dos opciones** por presentar.
+
+Les recomiendo revisar los documentos parametrizados 
+[dos](https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/2-parametrizacion-interactiva.Rmd),
+[tres](https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/3-horario-parametrizado.Rmd) y
+[cuatro](https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/4-certificado-parametrizado.Rmd)
+que vimos en la segunda sesión,
+el **encabezado YAML** (donde definimos los parámetros) y los chunks con código de **R** (R chunk), 
+donde empleo tales parámetros.<br>
+No es necesario que comprendan el resto del código en aquellos documentos, sino simplemente 
+cómo usar comandos como `params$algun_parametro` o `params$parametro_A$algun_valor_del_parametro_A` .
+      
+<br>
+
+**Opción 1**:
+
+  - Documento parametrizado de **temática totalmente libre**.
+  - El objetivo es automatizar la creación de cierto documento que
+    ustedas produzcan con frecuencia y cuyo modelo general (plantilla) no cambie mucho.
+  - Su documento parametrizado debe incluir al menos **tres** parámetros, uno de los
+    cuales necesariamente debe ser definido con propiedades para ser escogido
+    en un menú interactivo (via la opción _Knit with parameters_), similarmente a como se
+    hizo en clase (reporte de temperaturas) para la variable asociada al _año_ en este 
+    [archivo](https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/2-parametrizacion-interactiva.Rmd).
+  - Realmente les recomiendo leer esta [documentación](https://garrettgman.github.io/rmarkdown/developer_parameterized_reports.html)
+    para aprender otras opciones de botones para asignar a nuestros parámetros en un menú interactivo.
+
+<br>
+
+**Opción 2**:
+
+  - Reporte parametrizado respecto a la misma data de temperaturas que empleamos en clase.
+  - Estructura de aquel reporte:
+    1. Iniciamos fijando un mes en particular; esta es la variable que parametrizaremos.
+    1. Incluir un gráfico de barras de las temperaturas promedio asociadas al mes fijado en (1),
+         a lo largo de los años considerados en la data _temperaturas.xlsx_ .
+    1. Adjuntar como conclusión en qué año sucedió la máxima temperatura promedio mensual respecto al mes fijado en (1).
+    1. Incorporar como conclusión en qué año sucedió la mínima temperatura promedio mensual respecto al mes fijado en (1).
+
+  - [Modelo](_material/clase-2/tarea-solucion.html) que pueden usar de guía para este reporte. Si se les complica la parte del código para 
+    obtener la data pedida, pueden ojear (parcialmente nomás, sino sería plagio) mi 
+    [solución](_material/clase-2/tarea-solucion.Rmd) para la creación de este reporte solicitado.

@@ -1,0 +1,15 @@
+---
+output: html_fragment
+---
+
+```{css, echo = FALSE}
+#TOC::before {
+    content: "";
+    display: block;
+    height: 150px;
+    background-image: url("images/yoshi-logo-3.png"); 
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+```

@@ -1,0 +1,419 @@
+---
+title: Markdown y YAML
+output: html_document
+---
+
+```{r, child="_yoshi-TOC.Rmd"}
+```
+
+## Primeras instalaciones 
+
+1. [R](https://cloud.r-project.org/)
+1. [RStudio](https://www.rstudio.com/products/rstudio/download/#download)
+1. [Visual Studio Code](https://code.visualstudio.com/download)
+1. [Git](https://git-scm.com/downloads)
+
+Para instalar **Git** y emplearlo en el editor de texto **Visual Studio Code** instalado,
+les recomiendo seguir las instrucciones de [este](https://www.youtube.com/watch?v=Xe9OA18PF_o&ab_channel=iRASPA)
+video hasta el **minuto 3**.
+
+## Introducción
+
+Comencemos copiando el contenido de [este](https://github.com/lucio-cornejo/r-markdown-summer-workshop/blob/main/_material/clase-1/ejemplo.Rmd)
+modelo de un archivo de tipo **R Markdown**.
+
+## Diapositivas
+
+Pueden ver las diapositivas de clase vía este [link](_diapositivas/clase-1.html),
+pero también lean esta página, pues contiene información importante que vimos en clase
+y que no está en las diapositivas.
+
+## Markdown
+
+Hagan click en el siguiente botón (triángulo negro) para ver el resumen de los comandos de Markdown que vimos en clase y que necesitaremos (algunos nomás) para los proyectos que realizaremos.
+
+<details>
+<summary>Resumen de comandos de Markdown</summary>
+````
+# Resumen básico de comandos de Markdown
+
+## Encabezados
+
+# nivel 1
+## nivel 2
+### nivel 3
+#### nivel 4
+##### nivel 5
+###### nivel 6
+
+## Estilos para palabras
+
+- Cursiva:
+_texto_    *texto*
+
+- Negrita: 
+__texto__    **texto**   
+
+- Cursiva y negrita:
+___texto___ ***texto***
+
+- Tachado:
+~~texto~~
+
+- Subrayado: No hay en Markdown, aunque se puede hacer con HTML.
+
+NOTA: Les recomiendo usar * en vez de _ para los tres estilos que acabamos de ver.
+
+## Romper línea
+
+- Doble espacio vacío al final de una línea de texto.
+- Símbolo \ al final de una línea de texto.
+- Símbolo `<br>` (sin tildes reversas) al final de una línea de texto.
+
+NOTA: Entre esas opciones, les recomiendo usar <br>.
+
+## Listas 
+
+*Desordenadas*
+
+- a
+- b
+    - b1
+    - b2
+
+*Ordenadas*
+
+1. a
+1. b
+    1) a
+    1) b
+
+*Check*
+
+- [ ] estudiar
+- [x] procastinar
+    - [x] music
+    - [ ] movies
+
+
+## Línea recta
+
+Varias opciones que logran lo mismo:
+ 
+* * *
+
+***
+
+*****
+
+---
+
+- - -
+
+---------------------------------------
+
+<hr>
+
+NOTA: Entre esas opciones, les recomiendo usar --- .
+
+
+## LaTeX
+    
+- Ecuación en línea de texto: $\,e^\pi +1=0$  
+
+- Ecuación modo display math: 
+$$\int\limits_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt\pi$$
+
+
+## Citas
+
+> People die if they are killed.
+> 
+> --- Shirou Emiya, Fate/Stay Night
+
+> texto A
+>> texo B
+>>
+>> texto B
+>
+> texto A
+
+
+## Enlaces
+
+<htttps://google.com>
+
+[Youtube](https://www.youtube.com/)
+
+
+[Google](https://google.com "googleplex")
+
+
+[Hurricane] Erika was the strongest and longest-lasting
+tropical cyclone in the 1997 Atlantic [hurricane] season.
+
+[hurricane]:  https://w.wiki/qYn
+
+
+## Imágenes
+
+![nombre para imagen](link)
+
+
+![yoshi][] is ![yoshi][] cute.
+
+[yoshi]: some_path/yoshi.png
+
+
+## Pie de página
+
+Estas opciones funcionan en R Markdown, pero no en la preview de VS Code:
+
+- Opción 1
+
+`Google^[this is a footnote] is evil.`
+
+*Así, la numeración del pie de página se realiza automáticamente.*
+
+- Opción 2
+
+this[^1] and that[^2] ...
+
+[^1]: footnote 1
+[^2]: footnote 2
+
+
+## Código en línea o en bloque
+
+- En línea:
+
+El código `console.log(alert('message'))` lo usaremos en JavaScript. 
+
+- En bloque:
+```python
+def suma(a,b):
+    return a+b
+
+suma(1,2)
+``` 
+
+```r
+df <- pressure
+head(df)
+```
+
+*Cuidado*: El sangrado de texto puede hacer que Markdown interprete la sección con *4 espacios vacíos* de sangrado, como un _bloque de texto_.<br>
+En ocasiones, esa convención puede generar problemas en **R Markdown**,
+particularmete cuando trabajemos con **HTML** dentro de un documendo **Rmd**.
+
+
+## Tablas
+
+- Con texto justificado
+
+Nombre | Institución
+:---: | :---:
+Lucio | PUCP
+Yoshi | IRS
+
+- Con texto justificado a la izquierda
+
+Nombre | Institución
+:--- | :---
+Lucio | PUCP
+Yoshi | IRS
+
+- Con texto justificado a la derecha
+
+Nombre | Institución
+---: | ---:
+Lucio | PUCP
+Yoshi | IRS
+
+
+## Contenido HTML (no memoricen el contenido de este encabezado)
+
+<strong>negrita</strong>
+
+<ul>
+  <li>A</li>
+  <li>B</li>
+</ul>
+
+<table>
+    <thead>
+        <tr>
+            <td>Nombre</td>
+            <td>Institución</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Lucio</td>
+            <td>PUCP</td>
+        </tr>
+        <tr>
+            <td>Yoshi</td>
+            <td>IRS</td>
+        </tr>
+    </tbody>
+</table>
+
+
+## Contenido colapsable
+
+<details>
+<summary>Foldable</summary>
+contenido ...
+
+- item a
+- item b
+</details>
+
+## Sitio web que contiene un resumen como este
+<https://www.rstudio.com/resources/cheatsheets/>
+
+````
+</details>
+
+
+## YAML
+
+**Contenido extra a las diapositivas:**
+
+### Listas
+
+Dos maneras equivalentes:
+
+Los guiones `-` indican listas en YAML.
+```yaml
+name: Lucio
+    hobbies:
+        - math
+        - music
+```
+
+```yaml
+name: Lucio
+    hobbies: ["math", "music"]
+```
+
+### Listas de objetos
+
+Tres maneras equivalentes:
+
+```yaml
+name: Yoshi
+    friends:
+        - name: Mario
+          job: plumber
+
+        - 
+          name: Luigi
+          job: copycat
+
+        - {name: "Peach", job: "princess"}
+```
+
+### Propiedad output: 
+
+Podemos convertir cualquier documento **R Markdown** a 
+estos (y muchos más) tipos de archivos:
+
+- pdf_document
+- latex_document
+- beamer_presentation
+- html_document
+- slidy_presentation
+- ioslides_presentation
+- powerpoint_presentation
+- word_document
+- md_document
+
+## Tarea
+
+1. Completar este [tutorial](https://commonmark.org/help/tutorial/) de Markdown.
+
+2. Crea un archivo **R Markdown** en **RStudio**:
+    - Presiona el ícono verde con símbolo "+" cerca a la esquina superior izquierda de **RStudio**.
+    - Selecciona opción **R Markdown**.
+    - Presiona botón **OK**.
+
+3. Borra todo el contenido del archivo **R Markdown** creado y pega en ese mismo archivo 
+el siguiente encabezado **YAML** (asegúrate que los espaciados se preserven tras copiar y pegar):
+
+```yaml
+---
+title: "Mi primer archivo R Markdown"
+author: " "  # pon tu nombre
+output:
+    html_document:
+        theme: cerulean # escoger tu opción favorita\: default, cerulean, journal, flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone, simplex, and yeti
+        toc: true
+        toc_depth: 3
+        toc_float: 
+            collapsed: false     # expande totalmente la lista de encabezados (toc)
+            smooth_scroll: true  # al hacer click en un item de la toc, el movimiento de la página será continuo
+---
+```
+
+4. Después del encabezado **YAML**, escriban lo que deseen, pero usen al menos 10 comandos de
+**Markdown** que vimos en clase, incluyendo necesariamente **tres** niveles de encabezados.
+
+Ejemplo:
+
+```text
+# American Psycho, una _black comedy_ de los gringahos
+
+## Citas
+
+### At the disco
+
+> So What Do You Do?
+> 
+>> I'm into murders and executions mostly.
+
+### How to end a conversation
+
+**I Have To Return Some Videotapes.**[^1]
+
+### Pseudo-catharsis
+
+[This Confession Has Meant Nothing.](https://en.wikipedia.org/wiki/Religion)
+
+## Personajes
+
+### Principal
+
+- Patrick Bateman
+
+### Secundarios
+
+1. Víctima 1
+1. Víctima 2
+1. etc
+
+
+[^1]: No he hasn't.
+```
+
+5. En **RStudio**, hagan click en el boton **knit** (tiene una bola azul de tejer) para convertir su documento 
+**Rmd** a formato **HTML**. Finalmente, prueben varios de los modelos que les incluí como 
+comentario (usando el símbolo `#` ) en la sección `theme: ` del encabezado **YAML**.<br>
+Encuentren su `theme` preferido, y eso sería todo, han creado su primer documento R Markdown.
+
+<center>
+![](images/yoshi-celebration.gif)
+</center>
+
+<script>
+    document.addEventListener('DOMContentLoaded',function() {
+        let date = new Date();
+        let dia = date.getDate();
+        
+        if(dia < 4) {
+            let hide_this = document.querySelector('.hide_this');
+            hide_this.remove();
+        }
+    });
+</script>

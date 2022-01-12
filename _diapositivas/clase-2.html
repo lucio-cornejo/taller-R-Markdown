@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Clase 2: Documentos parametrizados</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Lucio Cornejo" />
+    <script src="clase-2_files/header-attrs-2.11.4/header-attrs.js"></script>
+    <link href="clase-2_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="clase-2_files/remark-css-0.0.1/shinobi.css" rel="stylesheet" />
+    <link href="clase-2_files/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link href="clase-2_files/remark-css-0.0.1/duke-blue.css" rel="stylesheet" />
+    <link href="clase-2_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="clase-2_files/panelset-0.2.6/panelset.js"></script>
+    <link href="clase-2_files/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="clase-2_files/tile-view-0.2.6/tile-view.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="my-slides-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle, inverse, title-slide
+
+
+
+&lt;h1 class = "celeste-ish"&gt;
+    Clase 2:
+    &lt;p style="margin-bottom: -120px;"&gt; &amp;nbsp; &lt;/p&gt;
+    Reportes parametrizados
+&lt;/h1&gt;
+
+&lt;p style="margin-bottom: 150px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+&lt;h3 class = "celeste-ish"&gt;
+  Autor: Lucio Cornejo
+&lt;/h3&gt;
+
+---
+
+## Repaso rápido de la sesión pasada
+
+### Estructura de un documento Rmd
+
+&lt;p style="margin-bottom: -20px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+&lt;center&gt;
+&lt;img src="images-and-gifs/estructura-rmd.png" height="400"/&gt;
+&lt;/center&gt;
+
+&lt;p style="margin-bottom: 20px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+### ¿Cómo se generan los archivos?
+
+&lt;p style="margin-bottom: -20px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+![rernder_process](images-and-gifs/clase-1-render-process.png)
+
+???
+
+¿Alguien hizo su tarea y desea compartirla con nosotros?
+
+---
+class: middle
+## Objetivos de esta sesión:
+
+--
+
+1. Aprender a insertar **código** en un documento **R Markdown**.
+
+--
+
+1. Familiarizarnos con el formato **html_notebook**.
+
+--
+
+1. Realizar un reporte no parametrizado.
+
+--
+
+1. **Parametrizar** el reporte creado anteriormente.
+
+---
+
+## _Chunks_ : Bloques de código
+
+La sesión pasada, aprendimos que **Markdown** nos permite incluir código
+tanto en línea como en bloques, pero para **resaltarlo**; 
+en cambio, **R Markdown** sí lo **ejecutará**.
+
+.pull-left[
+**Markdown** 
+
+Código en línea:
+```md
+El comando `mean(edades)` sirve para calcular la media 
+de un vector denominado _edades_ .
+```
+
+&lt;p style="margin-bottom: -47px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+Bloque de código:
+````
+```r
+edades &lt;- c(1,2,3)
+mean(edades)
+```
+````
+]
+
+.pull-right[
+**R Markdown** 
+
+Código en línea:
+.scrollable[
+
+```
+La media del vector _edades_ vale `r mean(edades)`.
+```
+]
+
+&lt;p style="margin-bottom: -40px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+Chunk:
+
+```` 
+\`\`\`{r}
+edades &lt;- c(1,2,3)
+mean(edades)
+```
+```` 
+
+]
+
+---
+
+## Propiedades principales de chunks
+
+&lt;p style="margin-bottom: -20px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+![chunks](images-and-gifs/main-chunk-options.png)
+
+
+???
+
+Mostrar propiedades de **chunks** en **RStudio**,
+trabajando todos juntos.
+
+---
+
+## Chunks de diversos lenguajes
+
+**R Markdown** admite código de cualquiera de los siguiente lenguajes:
+
+&lt;details&gt;
+  &lt;summary&gt;Presionar el triángulo rotado para mostrarlos u octultarlos.&lt;/summary&gt;
+    
+    awk&lt;br&gt;
+    bash&lt;br&gt;
+    coffee&lt;br&gt;
+    gawk&lt;br&gt;
+    groovy&lt;br&gt;
+    haskell&lt;br&gt;
+    lein&lt;br&gt;
+    mysql&lt;br&gt;
+    node&lt;br&gt;
+    octave&lt;br&gt;
+    perl&lt;br&gt;
+    psql&lt;br&gt;
+    Rscript&lt;br&gt;
+    ruby&lt;br&gt;
+    sas&lt;br&gt;
+    scala&lt;br&gt;
+    sed&lt;br&gt;
+    sh&lt;br&gt;
+    stata&lt;br&gt;
+    zsh&lt;br&gt;
+    highlight&lt;br&gt;
+    Rcpp&lt;br&gt;
+    tikz&lt;br&gt;
+    dot&lt;br&gt;
+    c&lt;br&gt;
+    cc&lt;br&gt;
+    fortran&lt;br&gt;
+    fortran95&lt;br&gt;
+    asy&lt;br&gt;
+    cat&lt;br&gt;
+    asis&lt;br&gt;
+    stan&lt;br&gt;
+    block&lt;br&gt;
+    block2&lt;br&gt;
+    js&lt;br&gt;
+    css&lt;br&gt;
+    sql&lt;br&gt;
+    go&lt;br&gt;
+    python&lt;br&gt;
+    julia&lt;br&gt;
+    sass&lt;br&gt;
+    scss&lt;br&gt;
+    R&lt;br&gt;
+    bslib&lt;br&gt;
+    theorem&lt;br&gt;
+    lemma&lt;br&gt;
+    corollary&lt;br&gt;
+    propositio&lt;br&gt;
+    conjecture&lt;br&gt;
+    definition&lt;br&gt;
+    example&lt;br&gt;
+    exercise&lt;br&gt;
+    hypothesis&lt;br&gt;
+    proof&lt;br&gt;
+    remark&lt;br&gt;
+    solution&lt;br&gt;
+&lt;/details&gt;
+
+&lt;p style="margin-bottom: -20px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+Ejemplos:
+
+**Python** 
+```` 
+```{python, echo = FALSE, eval=FALSE}
+# Podemos añadir varias propiedades a un mismo chunk,
+# separándolas con coma.
+
+import numpy as np
+
+x = np.cos(0) # vale 1
+y = np.sin(0) # vale 0
+
+print(x**2 + y**2) # vale 1
+```
+```` 
+
+---
+
+**JavaScript** 
+
+&lt;p style="margin-bottom: -60px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+.scrollable[
+```` 
+```{js mi-primer-chunk, include=FALSE}
+// Podemos nombrar a cada chunk, ya sea para hacer referencia 
+// a ellos en nuestro documento Rmd, facilitar el poder ejecutar
+// varias veces un mismo chunk, o simplemente para ser más ordenados.
+
+document.addEventListener(
+  "DOMContentLoaded", //
+  function() {
+    // Definimos un array con los meses del año
+    let meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","setiembre","octubre","noviembre","diciembre"];
+
+    // Obtener fecha de hoy
+    let fecha = new Date();
+
+    // Obtener qué día es hoy
+    let numeroDeDia = fecha.getDate();
+
+    // Crear una ventana con un mensaje particular
+    alert(`Hoy es ${numeroDeDia} de ${meses[fecha.getMonth()]}.`)
+  }
+)
+```
+````
+] 
+
+---
+
+## ¿Qué es un reporte parametrizado?
+
+Es un documento **dinámico** que cambia en función de la **input** 
+proporcionada por el usuario o una aplicación.
+
+&lt;p style="margin-bottom: -35px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+## ¿Para qué nos sirve un reporte parametrizado?
+
+Nos permite _automatizar_ la creación de reportes o documentos que poseen
+un **modelo similar** (template/plantilla) y los cuales se tienen
+que producir con **cierta frecuencia** .
+
+Por ejemplo:
+
+- Análisis de data respecto a algún fenómeno natural periódico.
+- Algunos reportes mensuales o anuales sobre ventas de algún negocio.
+- Horarios.
+- Certificados.
+
+---
+
+## Manos a la obra
+
+&lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+&lt;small&gt;
+Para cada link en azul, copiar su contenido (presionar ctrl+A y luego ctrl+C), pegarlo en un nuevo
+archivo Rmd y guardarlo con el mismo nombre del texto azul;
+todos los archivos en una misma carpeta.
+&lt;/small&gt;
+
+&lt;p style="margin-bottom: -70px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+&lt;a href = "https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/0-html-notebook.Rmd" download="0-html-notebook"&gt;
+0-html-notebook.Rmd
+&lt;/a&gt;
+&lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
+- Objetivos:
+  - Crear nuestro primer html_notebook.
+  - Familiarizarnos con propiedades de chunks.
+
+&lt;a href = "https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/1-parametrizacion-basica.Rmd" download="1-parametrizacion-basica"&gt;
+1-parametrizacion-basica.Rmd
+&lt;/a&gt;
+&lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
+  - Objetivos:
+      + Crear nuestro primer reporte parametrizado.
+      + Parametrizar el notebook creado,
+        pero ahora presentado como un documento HTML, 
+        pues no hay más código que añadir, solo que ejecutar.
+      + Instalaremos el paquete **Shiny** de **R** para hacer 
+        más interactiva la manera en que definimos parámetros del reporte/documento, 
+        esto gracias a los comandos `rmarkdown::render("my-file.Rmd",params="ask")`
+        y _knit with parameters_.
+
+???
+
+Guardar en ua misma carpeta todos los archivos R Markdown que crearemos ahora.
+
+---
+
+&lt;a href = "https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/2-parametrizacion-interactica.Rmd" download="2-parametrizacion-interactiva"&gt;
+2-parametrizacion-interactiva.Rmd
+&lt;/a&gt;
+  - Objetivo: Crear un menú interactivo para definir los parámetros.
+
+&lt;a href = "https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/3-horario-parametrizado.Rmd" download="3-horario-parametrizado"&gt;
+3-horario-parametrizado.Rmd
+&lt;/a&gt;
+  - Objetivo:
+      + Usar parámetros en forma de vectores, para evitar
+        tener que definir una gran cantidad de parámetros,
+        sino más bien parámetros que contienen varios valores.
+
+&lt;a href = "https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/4-certificado-parametrizado.Rmd" download = "4-certificado-parametrizados"&gt;
+4-certificado-parametrizados.Rmd
+&lt;/a&gt;
+  - Objetivo: Producir varias versiones de un mismo archivo. 
+
+&lt;p style="margin-bottom: -40px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+Último ejemplo:&lt;br&gt;
+&lt;https://rmarkdown.rstudio.com/articles_mail_merge.html&gt;
+(no descargar)
+
+---
+class: middle
+
+## Links opcionales en caso deseen profundizar más sobre documentos parametrizados:
+
+- &lt;https://garrettgman.github.io/rmarkdown/developer_parameterized_reports.html&gt;
+
+- &lt;https://bookdown.org/yihui/rmarkdown/parameterized-reports.html&gt;
+
+- &lt;https://www.youtube.com/watch?v=oFKb8WYDLB0&amp;ab_channel=BryanJenks&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": true,
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script>
+    // Code to change color of slide number when the current slide has presentator notes
+    function change_slide_number_color() {
+        
+        // Check notes section of current slide
+        let notas = document.querySelector('div.remark-notes'); 
+        
+        // Get all the slide number div tags
+        let numero_diapositiva = document.querySelectorAll('div.remark-slide-number'); 
+        
+        // Check if the are notes in current slide
+        if( !(notas.children.length === 0) ) {
+            // Color current slide number when there are notes in current slide
+            numero_diapositiva[slideshow.getCurrentSlideIndex()].style.color = "red";
+        }
+    }
+    
+    // Repeating this function every 0.2 seconds does not affect the web's performance 
+    // (lag and loading time, for example) in any significant way, at least in my weak laptop.
+    setInterval(change_slide_number_color, 200)
+
+    // Code to fix the change of slide when scrolling and when clicking some elements
+    let touchmoved;
+    $('div.remark-slide-container').on('touchend', function(event){
+        if(touchmoved === true) {
+            // Do not change slide if scrolling took place
+            event.preventDefault(); 
+            event.stopPropagation();
+        } else {
+            // Fix for issue when clicking an image with an anchor
+            if(event.target.tagName === "IMG") {
+                if (event.target.parentNode.getAttribute("href").includes("https:")) {
+                    // If there was no scrolling and the user clicked on an image
+                    // which has an anchor, then do not change slide and open
+                    // in a next window the site linked to image touched
+                    event.preventDefault(); 
+                    event.stopPropagation();
+                    window.open(event.target.parentNode.getAttribute("href"));
+                } 
+            }
+            
+            // Fix for issue when clicking the symbol of a <details><summary> ...
+            if (event.target.tagName === "SUMMARY") {
+                if(event.target.parentNode.tagName === "DETAILS") {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    // Manually toggle between open or closed <details>
+                    if(event.target.parentNode.open === true) {
+                        event.target.parentNode.open = false;
+                    } else {
+                        event.target.parentNode.open = true;
+                    }
+                }
+            }
+        }
+    }).on('touchmove', function(){
+        touchmoved = true;
+    }).on('touchstart', function(){
+        touchmoved = false;
+    });
+
+    //// Code to chage between slides depending on user screen swipe ////
+    // Such option is supossed to work already in Xaringan, but it was not working for me :(
+    let touchstartX = 0;
+    let touchendX = 0;
+    let swiped = false;
+
+    function conditional_swipe() {
+        // Swiped left
+        if (touchendX < touchstartX) {
+            if ( (touchstartX - touchendX) > (screen.availWidth)*0.25 ) slideshow.gotoNextSlide();
+        } else {
+            // Swiped right, because swiped equals true
+            if ( (touchendX - touchstartX) > (screen.availWidth)*0.25 ) slideshow.gotoPreviousSlide();
+        }
+    }
+        
+    $('div.remark-slide-container').on('touchstart', event => {
+        touchstartX = event.changedTouches[0].screenX;
+        swiped = false;
+    });
+
+    $('div.remark-slide-container').on('touchmove', function() { swiped = true; });
+
+    $('div.remark-slide-container').on('touchend', event => {
+        touchendX = event.changedTouches[0].screenX;
+        if (swiped === true) conditional_swipe();
+    });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

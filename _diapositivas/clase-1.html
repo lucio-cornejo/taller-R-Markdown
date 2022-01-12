@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Clase 1: Markdown y YAML</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Lucio Cornejo" />
+    <script src="clase-1_files/header-attrs-2.11.4/header-attrs.js"></script>
+    <link href="clase-1_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="clase-1_files/remark-css-0.0.1/shinobi.css" rel="stylesheet" />
+    <link href="clase-1_files/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link href="clase-1_files/remark-css-0.0.1/duke-blue.css" rel="stylesheet" />
+    <link href="clase-1_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="clase-1_files/panelset-0.2.6/panelset.js"></script>
+    <link href="clase-1_files/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="clase-1_files/tile-view-0.2.6/tile-view.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="my-slides-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle, inverse, title-slide
+
+
+
+&lt;h1 class = "celeste-ish"&gt;
+    Clase 1:
+    &lt;p style="margin-bottom: -120px;"&gt; &amp;nbsp; &lt;/p&gt;
+    Markdown y YAML
+&lt;/h1&gt;
+
+&lt;p style="margin-bottom: 150px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+&lt;h3 class = "celeste-ish"&gt;
+  Autor: Lucio Cornejo
+&lt;/h3&gt;
+
+---
+
+## ¿De qué me sirve saber R Markdown?
+
+- Para crear **reportes reproducibles**.
+
+- Para generar, a partir de **un solo archivo**, una multitud de
+formatos (página web, Word, PDF, diapositivas HTML, etc) en el cual 
+publicarlo.
+
+&lt;br&gt;
+
+## Filosofía de R Markdown
+
+&lt;p style="margin-bottom: -50px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+&gt; Cambiemos nuestra actitud tradicional hacia la construcción de 
+&gt; programas: en lugar de imaginar que nuestra tarea principal es 
+&gt; instruir a una computadora sobre lo que debe hacer, 
+&gt; concentrémonos en explicar a los seres humanos lo que queremos 
+&gt; que haga una computadora.
+&gt;
+&gt; --- Donald Knuth &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;(Literate Programming, 1983)
+
+---
+class: center, middle
+
+## ¿Osea?
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/s3JldKoA0zw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+---
+class: middle
+
+## ¿Qué es R Markdown?
+
+Es un paquete del lenguaje de programación **R** que permite integrar en
+un único documento el **texto**, **código** y los **resultados** de un
+análisis o proyecto.
+
+El **texto** se escribe en los formatos
+&lt;span class="resaltar"&gt;YAML&lt;/span&gt; y 
+&lt;span class="resaltar"&gt;Markdown&lt;/span&gt;, 
+lenguajes de marcado que exploraremos en esta clase.
+
+El **código** puede ser de
+&lt;span class="resaltar"&gt;R&lt;/span&gt;, 
+&lt;span class="resaltar"&gt;C&lt;/span&gt;, 
+&lt;span class="resaltar"&gt;Python&lt;/span&gt;, 
+entre otros.
+
+Los **resultados** se pueden exportar una variedad de tipos
+de archivos, gracias al software 
+&lt;span class="resaltar"&gt;Pandoc&lt;/span&gt;.
+
+&lt;br&gt;
+
+---
+
+## Instalación
+
+
+```r
+# Ejecuta los siguientes comandos en la consola de R
+install.packages("knitr")
+install.packages("rmarkdown")
+```
+
+&lt;br&gt;
+
+## En accción
+
+Abrir **RStudio** y copiar el contenido del archivo **R Markdown**
+en este [link](https://github.com/lucio-cornejo/r-markdown-summer-workshop/blob/main/_material/clase-1/ejemplo.Rmd).
+
+&lt;p style="margin-bottom: -20px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+&lt;center&gt;
+&lt;img src="images-and-gifs/nacimiento-yoshi.gif" height="200"/&gt;
+&lt;/center&gt;
+
+???
+
+Asegurarse que cada asistente realizó las instalaciones requeridas
+en el archivo R Markdown compartido.
+---
+
+## ¿Cómo funciona R Markdown?
+
+&lt;p style="margin-bottom: 40px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+![rernder_process](images-and-gifs/clase-1-render-process.png)
+
+???
+
+Fechas de publicación:
+
+- pandoc: 10/08/2006
+- knitr: 17/01/2012
+- rmarkdown: 24/02/2014
+
+---
+
+## Estructura de un documento Rmd
+
+&lt;p style="margin-bottom: 10px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+&lt;center&gt;
+&lt;img src="images-and-gifs/estructura-rmd.png" height="400"/&gt;
+&lt;/center&gt;
+
+---
+
+## Markdown
+
+Es un lenguaje de marcado muy útil para escribir
+de manera simple contenido usualmente para la web,
+ya sea para libros o blogs.
+
+Contrario a la imagen anteriormente presentada sobre
+cómo funciona **R Markdown**, en este taller
+no siempre usaremos el software **Pandoc** para 
+convertir nuestro archivo **Markdown**.
+Más adelante, usaremos **Hugo** para la creación
+de nuestro sitio web; y, la librería _Remark.js_
+de **JavaScript** para la creación de diapositivas 
+vía el paquete _Xaringan_ de **R Markdown**.
+
+&lt;p style="margin-bottom: -10px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+&lt;center&gt;
+&lt;img src="images-and-gifs/markdown-logo.png" height="200"/&gt;
+&lt;/center&gt;
+
+???
+
+Iniciar demostración en Visual Studio Code.
+
+---
+
+## YAML
+
+Este lenguaje (no de programación) sirve para definir 
+**propiedades principales** respecto al archivo **Rmd** 
+con el que se trabaje. 
+
+ **YAML** consiste en texto que emplea
+**&lt;span style="font-size: 25px;"&gt;sangría de 2 espacios&lt;/span&gt;**
+para definir características como el título, fecha, formato de salida, etc,
+de un documento &lt;br&gt;( **R Markdown** (**Rmd**), en nuestro caso).
+
+Se ubica en la parte superior de cada archivo **Rmd**, entre un par de
+tres guiones (**---** ), sección a la cual se denomina
+**encabezado YAML** o **metadata**.
+
+El encabezado **YAML** no suele ser de gran extensión (menos de 10 líneas de texto),
+al menos para reportes simples, pero, pueden llegar a ser tan sofisticados como
+lo desees.
+
+A continuación, un ejemplo extenso (no es necesario lo lean a detalle)
+de un **encabezado YAML** :
+
+---
+
+&lt;p style="margin-bottom: -30px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+&lt;center&gt;
+&lt;img src="images-and-gifs/yaml-example.png" height="600"/&gt;
+&lt;/center&gt;
+
+---
+
+##  Ejemplos de encabezados YAML 
+
+```yaml
+---
+title: "Reporte 1"
+output: html_document
+---
+```
+
+La manera de definir **propiedades** es simple:
+
+```yaml
+alguna_propiedad: un_valor_posible
+```
+
+Además, podemos definir **atributos** a **propiedades**
+previamente declaradas, siempre y cuando tales **atributos** tengan el
+mismo espaciado (2 espacios vacíos) en el encabezado,
+**respecto a la propiedad** que están modificando.
+
+```yaml
+---
+title: "Reporte 1"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+```
+
+---
+
+En el ejemplo previo, &amp;nbsp;`html_document`&amp;nbsp; dejó de ser solamente el 
+**valor** de la **propiedad** &amp;nbsp;`output`&amp;nbsp;, y ahora es también una
+**propiedad** ... **propiedad** a la cual se le añadió los **atributos**
+&amp;nbsp; `toc: true`&amp;nbsp; y &amp;nbsp; `toc_float: true`, ambos con un espaciado de **4 espacios vacíos**
+respecto al valor de la propiedad que están modificando.
+
+Pueden entender **atributo** y **propiedad** como lo mismo, simplemente quería
+evitar decir _propiedad de propiedad_. Estas _cadenas_ de propiedades y atributos (uno dentro de la otra)
+pueden hacerse tan largas como se desee (ver diapositiva 10), pero, en este taller,
+nuestros encabezados **YAML** serán usualmente de este tipo:
+
+```yaml
+---
+title: "Algún título"
+author: "tu nombre"
+output:
+  html_document:
+    toc: true    # incluir tabla de contenidos (lista de encabezados)
+    toc_depth: 3 # motrar en la toc los encabezados de nivel tres o menor nivel
+    toc_float: true # mantener fija la toc en la esquina superior izquierda de la página web
+    theme: darkly # un modelo predeterminado del estilo visual de nuestra página
+    highlight: github # un modelo predeterminado de cómo resaltar el código de la página web
+---
+```
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": true,
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script>
+    // Code to change color of slide number when the current slide has presentator notes
+    function change_slide_number_color() {
+        
+        // Check notes section of current slide
+        let notas = document.querySelector('div.remark-notes'); 
+        
+        // Get all the slide number div tags
+        let numero_diapositiva = document.querySelectorAll('div.remark-slide-number'); 
+        
+        // Check if the are notes in current slide
+        if( !(notas.children.length === 0) ) {
+            // Color current slide number when there are notes in current slide
+            numero_diapositiva[slideshow.getCurrentSlideIndex()].style.color = "red";
+        }
+    }
+    
+    // Repeating this function every 0.2 seconds does not affect the web's performance 
+    // (lag and loading time, for example) in any significant way, at least in my weak laptop.
+    setInterval(change_slide_number_color, 200)
+
+    // Code to fix the change of slide when scrolling and when clicking some anchors
+    let touchmoved;
+    $('div.remark-slide-container').on('touchend', function(event){
+        if(touchmoved === true) {
+            // Do not change slide if scrolling took place
+            event.preventDefault(); 
+            event.stopPropagation();
+        } else {
+            if(event.target.tagName === "IMG") {
+                if (event.target.parentNode.getAttribute("href").includes("https:")) {
+                    // If there was no scrolling and the user clicked on an image
+                    // which has an anchor, then do not change slide and open
+                    // in a ne window the site linked to image touched
+                    event.preventDefault(); 
+                    event.stopPropagation();
+                    window.open(event.target.parentNode.getAttribute("href"));
+                } 
+            }
+        }
+    }).on('touchmove', function(){
+        touchmoved = true;
+    }).on('touchstart', function(){
+        touchmoved = false;
+    });
+
+    //// Code to chage between slides depending on user screen swipe ////
+    // Such option is supossed to work already in Xaringan, but it was not working for me :(
+    let touchstartX = 0;
+    let touchendX = 0;
+    let swiped = false;
+
+    function conditional_swipe() {
+        // Swiped left
+        if (touchendX < touchstartX) {
+            if ( (touchstartX - touchendX) > (screen.availWidth)*0.25 ) slideshow.gotoNextSlide();
+        } else {
+            // Swiped right, because swiped equals true
+            if ( (touchendX - touchstartX) > (screen.availWidth)*0.25 ) slideshow.gotoPreviousSlide();
+        }
+    }
+        
+    $('div.remark-slide-container').on('touchstart', event => {
+        touchstartX = event.changedTouches[0].screenX;
+        swiped = false;
+    });
+
+    $('div.remark-slide-container').on('touchmove', function() { swiped = true; });
+
+    $('div.remark-slide-container').on('touchend', event => {
+        touchendX = event.changedTouches[0].screenX;
+        if (swiped === true) conditional_swipe();
+    });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

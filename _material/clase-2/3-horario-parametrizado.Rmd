@@ -1,0 +1,214 @@
+---
+title: "Responsabilidades perrunas"
+output: html_document
+params:
+  paseo1: "07:30 - 08:00"
+  comida1: "10:00"
+  paseo2: "12:30 - 13:00"
+  paseo3: "17:30 - 18:00"
+  comida2: "19:00"
+  paseo4: "21:00 - 21:30"
+  responsables:
+    value:
+      lunes: [oa,p,oa,po,m,pm]
+      martes: [oa,p,oa,po,m,pm]
+      miercoles: [oa,p,oa,po,m,pm]
+      jueves: [oa,p,oa,po,m,pm]
+      viernes: [oa,p,oa,po,m,pm]
+      sabado: [oa,p,oa,po,m,pm]
+      domingo: [oa,p,oa,po,m,pm]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<!--#region Estilo para la tabla de horario -->
+```{css}
+body { 
+    text-align: center;
+    font-size: 18px;
+}
+.title {
+    margin-top: 60px !important;
+    margin-bottom: 20px !important;
+    font-family: fantasy !important;
+}
+.header {
+    background-color: #aa00ff;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border: 1px solid black;
+    position: relative;
+    right: 75px;
+}
+td,th {
+    white-space: nowrap;
+    width: 200px !important;
+    border: 1px solid black;
+    padding: 10px !important;    
+    text-align: center !important;
+}
+```
+<!--#endregion-->
+
+<!--#region Coloreado de las celdas en la tabla -->
+<style>
+    .Padre {
+        background-color: rgba(235, 0, 0, 0.75);
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.25));
+
+    }
+    .Madre {
+        background-color: rgba(93, 193, 185, 0.75);
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.25));
+
+    }
+    .Hijo {
+        background-color: rgba(240, 255, 0, 0.75);
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.25));
+
+    }
+    .Hija {
+        background-color: rgba(150, 0, 200, 0.75);
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.25));
+
+    }
+
+
+    .Padre-Madre {
+        background:
+            linear-gradient(to right,rgba(235, 0, 0, 0.75) 50%,rgba(93, 193, 185, 0.75) 51%),
+            linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.5));
+    }
+    .Padre-Hijo {
+        background:
+            linear-gradient(to right,rgba(235, 0, 0, 0.75) 50%,rgba(240, 255, 0, 0.75) 51%),
+            linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.5));
+    }
+    .Padre-Hija {
+        background:
+            linear-gradient(to right,rgba(235, 0, 0, 0.75) 50%,rgba(150, 0, 200, 0.75) 51%),
+            linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.5));
+    }
+    .Madre-Hijo {
+        background:
+            linear-gradient(to right,rgba(93, 193, 185, 0.75) 50%,rgba(240, 255, 0, 0.75) 51%),
+            linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.5));
+    }
+    .Madre-Hija {
+        background:
+            linear-gradient(to right,rgba(93, 193, 185, 0.75) 50%,rgba(150, 0, 200, 0.75) 51%),
+            linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.5));
+    }
+    .Hijo-Hija {
+        background:
+            linear-gradient(to right,rgba(240, 255, 0, 0.75) 50%,rgba(150, 0, 200, 0.75) 51%),
+            linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.5));
+    }
+</style>
+<!--#endregion-->
+
+
+
+<!--#region variables -->
+<!-- ############################################## R CHUNK ############################################## -->
+```{r variables-y-funciones}
+paseo_1 <- params$paseo1
+paseo_2 <- params$paseo2
+paseo_3 <- params$paseo3
+paseo_4 <- params$paseo4
+
+identificadores <- list(
+                      "p" = "Padre",
+                      "m" = "Madre",
+                      "o" = "Hijo",
+                      "a" = "Hija",
+                      "pm" = "Padre-Madre",
+                      "po" = "Padre-Hijo",
+                      "pa" = "Padre-Hija",
+                      "mo" = "Madre-Hijo",
+                      "ma" = "Madre-Hija",
+                      "oa" = "Hijo-Hija"
+                      )
+
+convert_names <- function(abreviaturas) {
+# Transformamos las abreviaturas de los responsables, por su identificador completo,
+# como se denota en la lista "identificadores"
+  for(i in 1:length(abreviaturas)) abreviaturas[i] <- identificadores[abreviaturas[i]][[1]]
+  
+  return(abreviaturas)
+}
+```
+<!-- ############################################## R CHUNK ############################################## -->
+<!--#endregion-->
+
+
+
+
+<p style="margin-bottom: 10px;"> &nbsp; </p>
+
+
+
+
+<!--#region crear-horario -->
+<!-- ############################################## R CHUNK ############################################## -->
+```{r horario}
+horario <- data.frame(1:6,1:6,1:6,
+                      1:6,1:6,1:6,
+                      1:6,1:6,1:6)
+
+colnames(horario) <- c("Hora","Actividad","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo")
+
+horario["Hora"]      <- c(paseo_1, params$comida1, paseo_2, paseo_3, params$comida2, params$paseo4)
+horario["Actividad"] <- c("Paseo 1","Desayuno","Paseo 2","Paseo 3","Cena","Paseo 4")
+
+# Transformamos los parámetros en el encabezado YAML
+horario["Lunes"]     <- convert_names(params$responsables$lunes)
+horario["Martes"]    <- convert_names(params$responsables$martes)
+horario["Miércoles"] <- convert_names(params$responsables$miercoles)
+horario["Jueves"]    <- convert_names(params$responsables$jueves)
+horario["Viernes"]   <- convert_names(params$responsables$viernes)
+horario["Sábado"]    <- convert_names(params$responsables$sabado)
+horario["Domingo"]   <- convert_names(params$responsables$domingo)
+
+# Creamos la tabla
+library(knitr)
+library(kableExtra)
+kable(horario)
+```
+<!-- ############################################## R CHUNK ############################################## -->
+<!--#endregion-->
+
+
+
+
+<!--#region Coloreamos las celdas de la tabla, usando JavaScript -->
+<!-- ########################## NO VER ESTO, EN REALIDAD ES JAVASCRIPT, NO R ########################## -->
+```{r results='asis'}
+code <- paste(
+            "<script>\n",
+            "let tabla = document.getElementsByTagName('tr');\n",
+            "let filas = [];\n",
+            "for(var i=1;i<7;i++){\n",
+            "    filas.push(tabla[i].children);\n",
+            "}\n",
+            "",
+            "let temporal\n",
+            "for(var i=0;i<7;i++){\n",
+            "    for(var j=2;j<9;j++){\n",
+            "        temporal = filas[i][j].innerText;\n",
+            "        filas[i][j].classList.add(temporal);\n",
+            "        filas[i][j].classList.add('familia');\n",
+            "    }\n",
+            "}\n",
+            "</script>",
+            sep=""
+        )
+cat(code)
+```
+<!-- ########################## NO VER ESTO, EN REALIDAD ES JAVASCRIPT, NO R ########################## -->
+<!--#endregion-->

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Markdown y YAML</title>
+
+<script src="clase-2_files/header-attrs-2.11.4/header-attrs.js"></script>
+<script src="clase-2_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="clase-2_files/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="clase-2_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="clase-2_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="clase-2_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="clase-2_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="clase-2_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="clase-2_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="clase-2_files/navigation-1.1/tabsets.js"></script>
+<link href="clase-2_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="clase-2_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="icon" href="r-logo.png"/>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+<link rel="stylesheet" href="my-style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Taller de R Markdown</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="syllabus/index.html">
+    <span class="fa fa-html5"></span>
+     
+     Sílabo
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-caret-square-down"></span>
+     
+     Clases
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="clase-1.html">Clase 1: Markdown y YAML</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="far fa-object-ungroup"></span>
+     
+     Diapositivas
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="_diapositivas/clase-1.html">Clase 1: Markdown y YAML</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="_diapositivas/clase-2.html">Clase 2: Reportes parametrizados</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/lucio-cornejo/r-markdown-summer-workshop/tree/main/_material">
+    <span class="far fa-folder-open"></span>
+     
+    Archivos Rmd de las clases
+  </a>
+</li>
+<li>
+  <a href="https://github.com/lucio-cornejo/r-markdown-summer-workshop">
+    <span class="fa fa-code"></span>
+     
+    Código de los documentos del taller
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<script src="https://kit.fontawesome.com/7ff19d7086.js" crossorigin="anonymous"></script>
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Markdown y YAML</h1>
+
+</div>
+
+
+<style type="text/css">
+#TOC::before {
+    content: "";
+    display: block;
+    height: 150px;
+    background-image: url("images/yoshi-logo-3.png"); 
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+</style>
+<div id="video-resumen-de-la-sesión-2" class="section level2">
+<h2>Video resumen de la sesión 2</h2>
+<p>Las grabaciones de la sesión del lunes captaron el sonido de los asistentes, mas no el mío. Entonces, les he preparado un video de una hora aproximadamente donde resumo lo trabajado en la segunda sesión. Además, en la última parte del video (01:06:15), les muestro una posible manera de solucionar el error que no les permitía <code>knit</code> uno de los documentos de la primera sesión.</p>
+<iframe width="800" height="400" src="https://www.youtube.com/embed/pD6ryYW_KGw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<div id="diapositivas" class="section level2">
+<h2>Diapositivas</h2>
+<p>En el menú de la parte superior de este sitio web, pueden acceder a las diapositivas de las sesiones del taller, vía su botón respectivo.<br> <strong>Siempre</strong> añadiré, los martes en la tarde, nuevo contenido a las diapositivas que vimos en clase. Esto con la finalidad de profundizar un poco más en detalles que no consideré vitales comentarles en las sesiones, pero que les puede ser útil para entender mejor los temas expuestos.</p>
+</div>
+<div id="chunks" class="section level2">
+<h2>Chunks</h2>
+<p>Es posible definir <strong>propiedades globales</strong> para los chunks de un mismo documento Rmd, es decir, propiedades como <code>echo=TRUE</code> que cada chunk insertado después del chunk donde se definieron tales <strong>propiedades globales</strong> poseerá sin necesidad de declararlas manualmente.</p>
+<p>Ejemplo:</p>
+<pre><code>---
+title: &quot;titulo alguno&quot;
+output: html_document
+---
+
+```{r} 
+mean(c(1,2,3,4))
+# Por default, este chunk se ejecutará y se mostrará su
+# código y output (resultado) en el documento HTML creado.
+```
+
+```{r, include=FALSE} 
+knitr::opts_chunk$set(eval = TRUE, echo = FALSE)
+# Ahora cada chunk después de este tendrá las propiedades
+# eval = TRUE y echo = FALSE,
+# salvo que declaremos lo contrario para algún chunk particular.
+```
+
+```{r chunk-1} 
+mean(c(1,2,3,4))
+# Este chunk sí se ejecutará, pero no se mostrará su código.
+```
+
+```{r chunk-2, eval=FALSE, echo=TRUE} 
+mean(c(1,2,3,4))
+# Este chunk no se ejecutará, pero sí se mostrará su código.
+```</code></pre>
+</div>
+<div id="tarea" class="section level2">
+<h2>Tarea</h2>
+<p>Aquellos asistentes al taller que no conozcan <strong>R</strong>, pueden buscar online cómo hacer que <strong>R Markdown</strong> reconozca código del lenguaje de programación que sí conocen.<br> Por ejemplo, para incluir código de <strong>Python</strong> en <strong>R Markdown</strong>, pueden seguir las instrucciones de estos links:</p>
+<ul>
+<li><a href="https://rstudio.github.io/reticulate/" class="uri">https://rstudio.github.io/reticulate/</a></li>
+<li><a href="https://rstudio.github.io/reticulate/articles/r_markdown.html" class="uri">https://rstudio.github.io/reticulate/articles/r_markdown.html</a></li>
+</ul>
+<details>
+<summary>
+Presiona el triángulo para mostrar u ocultar los lenguajes que pueden usar en R Markdown:
+</summary>
+stata<br> R<br> c<br> python<br> julia<br> js<br> awk<br> bash<br> coffee<br> gawk<br> groovy<br> haskell<br> lein<br> mysql<br> node<br> octave<br> perl<br> psql<br> Rscript<br> ruby<br> sas<br> scala<br> sed<br> sh<br> zsh<br> highlight<br> Rcpp<br> tikz<br> dot<br> cc<br> fortran<br> fortran95<br> asy<br> cat<br> asis<br> stan<br> block<br> block2<br> css<br> sql<br> go<br> sass<br> scss<br> bslib<br> theorem<br> lemma<br> corollary<br> propositio<br> conjecture<br> definition<br> example<br> exercise<br> hypothesis<br> proof<br> remark<br> solution<br>
+</details>
+<p><br></p>
+<p>La tarea consiste en <span style="font-size: 28px;"> <strong> crear un documento o reporte parametrizado </strong> </span> , pero podrán elegir entre <strong>dos opciones</strong> por presentar.</p>
+<p>Les recomiendo revisar los documentos parametrizados <a href="https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/2-parametrizacion-interactiva.Rmd">dos</a>, <a href="https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/3-horario-parametrizado.Rmd">tres</a> y <a href="https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/4-certificado-parametrizado.Rmd">cuatro</a> que vimos en la segunda sesión, el <strong>encabezado YAML</strong> (donde definimos los parámetros) y los chunks con código de <strong>R</strong> (R chunk), donde empleo tales parámetros.<br> No es necesario que comprendan el resto del código en aquellos documentos, sino simplemente cómo usar comandos como <code>params$algun_parametro</code> o <code>params$parametro_A$algun_valor_del_parametro_A</code> .</p>
+<p><br></p>
+<p><strong>Opción 1</strong>:</p>
+<ul>
+<li>Documento parametrizado de <strong>temática totalmente libre</strong>.</li>
+<li>El objetivo es automatizar la creación de cierto documento que ustedas produzcan con frecuencia y cuyo modelo general (plantilla) no cambie mucho.</li>
+<li>Su documento parametrizado debe incluir al menos <strong>tres</strong> parámetros, uno de los cuales necesariamente debe ser definido con propiedades para ser escogido en un menú interactivo (via la opción <em>Knit with parameters</em>), similarmente a como se hizo en clase (reporte de temperaturas) para la variable asociada al <em>año</em> en este <a href="https://raw.githubusercontent.com/lucio-cornejo/r-markdown-summer-workshop/main/_material/clase-2/2-parametrizacion-interactiva.Rmd">archivo</a>.</li>
+<li>Realmente les recomiendo leer esta <a href="https://garrettgman.github.io/rmarkdown/developer_parameterized_reports.html">documentación</a> para aprender otras opciones de botones para asignar a nuestros parámetros en un menú interactivo.</li>
+</ul>
+<p><br></p>
+<p><strong>Opción 2</strong>:</p>
+<ul>
+<li>Reporte parametrizado respecto a la misma data de temperaturas que empleamos en clase.</li>
+<li>Estructura de aquel reporte:
+<ol style="list-style-type: decimal">
+<li>Iniciamos fijando un mes en particular; esta es la variable que parametrizaremos.</li>
+<li>Incluir un gráfico de barras de las temperaturas promedio asociadas al mes fijado en (1), a lo largo de los años considerados en la data <em>temperaturas.xlsx</em> .</li>
+<li>Adjuntar como conclusión en qué año sucedió la máxima temperatura promedio mensual respecto al mes fijado en (1).</li>
+<li>Incorporar como conclusión en qué año sucedió la mínima temperatura promedio mensual respecto al mes fijado en (1).</li>
+</ol></li>
+<li><a href="_material/clase-2/tarea-solucion.html">Modelo</a> que pueden usar de guía para este reporte. Si se les complica la parte del código para obtener la data pedida, pueden ojear (parcialmente nomás, sino sería plagio) mi <a href="_material/clase-2/tarea-solucion.Rmd">solución</a> para la creación de este reporte solicitado.</li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

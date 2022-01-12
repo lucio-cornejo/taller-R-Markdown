@@ -1,0 +1,83 @@
+---
+title: "HTML Notebook"
+output:
+  html_notebook:
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    theme: yeti
+    highlight: tango
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Este tipo de `output` nos permite ejecutar código, bloque por bloque, 
+es decir, _de manera secuencial_.
+
+```{r cargar-data}
+# Cargamos un data frame ya incluido en R
+datos <- pressure
+
+DT::datatable(datos)
+```
+
+---
+subtitle: "Relación entre las variables `r names(datos)[1]` y `r names(datos)[2]`"
+---
+
+## Modelo de regresión lineal
+
+### Modelo 1
+
+```{r modelo-1}
+# Columnas del data frame
+names(datos)
+
+# Fijamos a la temperatura como la variable dependiente (por explicar)
+modelo_1 <- lm(pressure ~ temperature, datos)
+
+# Gráfico y recta de regresión lineal
+plot(datos$temperature, datos$pressure,
+     main="Temperature vs Pressure",
+     xlab= "Temperatura", ylab = "Presión")
+abline(modelo_1, col="red")
+```
+
+### Modelo 2
+
+No se observa relación lineal; parece ser __exponencial__ más bien. 
+Así que creamos un nuevo modelo.
+
+```{r modelo-2}
+# Tomamos el logaritmo de los valores de la variable pressure
+# y anexamos esa data al data frame inicial
+datos$log_pressure <- log(datos$pressure)
+
+# Nuevo modelo
+modelo_2 <- lm(log_pressure ~ temperature, datos)
+
+# Gráfico y recta de regresión lineal
+plot(datos$temperature, datos$log_pressure, 
+     main="Temperature vs log(Pressure)",
+     xlab= "Temperatura", ylab = "log(Presión)")
+abline(modelo_2, col="red")
+```
+
+Ecuaciónde la recta obtenida via el segundo modelo:
+```{r, results='asis', echo = FALSE}
+if(!requireNamespace('equatiomatic')) install.packages('equatiomatic')
+
+equatiomatic::extract_eq(modelo_2, use_coefs = TRUE)
+```
+
+## Conclusiones
+
+Las variables _temperatura_ y _logaritmo de la presión_ del data frame planteado
+tienen una correlación positiva, con un valor del **coeficiente de correlación de Pearson** de `r cor(datos$log_pressure, datos$temperature)`.
+
+<br><br>

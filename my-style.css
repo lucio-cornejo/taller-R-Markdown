@@ -1,0 +1,107 @@
+body {
+  font-size: .8em;
+  background-color: white;
+  background-image: linear-gradient(25deg, transparent 65%, rgba(20, 116, 184, 0.2), transparent 70%), linear-gradient(-25deg, transparent 65%, rgba(20, 116, 184, 0.2), transparent 70%), linear-gradient(-25deg, transparent 30%, rgba(20, 116, 184, 0.2), transparent 35%), linear-gradient(25deg, transparent 30%, rgba(20, 116, 184, 0.2), transparent 35%), linear-gradient(65deg, transparent 65%, rgba(20, 116, 184, 0.2), transparent 70%), linear-gradient(-65deg, transparent 65%, rgba(20, 116, 184, 0.2), transparent 70%), linear-gradient(-65deg, transparent 30%, rgba(20, 116, 184, 0.2), transparent 35%), linear-gradient(65deg, transparent 30%, rgba(20, 116, 184, 0.2), transparent 35%);
+  background-size: 5em 2em, 5em 2em, 5em 2em, 5em 2em, 2em 5em, 2em 5em, 2em 5em, 2em 5em;
+}
+
+.navbar-header .navbar-brand {
+  font-size: 29px;
+  margin-right: 20px;
+}
+
+#navbar ul:not(.navbar-right) li {
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+#navbar ul.navbar-right li {
+  border-right: 1px solid white;
+}
+
+#navbar ul li {
+  border-top: 1px solid white;
+}
+
+.fa {
+  margin-right: 5px;
+}
+
+.caret {
+  display: none;
+}
+
+.divider {
+  background-color: #325ac8 !important;
+}
+
+h1 {
+  display: none;
+}
+
+#header *:not(:first-child) {
+  font-size: 28px !important;
+}
+
+div {
+  color: black;
+  font-size: 22px;
+  font-weight: lighter;
+  font-family: "Goudy Old Style",'Times New Roman', Times, serif;
+}
+
+.diapositivas {
+  text-align: center;
+  font-family: "Century Gothic",'Arial Narrow Bold', sans-serif;
+}
+
+.section.level2 h2 {
+  color: white !important;
+  text-align: center !important;
+  border-radius: 50px !important;
+  margin: 50px 0 20px 0 !important;
+  padding: 10px 0 10px 0 !important;
+  background-color: #325ac8 !important;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)) !important;
+}
+
+.section.level3 h3 {
+  color: white !important;
+  text-align: center !important;
+  border-radius: 50px !important;
+  margin: 50px 0 20px 0 !important;
+  padding: 10px 0 10px 0 !important;
+  background-color: skyblue !important;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)) !important;
+}
+
+#TOC {
+  border: none;
+  font-size: 15px !important;
+  font-weight: normal !important;
+  font-family: "papyrus","Gill Sans", sans-serif !important;
+}
+
+ul.tocify-header.list-group {
+  font-size: 19px;
+}
+
+ul.tocify-header.list-group li {
+  border-top: 1px solid black;
+  height: 8 vh;
+  line-height: 4.6vh;
+}
+
+ul.tocify-header.list-group:first-child {
+  margin-top: 15px;
+}
+
+@media (min-width: 800px) {
+  #TOC {
+    left: 60px;
+    margin: 25px 0 0 0;
+  }
+  .main-container {
+    left: 35px;
+  }
+}
