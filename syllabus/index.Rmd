@@ -123,7 +123,7 @@ pueden crear usando **R Markdown**:
 ---
 ## Objetivo
 
-A la mitad del taller, aprenderemos lo básico de 
+En las dos últimas sesiones del taller, aprenderemos lo básico de 
 **HTML**, **CSS** y **JavaScript**, herramientas de 
 desarrollo web que nos permitirán personalizar y potenciar 
 algunas funcionalidades de **R Markdown**.
@@ -148,7 +148,11 @@ empleando **R Markdown**:
 ]
 
 .pull-right[
-![](images-and-gifs/yoshi-00.gif)
+
+![yoshi][]
+
+[yoshi]: images-and-gifs/yoshi-00.gif
+
 ]
 
 ---
@@ -176,9 +180,6 @@ usando la librería de **R** conocida como **Xaringan** (porque su creador es we
 
 De manera informal, podría decirse que **Xaringan** es una combinación de **R Markdown** y **remark.js**,
 una librería de **JavaScript** para hacer diapositivas de tipo HTML, empleando el lenguaje de marcado **Markdown**.
-
-Por lo tanto, en esta última sección del taller pondremos en práctica varias
-herramientas adquiridas sobre **R Markdown**, **HTML**, **CSS** y **JavaScript**.  
 
 [Ejemplo](https://emitanaka.org/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1)
 de presentación realizada con **Xaringan** en un documento **R Markdown**.
