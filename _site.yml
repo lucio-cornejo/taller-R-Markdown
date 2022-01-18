@@ -28,6 +28,7 @@ navbar:
         - text: '---------'
         - text: "Clase 2: Reportes parametrizados"
           href: _diapositivas/clase-2.html
+        - text: '---------'
         - text: "Clase 3: Xaringan"
           href: _diapositivas/clase-3.html
     - text: "Archivos Rmd de las clases"
