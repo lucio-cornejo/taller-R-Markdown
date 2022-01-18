@@ -1,0 +1,450 @@
+---
+title: "Clase 3: Xaringan y nuestro \n primer sitio web creado \n con R Markdown"
+author: Lucio Cornejo
+---
+class: center, middle, inverse, title-slide
+
+```{r setup, include=FALSE}
+xaringanExtra::use_panelset()
+xaringanExtra::use_tile_view()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<h1 class = "celeste-ish" style="line-height: 90px; margin-top: -50px;">
+    Clase 3:
+    <p style="margin-bottom: -170px;"> &nbsp; </p>
+    Xaringan y <br>
+    creación de <br>
+    sitios web<br>
+    con R Markdown
+</h1>
+
+<p style="margin-bottom: -5px;"> &nbsp; </p>
+
+<h3 class = "celeste-ish">
+  Autor: Lucio Cornejo
+</h3>
+
+---
+
+## Repaso rápido de la sesión pasada
+
+### Chunks: Bloques de código
+
+<p style="margin-bottom: -40px;"> &nbsp; </p>
+
+```` 
+```{r}`r ' '` 
+edades <- c(1,2,3)
+mean(edades)
+```
+
+```{r}`r ' '`
+*#| echo = TRUE,
+*#| eval = FALSE 
+
+mean(edades)
+```
+
+```{r}`r ' '`
+*echo: TRUE
+*eval: FALSE
+
+mean(edades)
+```
+```` 
+
+<p style="margin-bottom: -60px;"> &nbsp; </p>
+
+.scrollable[
+```` 
+```{js chunk-de-javascript, include=FALSE}`r ''`
+document.addEventListener("click", function() {
+  // Definimos un array con los meses del año
+  let meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","setiembre","octubre","noviembre","diciembre"];
+
+  // Obtener fecha de hoy
+  let fecha = new Date();
+
+  // Obtener qué día es hoy
+  let numeroDeDia = fecha.getDate();
+
+  // Crear una ventana con un mensaje particular
+  alert(`Hoy es ${numeroDeDia} de ${meses[fecha.getMonth()]}.`)
+}
+);
+```
+````
+] 
+
+<br>
+
+### Reportes parametrizados
+
+````yaml
+---
+title: "..."
+params: 
+  edad: 23
+  actividades:
+    value:
+      lunes: ["odiar los lunes","comer lasagna"]
+output: html_document
+---
+
+...
+
+
+```{r}`r ''` 
+edad <- params$edad
+actividad <- params$actividades$lunes[1]
+```
+````
+
+````yaml
+---
+title: "..."
+params: 
+  anio: 
+    label: "Año"
+    value: 1938
+    input: slider
+    min: 1920
+    max: 1939
+    step: 1
+  file:
+    label: "Data para analizar"
+    value: temperaturas.xlsx
+    input: file
+output: html_document
+---
+````
+
+???
+
+Comentar sobre que _reportes parametrizados_ se considera avanzado:
+
+Diapositiva 9 del primer link (no Rmd)
+><https://arm.rbind.io/days/day2/>
+
+---
+class: center, middle
+background-image: linear-gradient(45deg, red, white)
+
+![xaringanPackage](images-and-gifs/xaringan.png)
+
+---
+class: center
+
+## ¿Por qué emplear Xaringan?
+
+Para ...
+
+<br>
+
+--
+
+- Crear una presentación **reproducible** ... incluso puede ser **parametrizada**.
+
+<br>
+
+--
+
+- Emplear diapositivas más interactivas, gracias a estar en formato HTML.
+
+<br>
+
+--
+
+- ~~Dejar de ocultar que odias Beamer.~~
+
+---
+
+## ¿Cómo funciona?
+
+<p style="margin-bottom: -20px;"> &nbsp; </p>
+
+<img src="images-and-gifs/xaringan-remark.png" width = 1000>
+
+---
+
+## Manos a la obra
+
+<p style="margin-bottom: -20px;"> &nbsp; </p>
+
+### Etapa 0
+
+```r
+install.packages('xaringan')
+```
+
+<br>
+
+### Etapa 1
+
+```text
+---
+title: "Mi primera presentación con Xaringan"
+*output: xaringan::moon_reader
+---
+```
+
+<br>
+
+
+### Etapa 2
+
+**Activemos el ...** 
+
+---
+background-image: url("images-and-gifs/infinite-tsukuyomi.png")
+background-size: cover
+
+
+???
+
+Enseñar lo siguiente:
+
+- Encabezados
+- Nuevas diapositivas
+- Incremental slides
+- Notas de presentador
+---
+
+## Propiedades de las diapositivas
+
+### Estilo visual
+
+```r
+names(xaringan:::list_css())
+```
+
+Ejemplo:
+
+```yaml
+--- 
+title: "..."
+output:
+  xaringan::moon_reader:
+  css: [ki-fonts, uo-fonts]
+---
+```
+
+<p style="margin-bottom: -30px;"> &nbsp; </p>
+
+Como hay una inteferencia entre los estilos escogidos en el YAML,
+debido al tipo de letra (_fonts_), el último tipo de letra en el
+_array_ asociado al atributo **css** será el empleado en las diapositivas.
+
+???
+
+Dar 3 minutos para que los alumnos personalicen sus valores
+en el **css** del YAML.
+---
+
+<p style="margin-bottom: -20px;"> &nbsp; </p>
+
+.pull-left[
+
+### Alineamiento
+
+<p style="margin-bottom: -30px;"> &nbsp; </p>
+
+**class:**
+
+horizontal:
+  - left
+  - center
+  - right
+
+<p style="margin-bottom: -20px;"> &nbsp; </p>
+
+vertical:
+  - top
+  - middle
+  - bottom
+]
+
+.pull-right[
+
+### Imagen de fondo
+
+<p style="margin-bottom: -30px;"> &nbsp; </p>
+
+.scrollable[
+```text
+background-image: url("`r xaringan:::karl`")
+
+background-position: center # top, right, bottom left
+
+background-size: contain # cover
+```
+]
+
+**background-size: contain**
+
+Escala la imagen lo más grande posible, **sin estirar la imagen** ni sobrepasar
+a su contenedor. Si el contenedor es más grande que la imagen,
+esta última empezará a repertirse, a menos que se declare previamente
+
+background-repeat: no-repeat
+
+**background-size: cover**
+
+Escala la imagen lo más posible para llenar a su contenedor,
+**estirando la imagen si es necesario**. 
+En caso sea necesario, se delimitará la imagen 
+para que no quede espacio en blanco.
+
+]
+
+
+???
+
+Añade las tildes inversas donde se necesite:
+
+background-image: url("` r xaringan:::karl`")
+
+background-image: linear-gradient(45deg, red, white)
+
+
+---
+
+## Asignación de clases de CSS gracias a Remark.js
+
+Ejemplos:
+
+<style>
+.red {
+  color: red;
+}
+</style>
+
+.panelset[
+.panel[.panel-name[colores]
+```text
+Este es color .red[rojo].
+```
+
+Este es color .red[rojo].
+
+]
+
+.panel[.panel-name[Paneles verticales]
+
+```text
+.panelset[
+.panel[.panel-name[nombre-1]
+
+...
+
+]
+
+.panel[.panel-name[nombre_2]
+
+...
+
+]
+
+]
+```
+]
+
+.panel[.panel-name[Paneles horizontales]
+
+```text
+.panelset.sideways[
+.panel[.panel-name[nombre_1]
+...
+]
+
+.panel[.panel-name[nombre_2]
+...
+]
+]
+```
+
+]
+
+.panel[.panel-name[División en dos]
+
+```text
+
+.pull.left[
+...
+]
+
+.pull-right[
+...
+]
+```
+
+]
+]
+
+???
+
+Ejecutar install.packages("xaringanExtra").
+
+Para incluir los paneles, incluir en un chunk de R:
+
+xaringanExtra::use_panelset()
+
+Mencionar algunas funcionalidades en 
+<https://github.com/gadenbuie/xaringanExtra> .
+
+---
+
+## Algunas propiedades vía YAML para Xaringan
+
+.scrollable[
+```yaml
+---
+title: "tu título"
+output:
+  self_contained: true
+  xaringan::moon_reader:
+  lib_dir: libs
+  chakra: libs/remark-latest.min.js
+  css: [default, default-fonts]
+  seal: false # no incluir la diapositiva título automática
+  nature:
+    highlightStyle: github 
+    highlightLines: true 
+    countIncrementalSlides: true
+    slideNumberFormat: "%current%"
+    ratio: 16:9
+---
+```
+]
+
+???
+
+Explicar cada línea importante del encabezado **YAML** mostrado.
+
+Se recomienda incluir las `incremental slides` en el conteo de diapositivas,
+ya que así puedes trasladarte más fácilmente via el shortcut de teclado
+`slide_number”+ENTER` . 
+
+---
+
+## Gráficos interactivos vía el paquete htmlwidgets
+
+<center>
+```{r, echo= FALSE}
+library(leaflet)
+leaflet() %>% addTiles() %>% setView(-77.0794, -12.0695, zoom = 15)
+```
+</center>
+
+---
+class: center, middle
+
+## Links para profundizar en Xaringan
+
+<https://bookdown.org/yihui/rmarkdown/xaringan.html>
+
+<https://github.com/gadenbuie/xaringanExtra>
+
+
+

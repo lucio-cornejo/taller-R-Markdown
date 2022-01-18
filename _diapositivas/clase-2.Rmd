@@ -341,7 +341,9 @@ Guardar en ua misma carpeta todos los archivos R Markdown que crearemos ahora.
 ---
 class: middle
 
-## Links opcionales en caso deseen profundizar más sobre documentos parametrizados:
+## Links opcionales en caso deseen profundizar más sobre los temas de esta sesión:
+
+- [Propiedades adicionales para chunks](https://yihui.org/knitr/options/)
 
 - <https://garrettgman.github.io/rmarkdown/developer_parameterized_reports.html>
 
