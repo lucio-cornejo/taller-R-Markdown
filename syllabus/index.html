@@ -92,7 +92,7 @@ _texto_
 &lt;/span&gt;
 (el cual es formateado usando **Markdown**) que describe aquel proyecto.
 
-Estos son algunos de los tipos de archivos (estáticos o dinámicos) que se
+Estos son algunos de los tipos de archivos que se
 pueden crear usando **R Markdown**:
 
 --
@@ -133,17 +133,18 @@ empleando **R Markdown**:
 .pull-left[
 - [Reportes](#reportes)
 
-- [Tableros interactivos](#flexdashboard)
-
-- [Libros](#bookdown)
+- [Diapositivas en HTML](#xaringan)
 
 - [Blogs](#blogdown)
 
-- [Sitios web](#web-development)
+- [Libros](#bookdown)
+
+- [Tableros interactivos](#flexdashboard)
 
 - [Aplicaciones web](#shiny)
 
-- [Diapositivas en HTML](#xaringan)
+- [Sitios web](#web-development)
+
 ]
 
 .pull-right[
@@ -166,33 +167,36 @@ Además, se aprenderá a usar parámetros para la automatización de reportes.
 de un reporte realizado con **R Markdown**.
 
 ---
-name: flexdashboard
+name: xaringan
 
-## Flexdashboard
+## Xaringan
 
-El paquete de **R** llamado **flexdashboard** nos permitirá crear tableros interactivos (_dashboards_)
-estáticos o dinámicos. Puedes hacer click en las siguientes imágenes para ver algunos ejemplos de dashboards.
+Estas diapositivas se han generado a partir de un documento **R Markdown**, 
+usando la librería de **R** conocida como **Xaringan** (porque su creador es weeb) .
 
-[![dashboard_1](images-and-gifs/dashboard-1.png)](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-showcase-storyboard/htmlwidgets-showcase-storyboard.html)
+De manera informal, podría decirse que **Xaringan** es una combinación de **R Markdown** y **remark.js**,
+una librería de **JavaScript** para hacer diapositivas de tipo HTML, empleando el lenguaje de marcado **Markdown**.
 
-&lt;br&gt;
+Por lo tanto, en esta última sección del taller pondremos en práctica varias
+herramientas adquiridas sobre **R Markdown**, **HTML**, **CSS** y **JavaScript**.  
 
-[![dashboard-2](images-and-gifs/dashboard-2.png)](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-highcharter/htmlwidgets-highcharter.html#sales-by-category)
+[Ejemplo](https://emitanaka.org/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1)
+de presentación realizada con **Xaringan** en un documento **R Markdown**.
 
----
-name: bookdown
+Actualmente, 
+&lt;span class="resaltar"&gt;
+    en un mismo documento
+&lt;/span&gt;
+**R Markdown** no funcionan correctamente 
+&lt;span class="resaltar"&gt;
+  de manera simultánea
+&lt;/span&gt;
+las librerías **Shiny** y **Xaringan**.
 
-## Bookdown
-
-Se hará una corta introducción a este paquete de **R**, el cual permite crear libros en formato HTML, PDF o EPUB.
-
-Puedes hacer click en las siguientes imágenes para ver algunos libros creados con la librería **Bookdown**.
-
-[![bookdown_1](images-and-gifs/bookdown-1.png)](https://bookdown.org/yihui/rmarkdown/)
-
-&lt;br&gt;
-
-[![bookdown_2](images-and-gifs/bookdown-2.png)](https://bookdown.org/yihui/rmarkdown-cookbook/)
+Sin embargo, es posible evitarse ese problema si se publica online el proyecto realizado con
+**Shiny** y luego se adjunta ese proyecto (vía su link del sitio web) en una presentación de **Xaringan** 
+vía un
+[iframe](https://twitter.com/_bcullen/status/1305273775630426112?s=20).
 
 ---
 name: blogdown
@@ -223,6 +227,58 @@ A continuación, puedes observar algunos ejemplos de blogs creados con **R Markd
 &lt;div style="text-align: right;"&gt;
     &lt;a href="https://hugo-apero-docs.netlify.app/"&gt;https://hugo-apero-docs.netlify.app/&lt;/a&gt;
 &lt;/div&gt;
+
+---
+name: bookdown
+
+## Bookdown
+
+Se hará una corta introducción a este paquete de **R**, el cual permite crear libros en formato HTML, PDF o EPUB.
+
+Puedes hacer click en las siguientes imágenes para ver algunos libros creados con la librería **Bookdown**.
+
+[![bookdown_1](images-and-gifs/bookdown-1.png)](https://bookdown.org/yihui/rmarkdown/)
+
+&lt;br&gt;
+
+[![bookdown_2](images-and-gifs/bookdown-2.png)](https://bookdown.org/yihui/rmarkdown-cookbook/)
+
+---
+name: flexdashboard
+
+## Flexdashboard
+
+El paquete de **R** llamado **flexdashboard** nos permitirá crear tableros interactivos (_dashboards_)
+estáticos o dinámicos. Puedes hacer click en las siguientes imágenes para ver algunos ejemplos de dashboards.
+
+[![dashboard_1](images-and-gifs/dashboard-1.png)](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-showcase-storyboard/htmlwidgets-showcase-storyboard.html)
+
+&lt;br&gt;
+
+[![dashboard-2](images-and-gifs/dashboard-2.png)](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-highcharter/htmlwidgets-highcharter.html#sales-by-category)
+
+---
+name: shiny
+
+## Shiny
+
+Este paquete de **R** nos permite condicionar la ejecución de código (ya sea de R, Python, C, SQL, JavaScript, 
+[entre otros](https://yihui.org/knitr/demo/engines/)) en un documento **R Markdown** vía un servidor proporcionado por *R Studio*,
+en base a interacciones del usuario con el sitio web donde está almacenado el proyecto **Shiny** realizado en **R** o en **R Markdown** .  
+
+Emplearemos simultáneamente los paquetes **Shiny** y **Flexdashboard** para la creación de dashboard interactivos.  
+
+Exploraremos algunas de las limitaciones de **Shiny** y cómo podemos afrontarlas empleando el conocimiento adquirido sobre desarrollo web.
+
+Les recomiendo experimentar con este par de proyectos soprendentes elaborados usando **Shiny** y **JavaScript**:
+
+.pull-left[
+    &lt;a href="https://yihui.shinyapps.io/voice/"&gt;https://yihui.shinyapps.io/voice/&lt;/a&gt;
+]
+
+.pull-right[
+    &lt;a href="https://yihui.shinyapps.io/face-pi/"&gt;https://yihui.shinyapps.io/face-pi/&lt;/a&gt;
+]
 
 ---
 name: web-development
@@ -270,61 +326,6 @@ El uso de \ como line break parece no funcionar en Xaringan.
 Sin embargo, el line break que consiste en dejar dos espacios vacíos al final de una línea
 funciona incluso dentro de los `. panel[...]`  
 Entonces, vale la pena enseñar también esa versión de line break.
-
----
-name: shiny
-
-## Shiny
-
-Este paquete de **R** nos permite condicionar la ejecución de código (ya sea de R, Python, C, SQL, JavaScript, 
-[entre otros](https://yihui.org/knitr/demo/engines/)) en un documento **R Markdown** vía un servidor proporcionado por *R Studio*,
-en base a interacciones del usuario con el sitio web donde está almacenado el proyecto **Shiny** realizado en **R** o en **R Markdown** .  
-
-Emplearemos simultáneamente los paquetes **Shiny** y **Flexdashboard** para la creación de dashboard interactivos.  
-
-Exploraremos algunas de las limitaciones de **Shiny** y cómo podemos afrontarlas empleando el conocimiento adquirido sobre desarrollo web.
-
-Les recomiendo experimentar con este par de proyectos soprendentes elaborados usando **Shiny** y **JavaScript**:
-
-.pull-left[
-    &lt;a href="https://yihui.shinyapps.io/voice/"&gt;https://yihui.shinyapps.io/voice/&lt;/a&gt;
-]
-
-.pull-right[
-    &lt;a href="https://yihui.shinyapps.io/face-pi/"&gt;https://yihui.shinyapps.io/face-pi/&lt;/a&gt;
-]
-
----
-name: xaringan
-
-## Xaringan
-
-Estas diapositivas se han generado a partir de un documento **R Markdown**, 
-usando la librería de **R** conocida como **Xaringan** (porque su creador es weeb) .
-
-De manera informal, podría decirse que **Xaringan** es una combinación de **R Markdown** y **remark.js**,
-una librería de **JavaScript** para hacer diapositivas de tipo HTML, empleando el lenguaje de marcado **Markdown**.
-
-Por lo tanto, en esta última sección del taller pondremos en práctica varias
-herramientas adquiridas sobre **R Markdown**, **HTML**, **CSS** y **JavaScript**.  
-
-[Ejemplo](https://emitanaka.org/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1)
-de presentación realizada con **Xaringan** en un documento **R Markdown**.
-
-Actualmente, 
-&lt;span class="resaltar"&gt;
-    en un mismo documento
-&lt;/span&gt;
-**R Markdown** no funcionan correctamente 
-&lt;span class="resaltar"&gt;
-  de manera simultánea
-&lt;/span&gt;
-las librerías **Shiny** y **Xaringan**.
-
-Sin embargo, es posible evitarse ese problema si se publica online el proyecto realizado con
-**Shiny** y luego se adjunta ese proyecto (vía su link del sitio web) en una presentación de **Xaringan** 
-vía un
-[iframe](https://twitter.com/_bcullen/status/1305273775630426112?s=20).
 
 ---
 name: despedida
