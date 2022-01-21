@@ -1,0 +1,72 @@
+---
+title: Xaringan y creación de sitios web con R Markdown
+output: html_document
+---
+
+```{r, child="_yoshi-TOC.Rmd"}
+```
+
+## Video para la sesión 3
+
+Incluso si asistieron a la sesión del lunes, deberían ver este video,
+pues tiene mejores explicaciones y la sección de "creación de un sitio web"
+se ha ejecutado de manera más clara y ordenada.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uXfpvnFqRhQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Tarea
+
+Esta semana les pido que creen un sitio web básico, como el que se construyó en el video
+para la sesión 3. Pueden usar este [modelo](https://github.com/lucio-cornejo/mi-sitio-web)
+de referencia para su código, y les recomiendo explorar la versión [online](https://ejemplo-sitio-web-del-taller.netlify.app/)
+del modelo planteado, para que se den una idea de lo que les solicito que creen.
+
+Por supuesto, ustedes pueden personalizar el **theme** de su sitio web y el contenido de su
+archivo **index.Rmd** (homepage del sitio web), pero deben cumplir algunas condiciones:
+
+Modelo para el archivo **_site.yml** :
+
+```yml
+name: "mi primer sitio web"    #### CAMBIAR
+output_dir: "."
+navbar:
+  title: "Homepage"    #### CAMBIAR
+  left:
+    - text: " Reportes"    #### CAMBIAR 
+      href:  reportes/tarea-solucion.html    #### CAMBIAR X
+    - text: " Diapositivas"    #### CAMBIAR
+      menu:
+        - text: "Modelo de clase"    #### CAMBIAR
+          href: diapositivas/ejemplo-xaringan.html    #### CAMBIAR XX
+        - text: '---------'
+output: 
+  html_document:
+    theme: yeti    #### CAMBIAR
+    # AÑADIR MÁS ATRIBUTOS SI LO DESEAN
+```
+
+Con `#### CAMBIAR` me refiero a que alteren el contenido _entre comillas_ de esa línea, no a
+que eliminen la línea que contiene `#### CAMBIAR` o incluir alguna nueva.
+
+1. En el valor de **href:** de donde dice `#### CAMBIAR X`, deben incluir el archivo html
+del reporte parametrizado que tenían como tarea (y aún tienen, si no lo han hecho todavía)
+la semana de la sesión 2.
+
+1. En el valor de **href:** de donde dice `#### CAMBIAR XX`, deben incluir una presentación
+(diapositivas) que hayan creado con **Xaringan**. 
+Aquella presentación debe satistacer las siguientes condiciones:
+  - El encabezado **YAML** debe incluir el atributo `css: [nombre1, nombre2]` con sus elecciones
+    de letras (fonts) y estilo de las diapositivas.<br>
+    Por ejemplo, algo como `css: [rladies, uo-fonts]` .
+
+  - Empleen alguna herramienta del paquete [xaringanExtra](https://pkg.garrickadenbuie.com/xaringanExtra/#/).
+    Podrían incluir los **paneles** (verticales u horizontales) que vimos en clase, pero les recomiendo
+    que useen algo que no vimos en clase.
+
+  - Incluyan alguna diapositiva que este completamente cubierta por una imagen o por un gif,
+    así como se hizo en el modelo del video, donde un gif de un fractal cubría toda una diapositiva.
+
+  - Hagan uso de lo que denominé "presentación secuencial"
+
+
+

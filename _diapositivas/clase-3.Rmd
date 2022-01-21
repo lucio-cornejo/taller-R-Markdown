@@ -7,6 +7,7 @@ class: center, middle, inverse, title-slide
 ```{r setup, include=FALSE}
 xaringanExtra::use_panelset()
 xaringanExtra::use_tile_view()
+xaringanExtra::use_fit_screen()
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -156,6 +157,13 @@ Para ...
 
 --
 
+- Redactar apuntes y que la presentación final se actualice automáticamente 
+a medida que escribimos en las diapositivas.
+
+<br>
+
+--
+
 - ~~Dejar de ocultar que odias Beamer.~~
 
 ---
@@ -200,18 +208,94 @@ title: "Mi primera presentación con Xaringan"
 background-image: url("images-and-gifs/infinite-tsukuyomi.png")
 background-size: cover
 
-
-???
-
-Enseñar lo siguiente:
-
-- Encabezados
-- Nuevas diapositivas
-- Incremental slides
-- Notas de presentador
 ---
 
 ## Propiedades de las diapositivas
+
+### Encabezados
+
+Podemos emplear encabezados para denotar secciones del documento,
+de la misma manera usual que hemos estado haciendo en **R Markdown**,
+via el símbolo `#`.
+
+### Crear nueva diapositiva
+
+Escribimos &nbsp; `---` &nbsp; para crear una nueva dispositiva.<br>
+Los simbolos &nbsp; `---` &nbsp; del _ecabezado YAML_ son la excepción,
+pues **R** se encargará de entender tales guiones apropiadamente.
+
+<p style="margin-bottom: -60px;"> &nbsp; </p>
+
+Ejemplo:
+
+```text
+---
+output: xaringan::moon_reader
+---
+
+## Diapositiva 2
+
+---
+
+## Diapositiva 3
+
+```
+
+---
+
+### Presentación secuencial
+
+También es posible esconder ciertos elementos de la diapositiva y 
+mostrarlos recién a medida que se avanza hacia las diapositivas siguientes,
+vía el uso de &nbsp; `--` &nbsp; .
+
+
+- Primer ítem
+
+--
+
+- Segundo ítem
+
+--
+
+- Tercer ítem
+
+--
+
+<p style="margin-bottom: -30px;"> &nbsp; </p>
+
+Código:
+
+```md
+- Primer ítem
+
+--
+
+- Segundo ítem
+
+--
+
+- Tercer ítem
+```
+
+---
+
+### Notas del presentador
+
+```md
+## diapositiva x
+
+...
+
+???
+
+notas ocultas que se muestran al presionar la tecla P
+
+---
+
+```
+
+<p style="margin-bottom: -30px;"> &nbsp; </p>
 
 ### Estilo visual
 
@@ -314,51 +398,55 @@ background-image: linear-gradient(45deg, red, white)
 
 Ejemplos:
 
-<style>
-.red {
-  color: red;
-}
-</style>
-
 .panelset[
-.panel[.panel-name[colores]
+.panel[.panel-name[Alineacón de texto]
 ```text
-Este es color .red[rojo].
+.center[
+Este texto está centrado.
+]
 ```
 
-Este es color .red[rojo].
-
+.center[
+Este texto está centrado.
 ]
 
-.panel[.panel-name[Paneles verticales]
+<br>
+<br>
 
-```text
-.panelset[
-.panel[.panel-name[nombre-1]
+Ahora, instalemos el paquete [xaringanExtra](https://github.com/gadenbuie/xaringanExtra)
+e incluyamos `xaringanExtra::use_panelset()` en un R chunk.
 
-...
-
-]
-
-.panel[.panel-name[nombre_2]
-
-...
-
-]
-
-]
-```
 ]
 
 .panel[.panel-name[Paneles horizontales]
 
 ```text
+.panelset[
+.panel[.panel-name[nombre_panel1]
+
+...
+
+]
+
+.panel[.panel-name[nombre_panel2]
+
+...
+
+]
+
+]
+```
+]
+
+.panel[.panel-name[Paneles verticales]
+
+```text
 .panelset.sideways[
-.panel[.panel-name[nombre_1]
+.panel[.panel-name[nombre_panel1]
 ...
 ]
 
-.panel[.panel-name[nombre_2]
+.panel[.panel-name[nombre_panel2]
 ...
 ]
 ]
@@ -366,11 +454,11 @@ Este es color .red[rojo].
 
 ]
 
-.panel[.panel-name[División en dos]
+.panel[.panel-name[Dividir la diapositiva en dos regiones de igual grosor]
 
 ```text
 
-.pull.left[
+.pull-left[
 ...
 ]
 
@@ -384,14 +472,7 @@ Este es color .red[rojo].
 
 ???
 
-Ejecutar install.packages("xaringanExtra").
-
-Para incluir los paneles, incluir en un chunk de R:
-
-xaringanExtra::use_panelset()
-
-Mencionar algunas funcionalidades en 
-<https://github.com/gadenbuie/xaringanExtra> .
+Mencionar algunas funcionalidades de xaringanExtra.
 
 ---
 
@@ -402,29 +483,19 @@ Mencionar algunas funcionalidades en
 ---
 title: "tu título"
 output:
-  self_contained: true
   xaringan::moon_reader:
-  lib_dir: libs
-  chakra: libs/remark-latest.min.js
-  css: [default, default-fonts]
-  seal: false # no incluir la diapositiva título automática
-  nature:
-    highlightStyle: github 
-    highlightLines: true 
-    countIncrementalSlides: true
-    slideNumberFormat: "%current%"
-    ratio: 16:9
+    self_contained: false
+    css: [default, default-fonts]
+    seal: false # no incluir la diapositiva título automática
+    nature:
+      highlightStyle: github 
+      highlightLines: true 
+      countIncrementalSlides: true
+      slideNumberFormat: "%current%"
+      ratio: 16:9
 ---
 ```
 ]
-
-???
-
-Explicar cada línea importante del encabezado **YAML** mostrado.
-
-Se recomienda incluir las `incremental slides` en el conteo de diapositivas,
-ya que así puedes trasladarte más fácilmente via el shortcut de teclado
-`slide_number”+ENTER` . 
 
 ---
 
@@ -446,5 +517,32 @@ class: center, middle
 
 <https://github.com/gadenbuie/xaringanExtra>
 
+---
 
+## Creación de un sitio web con R Markdown
 
+Comandos iniciales para **Git Bash**:
+
+```text
+git config --global user.name "usuario_de_cuenta_github"
+git config -- global user.email "email_de_cuenta_github"
+git config --list
+```
+
+Modelo básico para un sitio web creado con **R Markdown**:
+
+**_site.yml**:
+
+```text
+output: html_document
+```
+
+**index.Rmd**:
+
+```text
+---
+title: "Mi sitio web"
+---
+
+## Bienvenidos
+```

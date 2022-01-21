@@ -13,6 +13,7 @@
     <script src="clase-3_files/panelset-0.2.6/panelset.js"></script>
     <link href="clase-3_files/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
     <script src="clase-3_files/tile-view-0.2.6/tile-view.js"></script>
+    <script src="clase-3_files/xaringanExtra_fit-screen-0.2.6/fit-screen.js"></script>
     <script src="clase-3_files/htmlwidgets-1.5.4/htmlwidgets.js"></script>
     <script src="clase-3_files/jquery-1.12.4/jquery.min.js"></script>
     <link href="clase-3_files/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
@@ -178,6 +179,13 @@ Para ...
 
 --
 
+- Redactar apuntes y que la presentación final se actualice automáticamente 
+a medida que escribimos en las diapositivas.
+
+&lt;br&gt;
+
+--
+
 - ~~Dejar de ocultar que odias Beamer.~~
 
 ---
@@ -222,18 +230,94 @@ title: "Mi primera presentación con Xaringan"
 background-image: url("images-and-gifs/infinite-tsukuyomi.png")
 background-size: cover
 
-
-???
-
-Enseñar lo siguiente:
-
-- Encabezados
-- Nuevas diapositivas
-- Incremental slides
-- Notas de presentador
 ---
 
 ## Propiedades de las diapositivas
+
+### Encabezados
+
+Podemos emplear encabezados para denotar secciones del documento,
+de la misma manera usual que hemos estado haciendo en **R Markdown**,
+via el símbolo `#`.
+
+### Crear nueva diapositiva
+
+Escribimos &amp;nbsp; `---` &amp;nbsp; para crear una nueva dispositiva.&lt;br&gt;
+Los simbolos &amp;nbsp; `---` &amp;nbsp; del _ecabezado YAML_ son la excepción,
+pues **R** se encargará de entender tales guiones apropiadamente.
+
+&lt;p style="margin-bottom: -60px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+Ejemplo:
+
+```text
+---
+output: xaringan::moon_reader
+---
+
+## Diapositiva 2
+
+---
+
+## Diapositiva 3
+
+```
+
+---
+
+### Presentación secuencial
+
+También es posible esconder ciertos elementos de la diapositiva y 
+mostrarlos recién a medida que se avanza hacia las diapositivas siguientes,
+vía el uso de &amp;nbsp; `--` &amp;nbsp; .
+
+
+- Primer ítem
+
+--
+
+- Segundo ítem
+
+--
+
+- Tercer ítem
+
+--
+
+&lt;p style="margin-bottom: -30px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+Código:
+
+```md
+- Primer ítem
+
+--
+
+- Segundo ítem
+
+--
+
+- Tercer ítem
+```
+
+---
+
+### Notas del presentador
+
+```md
+## diapositiva x
+
+...
+
+???
+
+notas ocultas que se muestran al presionar la tecla P
+
+---
+
+```
+
+&lt;p style="margin-bottom: -30px;"&gt; &amp;nbsp; &lt;/p&gt;
 
 ### Estilo visual
 
@@ -336,51 +420,55 @@ background-image: linear-gradient(45deg, red, white)
 
 Ejemplos:
 
-&lt;style&gt;
-.red {
-  color: red;
-}
-&lt;/style&gt;
-
 .panelset[
-.panel[.panel-name[colores]
+.panel[.panel-name[Alineacón de texto]
 ```text
-Este es color .red[rojo].
+.center[
+Este texto está centrado.
+]
 ```
 
-Este es color .red[rojo].
-
+.center[
+Este texto está centrado.
 ]
 
-.panel[.panel-name[Paneles verticales]
+&lt;br&gt;
+&lt;br&gt;
 
-```text
-.panelset[
-.panel[.panel-name[nombre-1]
+Ahora, instalemos el paquete [xaringanExtra](https://github.com/gadenbuie/xaringanExtra)
+e incluyamos `xaringanExtra::use_panelset()` en un R chunk.
 
-...
-
-]
-
-.panel[.panel-name[nombre_2]
-
-...
-
-]
-
-]
-```
 ]
 
 .panel[.panel-name[Paneles horizontales]
 
 ```text
+.panelset[
+.panel[.panel-name[nombre_panel1]
+
+...
+
+]
+
+.panel[.panel-name[nombre_panel2]
+
+...
+
+]
+
+]
+```
+]
+
+.panel[.panel-name[Paneles verticales]
+
+```text
 .panelset.sideways[
-.panel[.panel-name[nombre_1]
+.panel[.panel-name[nombre_panel1]
 ...
 ]
 
-.panel[.panel-name[nombre_2]
+.panel[.panel-name[nombre_panel2]
 ...
 ]
 ]
@@ -388,11 +476,11 @@ Este es color .red[rojo].
 
 ]
 
-.panel[.panel-name[División en dos]
+.panel[.panel-name[Dividir la diapositiva en dos regiones de igual grosor]
 
 ```text
 
-.pull.left[
+.pull-left[
 ...
 ]
 
@@ -406,14 +494,7 @@ Este es color .red[rojo].
 
 ???
 
-Ejecutar install.packages("xaringanExtra").
-
-Para incluir los paneles, incluir en un chunk de R:
-
-xaringanExtra::use_panelset()
-
-Mencionar algunas funcionalidades en 
-&lt;https://github.com/gadenbuie/xaringanExtra&gt; .
+Mencionar algunas funcionalidades de xaringanExtra.
 
 ---
 
@@ -424,37 +505,27 @@ Mencionar algunas funcionalidades en
 ---
 title: "tu título"
 output:
-  self_contained: true
   xaringan::moon_reader:
-  lib_dir: libs
-  chakra: libs/remark-latest.min.js
-  css: [default, default-fonts]
-  seal: false # no incluir la diapositiva título automática
-  nature:
-    highlightStyle: github 
-    highlightLines: true 
-    countIncrementalSlides: true
-    slideNumberFormat: "%current%"
-    ratio: 16:9
+    self_contained: false
+    css: [default, default-fonts]
+    seal: false # no incluir la diapositiva título automática
+    nature:
+      highlightStyle: github 
+      highlightLines: true 
+      countIncrementalSlides: true
+      slideNumberFormat: "%current%"
+      ratio: 16:9
 ---
 ```
 ]
-
-???
-
-Explicar cada línea importante del encabezado **YAML** mostrado.
-
-Se recomienda incluir las `incremental slides` en el conteo de diapositivas,
-ya que así puedes trasladarte más fácilmente via el shortcut de teclado
-`slide_number”+ENTER` . 
 
 ---
 
 ## Gráficos interactivos vía el paquete htmlwidgets
 
 &lt;center&gt;
-<div id="htmlwidget-aa02f96265baa80a7e0c" style="width:504px;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-aa02f96265baa80a7e0c">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}],"setView":[[-12.0695,-77.0794],15,[]]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7c19aaaf4b10136f76cf" style="width:504px;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7c19aaaf4b10136f76cf">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}],"setView":[[-12.0695,-77.0794],15,[]]},"evals":[],"jsHooks":[]}</script>
 &lt;/center&gt;
 
 ---
@@ -466,8 +537,35 @@ class: center, middle
 
 &lt;https://github.com/gadenbuie/xaringanExtra&gt;
 
+---
 
+## Creación de un sitio web con R Markdown
 
+Comandos iniciales para **Git Bash**:
+
+```text
+git config --global user.name "usuario_de_cuenta_github"
+git config -- global user.email "email_de_cuenta_github"
+git config --list
+```
+
+Modelo básico para un sitio web creado con **R Markdown**:
+
+**_site.yml**:
+
+```text
+output: html_document
+```
+
+**index.Rmd**:
+
+```text
+---
+title: "Mi sitio web"
+---
+
+## Bienvenidos
+```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

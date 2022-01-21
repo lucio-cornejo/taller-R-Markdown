@@ -1,0 +1,60 @@
+---
+title: "Mi primera presentación con Xaringan"
+lang: "es"
+output:
+  xaringan::moon_reader:
+    css: [rladies,uo-fonts]
+    self_contained: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      slideNumberFormat: "%current%"
+      ratio: 16:9
+---
+
+## Diapositiva 2
+
+---
+class: center, middle
+
+## Diapositiva 3
+
+- ítem 1
+
+--
+
+- ítem 2
+
+???
+
+comentario cualquiera 
+
+---
+background-image: url("fractal.gif")
+background-position: right
+background-size: cover
+
+---
+
+.center[
+
+texto cualquiera
+]
+
+```{r}
+{{xaringanExtra::use_panelset()}}
+```
+
+.panelset[
+
+.panel[.panel-name[panel 1]
+
+contenido del panel 1
+]
+
+.panel[.panel-name[panel 2]
+
+contenido del panel 2
+]
+
+]

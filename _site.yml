@@ -17,8 +17,8 @@ navbar:
         - text: '---------'
         - text: "Clase 2: Reportes parametrizados"
           href: clase-2.html
-        # - text: "Clase 2: Reportes"
-        #   href: clase-3.html
+        - text: "Clase 3: Xaringan y creación de un sitio web"
+          href: clase-3.html
 
     - text: " Diapositivas"
       icon: far fa-object-ungroup
@@ -29,7 +29,7 @@ navbar:
         - text: "Clase 2: Reportes parametrizados"
           href: _diapositivas/clase-2.html
         - text: '---------'
-        - text: "Clase 3: Xaringan"
+        - text: "Clase 3: Xaringan y creación de un sitio web"
           href: _diapositivas/clase-3.html
     - text: "Archivos Rmd de las clases"
       icon: far fa-folder-open

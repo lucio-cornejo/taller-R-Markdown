@@ -1,4 +1,0 @@
----
-title: "ejemplo"
-output: html_document
----

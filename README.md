@@ -122,3 +122,8 @@ website
 
 - netlify account
 
+
+### For me
+
+- Convert m4a to mp3 with ffmpeg in terminal
+`ffmpeg -i nombre.m4a -b:a 192K -vn nombre.mp3`
