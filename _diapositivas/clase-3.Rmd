@@ -499,12 +499,23 @@ output:
 
 ---
 
-## Gráficos interactivos vía el paquete htmlwidgets
+## Inclusión de gráficos interactivos
 
 <center>
 ```{r, echo= FALSE}
 library(leaflet)
 leaflet() %>% addTiles() %>% setView(-77.0794, -12.0695, zoom = 15)
+```
+</center>
+
+---
+class: middle
+
+<center>
+```{r, echo= FALSE, message=FALSE, warning = FALSE}
+library(plotly)
+p <- plot_ly(z = volcano, type = "surface")
+p 
 ```
 </center>
 
@@ -529,6 +540,8 @@ git config -- global user.email "email_de_cuenta_github"
 git config --list
 ```
 
+<p style="margin-bottom: -30px;"> &nbsp; </p>
+
 Modelo básico para un sitio web creado con **R Markdown**:
 
 **_site.yml**:
@@ -544,5 +557,4 @@ output: html_document
 title: "Mi sitio web"
 ---
 
-## Bienvenidos
 ```
