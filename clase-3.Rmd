@@ -12,7 +12,7 @@ Incluso si asistieron a la sesión del lunes, deberían ver este video,
 pues tiene mejores explicaciones y la sección de "creación de un sitio web"
 se ha ejecutado de manera más clara y ordenada.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uXfpvnFqRhQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="800" height="400" src="https://www.youtube.com/embed/uXfpvnFqRhQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Tarea
 
@@ -24,7 +24,7 @@ del modelo planteado, para que se den una idea de lo que les solicito que creen.
 Por supuesto, ustedes pueden personalizar el **theme** de su sitio web y el contenido de su
 archivo **index.Rmd** (homepage del sitio web), pero deben cumplir algunas condiciones:
 
-Modelo para el archivo **_site.yml** :
+Modelo para el archivo _site.yml :
 
 ```yml
 name: "mi primer sitio web"    #### CAMBIAR
@@ -55,18 +55,19 @@ la semana de la sesión 2.
 1. En el valor de **href:** de donde dice `#### CAMBIAR XX`, deben incluir una presentación
 (diapositivas) que hayan creado con **Xaringan**. 
 Aquella presentación debe satistacer las siguientes condiciones:
-  - El encabezado **YAML** debe incluir el atributo `css: [nombre1, nombre2]` con sus elecciones
-    de letras (fonts) y estilo de las diapositivas.<br>
-    Por ejemplo, algo como `css: [rladies, uo-fonts]` .
+    
+    - El encabezado **YAML** debe incluir el atributo `css: [nombre1, nombre2]` con sus elecciones
+      de letras (fonts) y estilo de las diapositivas.<br>
+      Por ejemplo, algo como `css: [rladies, uo-fonts]`
 
-  - Empleen alguna herramienta del paquete [xaringanExtra](https://pkg.garrickadenbuie.com/xaringanExtra/#/).
-    Podrían incluir los **paneles** (verticales u horizontales) que vimos en clase, pero les recomiendo
-    que useen algo que no vimos en clase.
+    - Empleen alguna herramienta del paquete [xaringanExtra](https://pkg.garrickadenbuie.com/xaringanExtra/#/).
+      Podrían incluir los **paneles** (verticales u horizontales) que vimos en clase, pero les recomiendo
+      que useen algo que no vimos el lunes.
 
-  - Incluyan alguna diapositiva que este completamente cubierta por una imagen o por un gif,
-    así como se hizo en el modelo del video, donde un gif de un fractal cubría toda una diapositiva.
+    - Incluyan alguna diapositiva que este completamente cubierta por una imagen o por un gif,
+      así como se hizo en el modelo del video, donde un gif de un fractal cubría toda una diapositiva.
 
-  - Utilicen en alguna de sus diapositivas lo que denominé
-    [presentación secuencial](https://taller-r-markdown-lucio-cornejo.netlify.app/_diapositivas/clase-3.html?panelset=alineac%25C3%25B3n-de-texto#13).
+    - Utilicen en alguna de sus diapositivas lo que denominé
+      [presentación secuencial](https://taller-r-markdown-lucio-cornejo.netlify.app/_diapositivas/clase-3.html?panelset=alineac%25C3%25B3n-de-texto#13).
 
-  - Su presentación debe incluir al menos **cinco** diapositivas.
+    - Su presentación debe incluir al menos **cinco** diapositivas.

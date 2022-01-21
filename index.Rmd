@@ -52,7 +52,7 @@ knitr::opts_chunk$set(echo = TRUE)
         <td><pre>8. HTML y CSS</pre></td>
     </tr>
     <tr>
-        <td><pre>3. Xaringan</pre></td>
+        <td><pre>3. Xaringan y creación de un sitio web</pre></td>
         <td><pre>6. Dashboards y htmlwidgets</pre></td>
         <td><pre>9. Javascript</pre></td>
     </tr>
