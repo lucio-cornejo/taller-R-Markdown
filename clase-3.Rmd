@@ -6,6 +6,13 @@ output: html_document
 ```{r, child="_yoshi-TOC.Rmd"}
 ```
 
+<style>
+  /* Fix embedded video width for mobile */
+  @media (max-width: 767px) {
+    iframe { max-width: 90vw; }
+  }
+</style>
+
 ## Video para la sesión 3
 
 Incluso si asistieron a la sesión del lunes, deberían ver este video,
