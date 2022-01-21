@@ -78,3 +78,7 @@ Aquella presentación debe satistacer las siguientes condiciones:
       [presentación secuencial](https://taller-r-markdown-lucio-cornejo.netlify.app/_diapositivas/clase-3.html?panelset=alineac%25C3%25B3n-de-texto#13).
 
     - Su presentación debe incluir al menos **cinco** diapositivas.
+
+1. Una vez completo su sitio web, háganlo accesible en la web,
+  así como se les muestra al final del video para la sesión 3, 
+  empleando **Netlify** y **Github**.
