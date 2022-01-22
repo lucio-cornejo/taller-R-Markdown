@@ -520,6 +520,28 @@ p
 </center>
 
 ---
+class: middle
+
+<center>
+```{r, echo= FALSE, message=FALSE, warning = FALSE}
+library(threejs)
+library(maptools)
+library(maps)
+
+data(world.cities, package="maps")
+cities <- world.cities[order(world.cities$pop,decreasing=TRUE)[1:1000],]
+value  <- 100 * cities$pop / max(cities$pop)
+
+globejs(bg="white", lat=cities$lat,     long=cities$long, value=value, 
+        rotationlat=-0.34,     rotationlong=-0.38, fov=30)
+
+
+# earth <- "http://eoimages.gsfc.nasa.gov/images/imagerecords/73000/73909/world.topo.bathy.200412.3x5400x2700.jpg"
+# globejs(img=earth, bg="white")
+```
+</center>
+
+---
 class: center, middle
 
 ## Links para profundizar en Xaringan

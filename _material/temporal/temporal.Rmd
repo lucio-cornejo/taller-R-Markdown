@@ -3,11 +3,13 @@ output: html_document
 ---
 
 ```{r}
-library(plotly)
+library("threejs")
+library("maptools")
+library("maps")
+data(world.cities, package="maps")
+cities <- world.cities[order(world.cities$pop,decreasing=TRUE)[1:1000],]
+value  <- 100 * cities$pop / max(cities$pop)
 
-# Data: volcano is provided by plotly
-
-# Plot
-p <- plot_ly(z = volcano, type = "surface")
-p 
+globejs(bg="black", lat=cities$lat,     long=cities$long, value=value, 
+        rotationlat=-0.34,     rotationlong=-0.38, fov=30)
 ```
