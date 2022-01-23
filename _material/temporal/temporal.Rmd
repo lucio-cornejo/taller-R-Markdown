@@ -1,15 +1,56 @@
 ---
-output: html_document
+title: "PRÁCTICA 2"
+output:
+  rmdformats::readthedown:
+    code_folding: show
+    self_contained: true
+    thumbnails: false
+    lightbox: false
+    highlight: haddock
+    toc_depth: 4
 ---
 
-```{r}
-library("threejs")
-library("maptools")
-library("maps")
-data(world.cities, package="maps")
-cities <- world.cities[order(world.cities$pop,decreasing=TRUE)[1:1000],]
-value  <- 100 * cities$pop / max(cities$pop)
+```{r setup, include=FALSE}
+library(reticulate)
+use_python("C:/Python39")
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-globejs(bg="black", lat=cities$lat,     long=cities$long, value=value, 
-        rotationlat=-0.34,     rotationlong=-0.38, fov=30)
+## seccion 2
+
+lorem ipsum
+
+### seccion 3
+
+lorem ipsum x2
+
+## Pregunta 2
+
+```{python}
+from math import sqrt
+def check_prime(numero):
+  success = 1  # el numero es primo
+
+  # Escogemos un rango apropiado, 
+  # gracias a Teoría de Números,
+  # para revisar vía divisibilidad
+  # si el número de input es primo.
+  for check in range(2,1+round(sqrt(numero))):
+    if (numero%check == 0):
+      success = 0  # el numero no es primo
+      break
+  return success
+
+primeros_100_primos = []
+numero_prueba = 2
+cantidad_de_primos = 0
+
+while(len(primeros_100_primos) < 100):
+  # Caso que encontremos un valor primo
+  if (check_prime(numero_prueba) == 1):
+    primeros_100_primos.append(numero_prueba)
+    cantidad_de_primos += 1
+  numero_prueba += 1
+
+print(primeros_100_primos)
 ```

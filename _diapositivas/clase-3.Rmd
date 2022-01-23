@@ -48,8 +48,8 @@ mean(edades)
 ```
 
 ```{r}`r ' '`
-*echo: TRUE
-*eval: FALSE
+*#| echo: TRUE
+*#| eval: FALSE
 
 mean(edades)
 ```
