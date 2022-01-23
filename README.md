@@ -5,6 +5,20 @@ Archivos para la creación del sitio web con el contenido del curso.
 
 # Apuntes pseudo-personales para el taller
 
+## Problema inicial respecto al paquete Rtools
+
+- Posible solución
+  - Instalar [Rtools](https://cran.r-project.org/bin/windows/Rtools/rtools40.html) .
+  
+  - Tras la instalación, ejecutar los siguientes comandos en la consola de RStudio:
+    - `install.packages('devtools')`
+    - `library(pkgbuild)` 
+    - `find_rtools()`
+
+  - El resultado del tercer comando insertado en la consola
+    debería ser `TRUE`. En tal caso, probablemente ya podrás instalar paquetes de **R**.
+
+
 ## **Chocolatey and Pandoc** 
 
 - Para poder usar knit en VS Code, necesitaremos instalar `Pandoc`, 
