@@ -546,7 +546,7 @@ class: center, middle
 
 ## Links para profundizar en Xaringan
 
-[Funcionalidades extra vía le paquete xaringanExtra](https://github.com/gadenbuie/xaringanExtra)
+[Funcionalidades extra vía el paquete xaringanExtra](https://github.com/gadenbuie/xaringanExtra)
 
 [Más diseños y estilos visuales vía el paquete xaringanthemer](https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html)
 
