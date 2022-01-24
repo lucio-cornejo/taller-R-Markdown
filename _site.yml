@@ -14,7 +14,7 @@ navbar:
       menu:
         - text: "Clase 1: Markdown y YAML"
           href: clase-1.html
-        - text: '---------'
+        # - text: '---------'
         - text: "Clase 2: Reportes parametrizados"
           href: clase-2.html
         - text: "Clase 3: Xaringan y creación de un sitio web"
@@ -25,10 +25,8 @@ navbar:
       menu:
         - text: "Clase 1: Markdown y YAML"
           href: _diapositivas/clase-1.html
-        - text: '---------'
         - text: "Clase 2: Reportes parametrizados"
           href: _diapositivas/clase-2.html
-        - text: '---------'
         - text: "Clase 3: Xaringan y creación de un sitio web"
           href: _diapositivas/clase-3.html
     - text: "Archivos Rmd de las clases"
