@@ -126,7 +126,7 @@ output: html_document
 Comentar sobre que _reportes parametrizados_ se considera avanzado:
 
 Diapositiva 9 del primer link (no Rmd)
-><https://arm.rbind.io/days/day2/>
+<https://arm.rbind.io/days/day2/>
 
 ---
 class: center, middle

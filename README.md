@@ -18,6 +18,15 @@ Archivos para la creación del sitio web con el contenido del curso.
   - El resultado del tercer comando insertado en la consola
     debería ser `TRUE`. En tal caso, probablemente ya podrás instalar paquetes de **R**.
 
+## Clase 04
+
+- Iniciar mencionando el open
+  [issue](https://github.com/yihui/xaringan/issues/217)
+  de Xaringan' table of contents, y mi solución (por ahora (faltan cosishas)) al problema.
+
+
+
+  
 
 ## **Chocolatey and Pandoc** 
 

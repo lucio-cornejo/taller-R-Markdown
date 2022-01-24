@@ -1,6 +1,5 @@
 body { line-height: 35px; }
 
-
 /* Disable double-tap zoom */
 html { touch-action: manipulation; } 
 /* */
@@ -36,6 +35,10 @@ div.remark-slide-number {
     margin-bottom: 12px;
 }
 
+/* Allow scrollbar when there is overflow in slides */
+div.remark-slide-scaler {
+    overflow: auto;
+}
 
 /* Custom Xaringan panelset */
 li.panel-tab {
