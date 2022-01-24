@@ -461,7 +461,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     // Important to search for headers only in the 
     // div.remark-slides-area, because, if not, there are 
     // headers that get added more than once to the variable "headers"
-    headers = document.querySelectorAll('div.remark-slides-area h1 h1, div.remark-slides-area h2, div.remark-slides-area h3, div.remark-slides-area h4, div.remark-slides-area h5, div.remark-slides-area h6');
+    headers = document.querySelectorAll('div.remark-slides-area h1, div.remark-slides-area h2, div.remark-slides-area h3, div.remark-slides-area h4, div.remark-slides-area h5, div.remark-slides-area h6');
 
     // Convert some variables to arrays
     headers = Array.prototype.slice.call(headers);
@@ -527,6 +527,20 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
           tocDiv.style.display = 'none';
         } else {
           tocDiv.style.display = 'block';
+        }
+
+        // Cross and change opacity of toc anchors from previous slides
+        let currentSlide = slideshow.getCurrentSlideIndex();
+        if ( currentSlide > 0 ) {
+          toc.children.forEach( (element) => {
+            if ( parseInt(element.firstChild.dataset.slide) < currentSlide ) {
+              element.firstChild.style.opacity = 0.5;
+              element.firstChild.style.textDecoration = "line-through";
+            } else {
+              element.firstChild.style.opacity = 1;
+              element.firstChild.style.textDecoration = "";
+            }
+          });
         }
         
         //// Best alternative I've found so far to insert table of contents ////
