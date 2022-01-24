@@ -546,9 +546,11 @@ class: center, middle
 
 ## Links para profundizar en Xaringan
 
-<https://bookdown.org/yihui/rmarkdown/xaringan.html>
-
 <https://github.com/gadenbuie/xaringanExtra>
+
+<https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html>
+
+<https://bookdown.org/yihui/rmarkdown/xaringan.html>
 
 ---
 
