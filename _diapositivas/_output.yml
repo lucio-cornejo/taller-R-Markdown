@@ -1,12 +1,12 @@
 xaringan::moon_reader:
-      css:  ["my-slides-style.css","xaringan-toc-css.css", default, shinobi, rladies-fonts, duke-blue]
-      seal: false
-      includes:
-          in_header: "jQuery.js"
-          after_body: ["my-custom-slides-script.html","xaringan-toc-js.html"]
-      nature:
-          highlightStyle: github
-          highlightLines: true
-          countIncrementalSlides: true
-          navigation:
-              scroll: false
+    css:  ["my-slides-style.css","xaringan-toc-css.css", default, shinobi, rladies-fonts, duke-blue]
+    seal: false
+    includes:
+        in_header: "jQuery.js"
+        after_body: ["my-custom-slides-script.html","xaringan-toc-js.html"]
+    nature:
+        highlightStyle: github
+        highlightLines: true
+        countIncrementalSlides: true
+        navigation:
+            scroll: false

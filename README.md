@@ -63,7 +63,6 @@ Archivos para la creación del sitio web con el contenido del curso.
   [video](https://www.youtube.com/watch?v=BATVa4vGZto&ab_channel=EasyTutorials)
   para obtener el código necesario de JavaScript.
 
-
 ## **CSS** 
 
 - Dentro de un s`some-selector {...}`, ¿importa el orden en que se escriban las propiedades? \
@@ -84,7 +83,6 @@ Archivos para la creación del sitio web con el contenido del curso.
     nature:
       countIncrementalSlides: true
   ```
-
 
 ## **Bookdown** 
 
