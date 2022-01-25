@@ -758,9 +758,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
         temporal = 2*temporal;
         slide.style.left = String(temporal)+'px';
       });
+
+      // Close and open table of contents in order to fix width
+      if ( tocDiv.style.height === '100vh') {
+        document.dispatchEvent(new KeyboardEvent('keydown',{'key':'s'}));
+        document.dispatchEvent(new KeyboardEvent('keydown',{'key':'s'}));
+      }
     }
     pushSlidesToRightCounter += 1;
   }
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === "r") {
+        if (event.repeat) {
+          return;
+        }
+        pushSlidesToRight();
+    }
+  });
 
   $(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', async function() {
     // Whenever a change from or to fullscreen window occurs,

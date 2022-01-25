@@ -1,215 +1,40 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Creating a TOC for xaringan</title>
+    <title>testing script extracting</title>
     <meta charset="utf-8" />
     <script src="temporal_files/header-attrs-2.11.4/header-attrs.js"></script>
-    <link href="temporal_files/remark-css-0.0.1/rladies.css" rel="stylesheet" />
-    <link href="temporal_files/remark-css-0.0.1/uo-fonts.css" rel="stylesheet" />
+    <link href="temporal_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="temporal_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Creating a TOC for xaringan
+# testing script extracting
 
 ---
 
 
-&lt;style&gt;
-  #toc-container {
-    padding: 0;
-    float: left;
-    z-index: 100;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: block;
-    border: 2px solid black;
-    background-color: #F0F0F0;
-    overflow: auto;
-  }
+## diapo 2
 
-  #toc-container p {
-    font-size: 17px;
-    margin-top: 8px;
-    text-align: center;
-    margin-bottom: -10px;
-  }
-
-  #toc-container hr {
-    border: 0.1px solid gainsboro;
-    width: 90%;
-  }
-
-  #xaringan-toc {
-    margin: 0;
-    padding: 5px 30px 10px 40px;
-  }
-  
-  #xaringan-toc li a {
-    cursor: pointer;
-    color: blue;
-  }
-
-  #xaringan-toc li a:hover {
-    color: red;
-    text-decoration: underline;
-  }
-&lt;/style&gt;
-
-## Diapo 2
-
-### Section a
-
-a section content
-
-### Section b
-
-b section content
+hola
 
 ---
 
 &lt;h2 class="no-toc"&gt;Diapo 3&lt;/h2&gt;
 
-### Section a
-
-a section content
-
-### Section b
-
-b section content
-
----
-
-&lt;p id="texto"&gt;
-  No headers in this slide
-&lt;/p&gt;
-
-&lt;a&gt;hola&lt;/a&gt;
----
-
-## Diapo 5
-
-### Section a
-
-a section content
-
-### Section b
-
-b section content
+holi
 
 
-&lt;script&gt;
-  let body = document.querySelector('body');
-  let slidesParent, slides, headers;
-  let slidesHeaders = [];
-  let toc, tocDiv, tocTitle;
+&lt;script defer&gt; 
+  $.ajax({
+    type: "GET",
+    url: "https://raw.githubusercontent.com/lucio-cornejo/coding_projects/master/apps/xaringan-table-of-contents/xaringan-toc-js-and-css.js",
+    dataType: "script"
+  });
+&lt;/script&gt; 
 
-  window.onload = function() {
-    // Set variables
-    headers = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-    slidesParent = document.querySelector('div.remark-slides-area');
-
-    // Convert some variables to arrays
-    headers = Array.prototype.slice.call(headers);
-    slides = Array.prototype.slice.call(slidesParent.children);
-
-    // Remove headers with class "no-toc"
-    headers = headers.filter(element =&gt; !( element.classList.contains('no-toc') ));
-
-    // Remove last header in headers array, because it's
-    // actually the h1 "Help" header from the Xaringan menu 
-    // A check will be made, just in case, so not to remove a valuable header:
-    if(headers.slice(-1)[0].classList.length === 0 &amp;&amp; headers.slice(-1)[0].textContent === 'Help'){
-      headers.pop();
-    }
-
-    // Group headers via the slide they belong to
-    for(let i=0; i &lt; slides.length; i++){
-      let temporal = headers.filter(header =&gt; slides.indexOf(getDivSlideContainer(header)) === i);
-      if (temporal.length &gt; 0){
-        slidesHeaders.push({ 
-          key: i,
-          value: temporal
-        });
-      }  
-    }
-
-    // Create an ordered list via slidesHeaders variable
-    tocDiv = document.createElement('div');
-    tocDiv.id = "toc-container";
-
-    tocTitle = document.createElement('p');
-    tocTitle.textContent = "Table of contents";
-    tocDiv.append(tocTitle);
-    tocDiv.append(document.createElement('hr'));
-
-    toc = document.createElement('ol');
-    toc.id = "xaringan-toc";
-    tocDiv.append(toc);
-    slidesHeaders.forEach( (element) =&gt; {
-      element.value.forEach( (header) =&gt; {
-        let tocItem = document.createElement('li');
-        let anchor = document.createElement('a')
-        // Insert header name
-        anchor.innerHTML = header.textContent;
-        // Pass info about header's slide container
-        anchor.setAttribute('data-slide',element.key)
-        
-        // Add header item to table of contents
-        toc.append(tocItem);
-        tocItem.append(anchor);
-        
-      })
-    });
-
-
-    // Pres key t to display Table of Contents
-    document.addEventListener('keydown', function(event) {
-      if (event.key === "t") {
-        if (event.repeat) {
-          return;
-        }
-        if(tocDiv.style.display === 'block') {
-          tocDiv.style.display = 'none';
-        } else {
-          tocDiv.style.display = 'block';
-        }
-        
-        //// Best alternative I've found so far to insert table of contents ////
-        // slides[slideshow.getCurrentSlideIndex()].children[0].append(tocDiv);
-        // Such alternative has the issue that sometimes double the key press
-        // is required in order to show de TOC, due to it being "hidden"
-        // after changing slide from a slide where the TOC was displayed.
-        
-        // Insert table of contents on page
-        body.append(tocDiv);
-
-        event.preventDefault();
-        event.stopPropagation();
-      }
-    });
-
-    // Make anchors in Table of Contents activate appropriate slide change when clicked
-    toc.children.forEach( (item) =&gt; {
-      item.firstChild.addEventListener('click', function(event) {
-        slideshow.gotoSlide(1+parseInt(this.dataset.slide));
-        event.preventDefault();
-        event.stopPropagation();
-      })
-    });
-
-  }
-
-  function getDivSlideContainer(header) {
-    let temporal = header;
-    while (! temporal.parentNode.classList.contains('remark-slide-container')) {
-      temporal = temporal.parentNode;
-    }
-    return temporal.parentNode;
-  }
-&lt;/script&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
