@@ -20,13 +20,27 @@ Archivos para la creación del sitio web con el contenido del curso.
 
 ## Clase 04
 
-- Iniciar mencionando el open
-  [issue](https://github.com/yihui/xaringan/issues/217)
+- Otras opciones para crear diapositivas en HTML:
+  + reveal.js
+    - <https://bookdown.org/yihui/rmarkdown/revealjs.html>
+    - <https://e-gor.github.io/Reveal.js-TOC-Progress/demo/#/>
+
+  + slidy_presentation
+    - <https://bookdown.org/yihui/rmarkdown/slidy-presentation.html>
+    - <https://pebiba-taller-rmd.netlify.app/index.html#(1)>
+
+- Comentar `table of contents` [issue](https://github.com/yihui/xaringan/issues/217)
   de Xaringan' table of contents, y mi solución (por ahora (faltan cosishas)) al problema.
 
+- Uso del paquete `pagedown` para convertir a PDF una presentación de Xaringan.
 
+### Reportes
 
-  
+- [Más plantillas](https://www.datadreaming.org/post/r-markdown-theme-gallery/)
+- [Rpubs](https://www.rstudio.com/blog/announcing-rpubs/#:~:text=To%20publish%20to%20RPubs%20within,publishing%20again%20from%20within%20RStudio)
+- Formato PDF
+  + Paquete [pagedown](https://rstudio.github.io/pagedown/) para simular un formato PDF, pero para la web.
+
 
 ## **Chocolatey and Pandoc** 
 
@@ -38,9 +52,17 @@ Archivos para la creación del sitio web con el contenido del curso.
 + Revisar si necesito instalar some `Git` executable para poder hacer `add,commit and push` desde VS Code,
   sin necesidad de `Git Bash` o herramientas de ese tipo.
   `Rpta: Sí necesitas.` 
+
 + Para el Hugo Apero theme, puedes crear posts que no se publiquen en el sitio web via `draft: true` o usando en
   `dat: ` una fecha futura a la fecha del site deploy más reciente. Aún así, puedes ver localmente los posts que
   les hayas asignado alguna de esas dos propiedades en el YAML, via el comando `blogdown::serve_site()`.
+
++ Para la version más simple de un website con R Markdown (`_site.yaml e index.Rmd`), 
+  puedes usar más íconos de fontawesome via modificando el archivo `_site.yaml` simlar 
+  al de este repositorio. Además, basarse de este
+  [video](https://www.youtube.com/watch?v=BATVa4vGZto&ab_channel=EasyTutorials)
+  para obtener el código necesario de JavaScript.
+
 
 ## **CSS** 
 
@@ -59,17 +81,10 @@ Archivos para la creación del sitio web con el contenido del curso.
   ```yaml
   output: 
   xaringan::moon_reader:
-      nature:
-          countIncrementalSlides: true
+    nature:
+      countIncrementalSlides: true
   ```
 
-## **Blogdown** 
-
-- Para la version más simple de un website con R Markdown (`_site.yaml e index.Rmd`), 
-  puedes usar más íconos de fontawesome via modificando el archivo `_site.yaml` simlar 
-  al de este repositorio. Además, basarse de este
-  [video](https://www.youtube.com/watch?v=BATVa4vGZto&ab_channel=EasyTutorials)
-  para obtener el código necesario de JavaScript.
 
 ## **Bookdown** 
 
@@ -133,7 +148,6 @@ more info
 
 
 comment sobre latex
-
 
 more info at
 <https://bookdown.org/yihui/rmarkdown-cookbook/latex-output.html>
