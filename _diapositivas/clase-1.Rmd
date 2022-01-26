@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## ¿De qué me sirve saber R Markdown?
 
-- Para crear **reportes reproducibles**.
+- Para crear **reportes [reproducibles](https://www.youtube.com/watch?v=EvoVb_QLRK8&ab_channel=HealthcareTriage)**.
 
 - Para generar, a partir de **un solo archivo**, una multitud de
 formatos (página web, Word, PDF, diapositivas HTML, etc) en el cual 

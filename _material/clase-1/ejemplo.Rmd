@@ -1,23 +1,27 @@
 ---
-title: ejemplo
-output: 
-  # html_document:
-    # toc: true
-    # toc_float: true
-  # pdf_document:
-    # toc: true
-    # toc_depth: 3
-    # latex_engine: xelatex
-    # extra_dependencies: ["tikz-cd","tikz","pgfplots"]
-  # flexdashboard::flex_dashboard:
-  #   theme: united
-  #   orientation: rows
-  # bookdown::gitbook:
-    # number_sections: FALSE
-    # config:
-      # toc:
-        # toc_float:
-          # collapsed: TRUE
+title: 
+output:
+  html_document:
+    toc: true
+    toc_float: true
+
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    latex_engine: pdflatex
+    extra_dependencies: ["tikz-cd","tikz","pgfplots"]
+
+  flexdashboard::flex_dashboard:
+    theme: united
+    orientation: rows
+
+  bookdown::gitbook:
+    number_sections: FALSE
+    config:
+      toc:
+      toc_float:
+        collapsed: TRUE
+
   xaringan::moon_reader:
     css: ["kunoichi","rladies"]
     nature:

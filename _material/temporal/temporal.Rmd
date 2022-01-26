@@ -1,0 +1,10 @@
+---
+title: Test
+output: html_document
+---
+
+## To Do list
+
+- [ ] Grabar video de la sesión 1.
+
+- [x] Jugar Melee.
