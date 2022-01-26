@@ -246,6 +246,6 @@ output:
     toc_depth: 3 # motrar en la toc los encabezados de nivel tres o menor nivel
     toc_float: true # mantener fija la toc en la esquina superior izquierda de la página web
     theme: darkly # un modelo predeterminado del estilo visual de nuestra página
-    highlight: github # un modelo predeterminado de cómo resaltar el código de la página web
+    highlight: tango # un modelo predeterminado de cómo resaltar el código de la página web
 ---
 ```

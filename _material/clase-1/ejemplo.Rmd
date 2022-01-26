@@ -1,5 +1,5 @@
 ---
-title: 
+title: Ejemplo
 output:
   html_document:
     toc: true

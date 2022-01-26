@@ -3,7 +3,7 @@
 ## Encabezados
 
 # nivel 1
-## nivel 2
+## nivel 2 
 ### nivel 3
 #### nivel 4
 ##### nivel 5
@@ -11,20 +11,26 @@
 
 ## Estilos para palabras
 
-- Cursiva:
-_texto_    *texto*
+Cursiva:
 
-- Negrita: 
-__texto__    **texto**  
+_texto_ *texto*
 
-- Cursiva y negrita:
-___texto___ ***texto***
+Negrita: 
 
-- Tachado:
-~~texto~~
+__negrita__ **negrita**
 
-- Subrayado: No hay en Markdown, aunque se puede hacer con HTML.
 
+Cursiva y negrita:
+
+___cursiva y negrita___ ***cursiva y negrita***
+
+Tachado:
+
+~~tachado~~
+
+- Subrayado: No hay un comando para Markdown:
+
+<p style="text-decoration: line-through">subrayado</p>
 
 ## Romper línea
 
@@ -32,91 +38,91 @@ ___texto___ ***texto***
 - Símbolo \ al final de una línea de texto.
 - Símbolo `<br>` (sin tildes reversas) al final de una línea de texto.
 
+## Listas
 
-## Listas 
-
-*Desordenadas*
+**Desordenadas** 
 
 - a
 - b
-    - b1
-    - b2
+  - b 1.0
+  - b 2.0
 
-*Ordenadas*
++ a
 
-1. a
-1. b
-    1) a
-    1) b
++ b
+  - b 1.0
 
-*Check*
+* a
+* b
+
+**Ordenadas**
+
+1. item 1
+1. item 2
+    1) item 2.1
+    1) item 2.2
+
+## Checks (listas de cosas por hacer)
 
 - [ ] estudiar
 - [x] procastinar
-    - [x] music
-    - [ ] movies
-
+    - [x] música
+    - [ ] ver películas
 
 ## Línea recta
 
-Varias opciones que logran lo mismo:
- 
 * * *
 
 ***
 
-*****
+*********
 
 - - -
 
----------------------------------------
+---
 
 <hr>
 
-
 ## LaTeX
-    
-- Ecuación en línea de texto: $\,e^\pi +1=0$  
 
-- Ecuación modo display math: 
-$$\int\limits_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt\pi$$
+- Ecuación en una línea de texto: $e^\pi +1 = 0$
+
+- Ecuación modo display math:
+
+$$\int\limits_{-\infty}^{\infty} e^{-x^2}\, dx = \sqrt\pi$$
 
 
-## Citas
+## Citas textuales
 
-> People die if they are killed.
+> _People die if they are killed_
 > 
 > --- Shirou Emiya, Fate/Stay Night
 
-> texto A
->> texo B
->>
->> texto B
->
-> texto A
+> usuario A
+>> usuario B
+>> 
+> respuesta de usuario A
 
+## Enlaces web
 
-## Enlaces
+[texto para link](https://google.com)
 
-<htttps://google.com>
+<https://google.com>
 
-[Youtube](https://www.youtube.com/)
-
-
-[Google](https://google.com "googleplex")
-
+[texto para link](https://google.com "googleplex")
 
 [Hurricane] Erika was the strongest and longest-lasting
 tropical cyclone in the 1997 Atlantic [hurricane] season.
 
-[hurricane]:  https://w.wiki/qYn
+[hurricane]: https://w.wiki/qYn
 
 
 ## Imágenes
 
-![nombre para imagen](https://cdn.wallpapersafari.com/5/4/ahevUf.png)
+![nombre para la imagen](https://cdn.wallpapersafari.com/5/4/ahevUf.png)
 
-![imagen][] 
+
+![imagen][]
 
 [imagen]: https://cdn.wallpapersafari.com/5/4/ahevUf.png
 
@@ -127,7 +133,7 @@ Estas opciones funcionan en R Markdown, pero no en la preview de VS Code:
 
 - Opción 1
 
-`Google^[this is a footnote] is evil.`
+Google^[this is a footnote] is evil.
 
 *Así, la numeración del pie de página se realiza automáticamente.*
 
@@ -143,15 +149,17 @@ this[^1] and that[^2] ...
 
 - En línea:
 
-El código `console.log(alert('message'))` lo usaremos en JavaScript. 
+En el ejemplo inicial de la clase, vimos el código
+`plot(pressure)`
 
 - En bloque:
+
 ```python
 def suma(a,b):
     return a+b
 
 suma(1,2)
-``` 
+```
 
 ```r
 df <- pressure
@@ -162,33 +170,35 @@ head(df)
 En ocasiones, esa convención puede generar problemas en **R Markdown**,
 particularmete cuando trabajemos con **HTML** dentro de un documendo **Rmd**.
 
-
 ## Tablas
 
-Nombre | Institución
-:---: | :---:
-Lucio | PUCP
-Yoshi | IRS
-
-Nombre | Institución
-:--- | :---
-Lucio | PUCP
-Yoshi | IRS
-
-Nombre | Institución
----: | ---:
-Lucio | PUCP
-Yoshi | IRS
-
+Nombre | Institución | Color favorito
+---: | :--- | :---:
+Lucio | PUCP | skyblue
+Yoshi | IRS | verde
 
 ## Contenido HTML
 
-<strong>negrita</strong>
+_cómo Markdown nos simplifica la vida_
+
+<h1>encabezado de nivel 1</h1>
+
+# encabezado de nivel 1
+
 
 <ul>
   <li>A</li>
   <li>B</li>
 </ul>
+
+- A
+- B
+
+
+<strong>negrita</strong>
+
+**negrita**
+
 
 <table>
     <thead>
@@ -209,16 +219,30 @@ Yoshi | IRS
     </tbody>
 </table>
 
+Nombre | Institución 
+---: | :--- 
+Lucio | PUCP 
+Yoshi | IRS 
+
 
 ## Contenido colapsable
 
 <details>
-<summary>Foldable</summary>
-contenido ...
+<summary> Haz click para mostrar u ocultar mi contenido</summary>
+
+lorem ipsum
 
 - item a
 - item b
+
+Nombre | Institución | Color favorito
+---: | :--- | :---:
+Lucio | PUCP | skyblue
+Yoshi | IRS | verde
+
 </details>
 
-## Sitio web que contiene un resumen como este
-<https://www.rstudio.com/resources/cheatsheets/>
+
+## Sitio web que contiene un resumen sobre Markdown
+
+<https://www.rstudio.com/resources/cheatsheets>
