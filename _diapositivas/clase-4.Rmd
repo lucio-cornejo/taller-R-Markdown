@@ -172,6 +172,7 @@ class: middle
       collections:
         posts:
           disqus:
+            shortname: comentarios # nombre cualquiera, pero obligatorio
             hidden: true 
           share: [twitter, linkedin, facebook, google-plus, pinterest]
       ``` 
