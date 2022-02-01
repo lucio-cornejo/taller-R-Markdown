@@ -29,6 +29,8 @@ navbar:
           href: _diapositivas/clase-2.html
         - text: "Clase 3: Xaringan y creación de un sitio web"
           href: _diapositivas/clase-3.html
+        - text: "Clase 4: Distill, Blogdown y Bookdown"
+          href: _diapositivas/clase-4.html
     - text: "Archivos Rmd de las clases"
       icon: far fa-folder-open
       href: https://github.com/lucio-cornejo/taller-r-markdown/tree/main/_material

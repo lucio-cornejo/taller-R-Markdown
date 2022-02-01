@@ -195,3 +195,12 @@ Pasos para crear nuestro sitio web con **R Markdown** y el paquete **Blogdown**:
 
 <https://bookdown.org/yihui/blogdown/output-format.html>
 
+---
+
+## Bookdown
+
+- [Modelo básico para crear el libro](https://github.com/seankross/bookdown-start)
+
+- Modificaciones básicas
+    - `_output.yml` 
+        - Cambiar el título "A Minimal Bookdown Book"
