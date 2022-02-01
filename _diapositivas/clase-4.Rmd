@@ -183,19 +183,21 @@ para incluir en el **encabezado YAML** de nuestros documentos creados con Distil
 
 ---
 
+<p style="margin-bottom: -70px;"> &nbsp; </p>
+
 ## Publicación del blog creado con Distill
+
+<p style="margin-bottom: -80px;"> &nbsp; </p>
 
 1. Ejecutamos `rmarkdown::render_site()` tras haber fijado como directorio
   aquel donde se encuentra el archivo **index.Rmd**.
-
 1. En **GitHub**, creamos un repositorio con el mismo nombre que el nombre
   de la carpeta principal de nuestro blog Distill.
-
 1. Ejecutamos en alguna terminal los siguientes comandos, tras cambiar 
   adecuadamente las secciones **ruta-de-la-carpeta-del-blog-Distill**,
   **nombre-de-usuario** y **nombre-del-repositorio**:
 
-  <p style="margin-bottom: -70px;"> &nbsp; </p>
+  <p style="margin-bottom: -85px;"> &nbsp; </p>
   
   .scrollable[
   ```text
@@ -209,6 +211,8 @@ para incluir en el **encabezado YAML** de nuestros documentos creados con Distil
   ```
   ]
 
+1. Cuando publiquemos el sitio web via **Netlify** y **GitHub**, 
+en la sección **Publish directory** escribimos **_site**.
 ---
 class: middle
 
