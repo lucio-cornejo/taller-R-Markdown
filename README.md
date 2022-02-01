@@ -30,20 +30,6 @@ Archivos para la creación del sitio web con el contenido del curso.
 
 ## Clase 04
 
-### Intro
-
-- Comentarles sobre `_output.yml` file para distintas secciones de su página.
-- ¿Cuándo emplear `rmarkdown::render_site()` y cuando no es necesario?
-- Links para cómo añadir iconos and how to do it
-    - [Obtener el script necesario](https://www.youtube.com/watch?v=BATVa4vGZto&ab_channel=EasyTutorials)
-    - [Algunas opciones de iconos](https://www.w3schools.com/icons/icons_reference.asp)
-    - ¿Cómo incluir ese script en nuestro sitio web para poder emplear los íconos?
-
-### **Distill** 
-
-- Paquete para publicar sitios web de contenido cienctífico.
-
-
 ### **Blogdown** 
 
 - Es más customizable que **Distill**.
@@ -54,8 +40,6 @@ Archivos para la creación del sitio web con el contenido del curso.
 
 - Github repository con instrucciones para la creación del blog:
   <https://github.com/ivelasq/2022-01-25_building-a-blog-with-r>
-
-
 
 + Para el Hugo Apero theme, puedes crear posts que no se publiquen en el sitio web via `draft: true` o usando en
   `dat: ` una fecha futura a la fecha del site deploy más reciente. Aún así, puedes ver localmente los posts que

@@ -67,52 +67,147 @@ vía el archivo **_site.yml**
 
 ## Distill
 
-<p style="margin-bottom: -20px;"> &nbsp; </p>
-
 ### Sitios web creados con Distill
-
-<https://blogs.rstudio.com/ai/>
 
 <https://www.jvcasillas.com/>
 
-<p style="margin-bottom: 20px;"> &nbsp; </p>
+<https://pkgs.rstudio.com/distill/articles/examples.html>
+
+<p style="margin-bottom: -30px;"> &nbsp; </p>
+
 
 ### ¿Por qué usar Distill para crear un sitio web?
 
-<p style="margin-bottom: -40px;"> &nbsp; </p>
+Es un formato más estable que **Blogdown**, ya que no
+requiere de **Hugo**, así que se evita problemas de compatibilidad
+(presentes o futuros) entre **Hugo** y **Blogdown**.
 
-> _The idea was to create a platform to help scientists harness the benefits of_
->  _modern HTML-based communication, which digital designers and journalists_ 
-> _have been using to create interactive and engaging articles that meet readers_
-> _where they are: **online** ._
->
+<p style="margin-bottom: -50px;"> &nbsp; </p>
+
+> _La idea fue crear una platforma para ayudar a científicos a aprovechar_
+> _los beneficios de la comunicación moderna vía HTML, la cual diseñadores_
+> _digitales y periodistas han estado usando para crear artículos_
+> _interactivos y atractivos ubicados donde están los lectores:_<br>
+> ***en línea (online)***.<br>
 > --- https://www.rstudio.com/blog/distill/
+
+???
+
+Comentar sobre el problema actual de compatibilidad de mi
+[página](https://lucio-cornejo.github.io/) 
+de Mathematical Music theory.
 
 ---
 
-## Distill
-
-<p style="margin-bottom: -85px;"> &nbsp; </p>
+## Manos a la obra
 
 - Creación del sitio web<br>
 
-`distill::create_blog(dir = "nombre_carpeta", title = "nombre_sitio_web")` 
+```{r, eval = FALSE}
+distill::create_blog(dir = "nombre_carpeta", title = "nombre_sitio_web")
+```
 
-- Configuremos el archivo `_site.yml`
+- Acceder al archivo `_site/index.html`, página principal del sitio web creado.
+
+- Configuremos el archivo `_posts/welcome/welcome.Rmd`, lo renderizamos
+y regresamos a la páginal principal del sitio web.
 
 - Creación de un nuevo post<br>
 
-`distill::create_post(title="titulo_publicacion", draft=FALSE)` 
+```{r, eval = FALSE}
+distill::create_post(title = "titulo_publicacion", draft = FALSE)
+```
 
 Podemos emplear `draft=TRUE` para que tal publicación no se muestre 
 en el sitio web, ya que sería un _borrador_. En el **encabezado YAML**
 de aquella publicación podemos cambiar `draft: FALSE` cuando 
 el documeto este listo para ser publicado.
 
+???
+
+`create_blog(...) vs create_website(...)` 
+
+- "Blogs Distill" son "sitios web Distill" con extra funcionalidades.
+- Para un "blog Distill" es posible que las publicaciones se añadan
+automáticamente con su preview y link en la homepage; sin embargo,
+eso se tendría que hacer manualmente para "sitios web Distill".
+- Cuando se reconstruye un "sitio web Distill", las publicaciones se
+renderizan de nuevo, pero eso no ocurre para los "blog Distill", evitando
+así posible problemas de compatibilidad tras actualizar paquetes de **RR**.
+
+---
+
+<p style="margin-bottom: -30px;"> &nbsp; </p>
+
+- Definir el **preview** de la publicación.
+
+- Una **tabla de contenidos** diferente a la que hemos estado empleando.
+    
+    - `toc: true` 
+    - `toc_float: false` 
+
+- Propiedad `code_folding: true` &nbsp;y creación de links para secciones de código.
+
+- Añadir `categories: ["alguna_categoria"]` &nbsp;a la publicación creada y ver el
+cambio que produce en la página principal del sitio web.
+
 - Personalizar el diseño del sitio web
+
+    - [Alternativa más rápida](https://rstudio.github.io/distill/website.html#theming)
+    (no me funciona)
     - Crear un archivo **CSS** donde modificamos el estilo del sitio,
     y lo incluimos adecuadamente vía el `_site.yml` del sitio web.
-    - [Alternativa (no me funciona)](https://rstudio.github.io/distill/website.html#theming)
+        - Esconder la categoría `articles` de la página principal del sitio web.
+
+---
+class: middle
+
+- Añadir sección de comentarios y para compartir la publicación:
+    - Insertar el siguiente código al archivo `_site.yml` y cambiar
+    el valor de `base_url` por el link con el cual se accederá al blog
+    creado con **Distill** tras haberlo subido online:
+    
+      ```yaml
+      base_url: https://mathematical-music-theory-blog.netlify.app/
+      collections:
+        posts:
+          disqus:
+            hidden: true 
+          share: [twitter, linkedin, facebook, google-plus, pinterest]
+      ``` 
+- Esconder los anunciones en la sección de comentarios, modificando
+apropiadamente el archivo `CSS` señalado en `_site.yml`.
+
+- [Más propiedades](https://ymlthis.r-lib.org/reference/yml_distill_opts.html)
+para incluir en el **encabezado YAML** de nuestros documentos creados con Distill.
+
+---
+
+## Publicación del blog creado con Distill
+
+1. Ejecutamos `rmarkdown::render_site()` tras haber fijado como directorio
+  aquel donde se encuentra el archivo **index.Rmd**.
+
+1. En **GitHub**, creamos un repositorio con el mismo nombre que el nombre
+  de la carpeta principal de nuestro blog Distill.
+
+1. Ejecutamos en alguna terminal los siguientes comandos, tras cambiar 
+  adecuadamente las secciones **ruta-de-la-carpeta-del-blog-Distill**,
+  **nombre-de-usuario** y **nombre-del-repositorio**:
+
+  <p style="margin-bottom: -70px;"> &nbsp; </p>
+  
+  .scrollable[
+  ```text
+
+  cd ruta-de-la-carpeta-del-blog-Distill
+  git add .
+  git commit -m "initial commit"
+  git remote add origin https://github.com/nombre-de-usuario/nombre-del.repositorio.git
+  git branch -M main
+  git push -u origin main
+  ```
+  ]
 
 ---
 class: middle
@@ -120,9 +215,9 @@ class: middle
 ## Referencias para Distill
 
 - <https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/>
+- <https://rstudio.github.io/distill/blog.html>
+- <https://rstudio.github.io/distill/metadata.html>
 - <https://rstudio.github.io/distill/>
-- <https://rstudio.github.io/distill/website.html>
-- <https://rstudio.github.io/distill/basics.html>
 
 ---
 class: middle
@@ -131,8 +226,8 @@ class: middle
 
 ### Ejemplos de blog creados con R Markdown
 
-- <https://desiree.rbind.io/>
 - <https://malco.io/>
+- <https://desiree.rbind.io/>
 - <https://hugo-apero-docs.netlify.app/>
 
 Lamentablemente, actualmente ya
@@ -204,3 +299,11 @@ Pasos para crear nuestro sitio web con **R Markdown** y el paquete **Blogdown**:
 - Modificaciones básicas
     - `_output.yml` 
         - Cambiar el título "A Minimal Bookdown Book"
+    - 
+
+
+---
+
+## Referencias para Bookdown
+
+- <https://seankross.com/2016/11/17/How-to-Start-a-Bookdown-Book.html>
