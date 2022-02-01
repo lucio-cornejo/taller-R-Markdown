@@ -1,0 +1,197 @@
+---
+title: "Clase 4: Blogdown y Bookdown"
+author: Lucio Cornejo
+---
+class: center, middle, inverse, title-slide
+
+```{r setup, include=FALSE}
+xaringanExtra::use_panelset()
+xaringanExtra::use_tile_view()
+xaringanExtra::use_fit_screen()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<h1 class = "celeste-ish" style="line-height: 90px; margin-top: -50px;">
+    Clase 4:
+    <p style="margin-bottom: -170px;"> &nbsp; </p>
+    Blogdown y Bookdown
+</h1>
+
+<h3 class = "celeste-ish" style = "position: absolute; bottom: 80px;">
+  Autor: Lucio Cornejo
+</h3>
+
+---
+
+## Contenido extra para la sesión pasada
+
+- **Xaringan** 
+    - La opción `highlightStyle` del YAML de un archivo con `output`
+    Xaringan permite algunos valores diferentes al valor
+    `highlight` de un archivo con `output` html\_document,
+    tal como el tipo de resaltado **dracula**.
+
+    - Otras maneras de crear diapositivas en **R Markdown**:
+        - reveal.js
+            - <https://bookdown.org/yihui/rmarkdown/revealjs.html>
+            - <https://e-gor.github.io/Reveal.js-TOC-Progress/demo/#/>
+
+        - slidy_presentation
+            - <https://bookdown.org/yihui/rmarkdown/slidy-presentation.html>
+            - <https://pebiba-taller-rmd.netlify.app/index.html#(1)>
+    
+    - Problema respecto a la [tabla de contenidos](https://github.com/yihui/xaringan/issues/217).
+    
+    - Convertir las diapositivas a **PDF**:
+        - Paquete **pagedown**
+      
+<p style="margin-bottom: -30px;"> &nbsp; </p>
+
+- **Sitio web básico creado con R Markdown** 
+
+    - Uso de la función `rmarkdown::render_site()`.
+    
+    - Uso del archivo `_output.yml`.
+    
+    - ¿Cómo añadir íconos al sitio web?
+        - [Cómo obtener el script necesario.](https://www.youtube.com/watch?v=BATVa4vGZto&ab_channel=EasyTutorials)
+        - [Algunas opciones de iconos.](https://www.w3schools.com/icons/icons_reference.asp)
+
+???
+
+Mostrar cómo incluir el script para íconos y el ícono para la 
+página principal del sitio, en la carpeta del sitio web,
+vía el archivo **_site.yml** 
+
+---
+
+## Distill
+
+<p style="margin-bottom: -20px;"> &nbsp; </p>
+
+### Sitios web creados con Distill
+
+<https://blogs.rstudio.com/ai/>
+
+<https://www.jvcasillas.com/>
+
+<p style="margin-bottom: 20px;"> &nbsp; </p>
+
+### ¿Por qué usar Distill para crear un sitio web?
+
+<p style="margin-bottom: -40px;"> &nbsp; </p>
+
+> _The idea was to create a platform to help scientists harness the benefits of_
+>  _modern HTML-based communication, which digital designers and journalists_ 
+> _have been using to create interactive and engaging articles that meet readers_
+> _where they are: **online** ._
+>
+> --- https://www.rstudio.com/blog/distill/
+
+---
+
+## Distill
+
+<p style="margin-bottom: -85px;"> &nbsp; </p>
+
+- Creación del sitio web<br>
+
+`distill::create_blog(dir = "nombre_carpeta", title = "nombre_sitio_web")` 
+
+- Configuremos el archivo `_site.yml`
+
+- Creación de un nuevo post<br>
+
+`distill::create_post(title="titulo_publicacion", draft=FALSE)` 
+
+Podemos emplear `draft=TRUE` para que tal publicación no se muestre 
+en el sitio web, ya que sería un _borrador_. En el **encabezado YAML**
+de aquella publicación podemos cambiar `draft: FALSE` cuando 
+el documeto este listo para ser publicado.
+
+- Personalizar el diseño del sitio web
+    - Crear un archivo **CSS** donde modificamos el estilo del sitio,
+    y lo incluimos adecuadamente vía el `_site.yml` del sitio web.
+    - [Alternativa (no me funciona)](https://rstudio.github.io/distill/website.html#theming)
+
+---
+class: middle
+
+## Referencias para Distill
+
+- <https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/>
+- <https://rstudio.github.io/distill/>
+- <https://rstudio.github.io/distill/website.html>
+- <https://rstudio.github.io/distill/basics.html>
+
+---
+class: middle
+
+## Blogdown
+
+### Ejemplos de blog creados con R Markdown
+
+- <https://desiree.rbind.io/>
+- <https://malco.io/>
+- <https://hugo-apero-docs.netlify.app/>
+
+Lamentablemente, actualmente ya
+[no funciona](https://github.com/rstudio/blogdown/issues/638)
+el modelo mostrado, **hugo-acadecmic** (gcushen/hugo-academic),
+con **Blogdown**.
+
+Sin embargo, pueden emplear un modelo 
+[parecido](https://themes.gohugo.io/themes/meghna-hugo/).
+
+---
+
+## Creamos un sitio web con el paquete Blogdown
+
+Pasos para crear nuestro sitio web con **R Markdown** y el paquete **Blogdown**:<br>
+1. Crear un nuevo repositorio en GitHub.
+1. En RStudio, crear un nuevo proyecto vía un link del repositorio creado.
+1. Ejecutar el siguiente código:
+    ```r
+    # Instalaciones
+    install.packages("blogdown")
+    #blogdown::install_hugo()
+    blogdown::install.hugo(version = "0.79.1")
+
+    # Creamos el sitio web
+    library(blogdown)
+    #new_site(theme = "themefisher/meghna-hugo")
+    new_site(theme = "hugo-apero/hugo-apero", 
+              format = "toml",
+              sample = FALSE,
+              empty_dirs = TRUE)
+    ```
+
+---
+
+## Modificaciones básicas para personalizar el sitio web
+
+- `config.toml` &nbsp;&nbsp;&nbsp;&nbsp; (comparar con el de mi portafolio)
+    - `title` 
+    - `author` 
+    - `[params]` 
+    - `[menu]`
+
+- `content/_index.md` &nbsp;&nbsp;&nbsp;&nbsp;(homepage)
+    - `description` 
+
+- `content/blog/_index.md` 
+    - `sidebar` 
+
+- Personalizar el estilo visual del blog
+    - `themes/hugo-apero/assets/theme` 
+    - También podemos copiar el contenido
+    de alguna plantilla como las de esta carpeta, creando una carpeta 
+    `assets` y añadirles los archivos por mostrarles ahora.
+
+
+---
+
+## .Rmd vs .Rmarkdown
+
+<https://bookdown.org/yihui/blogdown/output-format.html>
+

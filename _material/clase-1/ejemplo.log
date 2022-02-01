@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.1.15)  26 JAN 2022 11:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.1.15)  30 JAN 2022 13:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -907,36 +907,36 @@ File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 ) (./ejemplo.aux)
 \openout1 = `ejemplo.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Info: Redefining \microtypecontext on input line 120.
-Package microtype Info: Applying patch `item' on input line 120.
-Package microtype Info: Applying patch `toc' on input line 120.
-Package microtype Info: Applying patch `eqnum' on input line 120.
-Package microtype Info: Applying patch `footnote' on input line 120.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Info: Redefining \microtypecontext on input line 122.
+Package microtype Info: Applying patch `item' on input line 122.
+Package microtype Info: Applying patch `toc' on input line 122.
+Package microtype Info: Applying patch `eqnum' on input line 122.
+Package microtype Info: Applying patch `footnote' on input line 122.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 120.
+LaTeX Info: Redefining \showhyphens on input line 122.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -955,7 +955,7 @@ sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 120.
+Package hyperref Info: Link coloring OFF on input line 122.
 (c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -968,9 +968,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count331
 )
-LaTeX Info: Redefining \ref on input line 120.
-LaTeX Info: Redefining \pageref on input line 120.
-LaTeX Info: Redefining \nameref on input line 120.
+LaTeX Info: Redefining \ref on input line 122.
+LaTeX Info: Redefining \pageref on input line 122.
+LaTeX Info: Redefining \nameref on input line 122.
 (./ejemplo.out) (./ejemplo.out)
 \@outlinefile=\write5
 \openout5 = `ejemplo.out'.
@@ -1013,58 +1013,66 @@ LaTeX Info: Redefining \nameref on input line 120.
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
- on input line 120.
+ on input line 122.
 
-(./ejemplo.toc
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
-.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
+24.
 (c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
+24.
 (c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-2.
+124.
 (c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-2.
+124.
 (c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 2.
+(Font)              <12> on input line 124.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 2.
+(Font)              <8> on input line 124.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 2.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
+(Font)              <6> on input line 124.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 124
+.
 (c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cf
 g
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 2.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 124
+.
 (c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cf
 g
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-))
+) (./ejemplo.toc
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 2.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 2.
+)
 \tf@toc=\write6
 \openout6 = `ejemplo.toc'.
 
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 130.
+(hyperref)                than one, level fixed on input line 133.
 
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-48.
+51.
 (c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [1
@@ -1083,39 +1091,30 @@ Missing character: There is no p in font nullfont!
 Missing character: There is no t in font nullfont!
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 223.
+(hyperref)                than one, level fixed on input line 226.
 
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
-26.
+29.
 (c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<ejemplo_files/figure-latex/unnamed-chunk-3-1.pdf, id=89, 469.755pt x 325.215pt
+<ejemplo_files/figure-latex/unnamed-chunk-3-1.pdf, id=83, 469.755pt x 325.215pt
 >
 File: ejemplo_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use ejemplo_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: ejemplo_files/figure-latex/unnamed-chunk-3-1.pdf  used
- on input line 231.
+ on input line 234.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[2]
-<ejemplo_files/figure-latex/unnamed-chunk-4-1.pdf, id=99, 614.295pt x 794.97pt>
-
-File: ejemplo_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
-<use ejemplo_files/figure-latex/unnamed-chunk-4-1.pdf>
-Package pdftex.def Info: ejemplo_files/figure-latex/unnamed-chunk-4-1.pdf  used
- on input line 238.
-(pdftex.def)             Requested size: 469.75604pt x 607.9196pt.
-[3 <./ejemplo_files/figure-latex/unnamed-chunk-3-1.pdf>] [4 <./ejemplo_files/fi
-gure-latex/unnamed-chunk-4-1.pdf>] (./ejemplo.aux)
+[2] [3 <./ejemplo_files/figure-latex/unnamed-chunk-3-1.pdf>] (./ejemplo.aux)
 Package rerunfilecheck Info: File `ejemplo.out' has not changed.
 (rerunfilecheck)             Checksum: ECE5F1A91C15AF63F339A95607360614;1188.
  ) 
 Here is how much of TeX's memory you used:
- 34898 strings out of 480246
- 824265 string characters out of 5894697
- 1249692 words of memory out of 5000000
- 52184 multiletter control sequences out of 15000+600000
- 506386 words of font info for 75 fonts, out of 8000000 for 9000
+ 34953 strings out of 480246
+ 824796 string characters out of 5894697
+ 1248756 words of memory out of 5000000
+ 52216 multiletter control sequences out of 15000+600000
+ 522129 words of font info for 99 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  98i,15n,94p,1004b,1949s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}
@@ -1132,15 +1131,16 @@ lmmi10.pfb><c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/l
 m/lmmi5.pfb><c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/
 lm/lmmi7.pfb><c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public
 /lm/lmr10.pfb><c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/publi
-c/lm/lmr5.pfb><c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/publi
-c/lm/lmri10.pfb><c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/pub
-lic/lm/lmsy10.pfb><c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/p
-ublic/lm/lmsy7.pfb><c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/
-public/lm/lmtt10.pfb>
-Output written on ejemplo.pdf (4 pages, 230595 bytes).
+c/lm/lmr17.pfb><c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/publ
+ic/lm/lmr5.pfb><c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/publ
+ic/lm/lmri10.pfb><c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/pu
+blic/lm/lmsy10.pfb><c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/
+public/lm/lmsy7.pfb><c:/Users/HP/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1
+/public/lm/lmtt10.pfb>
+Output written on ejemplo.pdf (3 pages, 200694 bytes).
 PDF statistics:
- 204 PDF objects out of 1000 (max. 8388607)
- 161 compressed objects within 2 object streams
- 31 named destinations out of 1000 (max. 500000)
- 22639 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 184 PDF objects out of 1000 (max. 8388607)
+ 147 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 30826 words of extra memory for PDF output out of 35830 (max. 10000000)
 

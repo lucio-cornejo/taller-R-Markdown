@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Clase 4: Blogdown y Bookdown</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Lucio Cornejo" />
+    <script src="clase-4_files/header-attrs-2.11/header-attrs.js"></script>
+    <link href="clase-4_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="clase-4_files/remark-css-0.0.1/shinobi.css" rel="stylesheet" />
+    <link href="clase-4_files/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link href="clase-4_files/remark-css-0.0.1/duke-blue.css" rel="stylesheet" />
+    <link href="clase-4_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="clase-4_files/panelset-0.2.6/panelset.js"></script>
+    <link href="clase-4_files/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="clase-4_files/tile-view-0.2.6/tile-view.js"></script>
+    <script src="clase-4_files/xaringanExtra_fit-screen-0.2.6/fit-screen.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="my-slides-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle, inverse, title-slide
+
+
+
+&lt;h1 class = "celeste-ish" style="line-height: 90px; margin-top: -50px;"&gt;
+    Clase 4:
+    &lt;p style="margin-bottom: -170px;"&gt; &amp;nbsp; &lt;/p&gt;
+    Blogdown y Bookdown
+&lt;/h1&gt;
+
+&lt;h3 class = "celeste-ish" style = "position: absolute; bottom: 80px;"&gt;
+  Autor: Lucio Cornejo
+&lt;/h3&gt;
+
+---
+
+## Contenido extra para la sesión pasada
+
+- **Xaringan** 
+    - La opción `highlightStyle` del YAML de un archivo con `output`
+    Xaringan permite algunos valores diferentes al valor
+    `highlight` de un archivo con `output` html\_document,
+    tal como el tipo de resaltado **dracula**.
+
+    - Otras maneras de crear diapositivas en **R Markdown**:
+        - reveal.js
+            - &lt;https://bookdown.org/yihui/rmarkdown/revealjs.html&gt;
+            - &lt;https://e-gor.github.io/Reveal.js-TOC-Progress/demo/#/&gt;
+
+        - slidy_presentation
+            - &lt;https://bookdown.org/yihui/rmarkdown/slidy-presentation.html&gt;
+            - &lt;https://pebiba-taller-rmd.netlify.app/index.html#(1)&gt;
+    
+    - Problema respecto a la [tabla de contenidos](https://github.com/yihui/xaringan/issues/217).
+    
+    - Convertir las diapositivas a **PDF**:
+        - Paquete **pagedown**
+      
+&lt;p style="margin-bottom: -30px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+- **Sitio web básico creado con R Markdown** 
+
+    - Uso de la función `rmarkdown::render_site()`.
+    
+    - Uso del archivo `_output.yml`.
+    
+    - ¿Cómo añadir íconos al sitio web?
+        - [Cómo obtener el script necesario.](https://www.youtube.com/watch?v=BATVa4vGZto&amp;ab_channel=EasyTutorials)
+        - [Algunas opciones de iconos.](https://www.w3schools.com/icons/icons_reference.asp)
+
+???
+
+Mostrar cómo incluir el script para íconos y el ícono para la 
+página principal del sitio, en la carpeta del sitio web,
+vía el archivo **_site.yml** 
+
+---
+
+## Distill
+
+&lt;p style="margin-bottom: -20px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+### Sitios web creados con Distill
+
+&lt;https://blogs.rstudio.com/ai/&gt;
+
+&lt;https://www.jvcasillas.com/&gt;
+
+&lt;p style="margin-bottom: 20px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+### ¿Por qué usar Distill para crear un sitio web?
+
+&lt;p style="margin-bottom: -40px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+&gt; _The idea was to create a platform to help scientists harness the benefits of_
+&gt;  _modern HTML-based communication, which digital designers and journalists_ 
+&gt; _have been using to create interactive and engaging articles that meet readers_
+&gt; _where they are: **online** ._
+&gt;
+&gt; --- https://www.rstudio.com/blog/distill/
+
+---
+
+## Distill
+
+&lt;p style="margin-bottom: -85px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+- Creación del sitio web&lt;br&gt;
+
+`distill::create_blog(dir = "nombre_carpeta", title = "nombre_sitio_web")` 
+
+- Configuremos el archivo `_site.yml`
+
+- Creación de un nuevo post&lt;br&gt;
+
+`distill::create_post(title="titulo_publicacion", draft=FALSE)` 
+
+Podemos emplear `draft=TRUE` para que tal publicación no se muestre 
+en el sitio web, ya que sería un _borrador_. En el **encabezado YAML**
+de aquella publicación podemos cambiar `draft: FALSE` cuando 
+el documeto este listo para ser publicado.
+
+- Personalizar el diseño del sitio web
+    - Crear un archivo **CSS** donde modificamos el estilo del sitio,
+    y lo incluimos adecuadamente vía el `_site.yml` del sitio web.
+    - [Alternativa (no me funciona)](https://rstudio.github.io/distill/website.html#theming)
+
+---
+class: middle
+
+## Referencias para Distill
+
+- &lt;https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/&gt;
+- &lt;https://rstudio.github.io/distill/&gt;
+- &lt;https://rstudio.github.io/distill/website.html&gt;
+- &lt;https://rstudio.github.io/distill/basics.html&gt;
+
+---
+class: middle
+
+## Blogdown
+
+### Ejemplos de blog creados con R Markdown
+
+- &lt;https://desiree.rbind.io/&gt;
+- &lt;https://malco.io/&gt;
+- &lt;https://hugo-apero-docs.netlify.app/&gt;
+
+Lamentablemente, actualmente ya
+[no funciona](https://github.com/rstudio/blogdown/issues/638)
+el modelo mostrado, **hugo-acadecmic** (gcushen/hugo-academic),
+con **Blogdown**.
+
+Sin embargo, pueden emplear un modelo 
+[parecido](https://themes.gohugo.io/themes/meghna-hugo/).
+
+---
+
+## Creamos un sitio web con el paquete Blogdown
+
+Pasos para crear nuestro sitio web con **R Markdown** y el paquete **Blogdown**:&lt;br&gt;
+1. Crear un nuevo repositorio en GitHub.
+1. En RStudio, crear un nuevo proyecto vía un link del repositorio creado.
+1. Ejecutar el siguiente código:
+    ```r
+    # Instalaciones
+    install.packages("blogdown")
+    #blogdown::install_hugo()
+    blogdown::install.hugo(version = "0.79.1")
+
+    # Creamos el sitio web
+    library(blogdown)
+    #new_site(theme = "themefisher/meghna-hugo")
+    new_site(theme = "hugo-apero/hugo-apero", 
+              format = "toml",
+              sample = FALSE,
+              empty_dirs = TRUE)
+    ```
+
+---
+
+## Modificaciones básicas para personalizar el sitio web
+
+- `config.toml` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; (comparar con el de mi portafolio)
+    - `title` 
+    - `author` 
+    - `[params]` 
+    - `[menu]`
+
+- `content/_index.md` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;(homepage)
+    - `description` 
+
+- `content/blog/_index.md` 
+    - `sidebar` 
+
+- Personalizar el estilo visual del blog
+    - `themes/hugo-apero/assets/theme` 
+    - También podemos copiar el contenido
+    de alguna plantilla como las de esta carpeta, creando una carpeta 
+    `assets` y añadirles los archivos por mostrarles ahora.
+
+
+---
+
+## .Rmd vs .Rmarkdown
+
+&lt;https://bookdown.org/yihui/blogdown/output-format.html&gt;
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "dracula",
+"highlightLines": true,
+"countIncrementalSlides": true,
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script>
+    // Code to change color of slide number when the current slide has presentator notes
+    function change_slide_number_color() {
+        
+        // Check notes section of current slide
+        let notas = document.querySelector('div.remark-notes'); 
+        
+        // Get all the slide number div tags
+        let numero_diapositiva = document.querySelectorAll('div.remark-slide-number'); 
+        
+        // Check if the are notes in current slide
+        if( !(notas.children.length === 0) ) {
+            // Color current slide number when there are notes in current slide
+            numero_diapositiva[slideshow.getCurrentSlideIndex()].style.color = "red";
+        }
+    }
+    
+    // Repeating this function every 0.2 seconds does not affect the web's performance 
+    // (lag and loading time, for example) in any significant way, at least in my weak laptop.
+    setInterval(change_slide_number_color, 200)
+
+    // Code to fix the change of slide when scrolling and when clicking some elements
+    let touchmoved;
+    $('div.remark-slide-container').on('touchend', function(event){
+        if(touchmoved === true) {
+            // Do not change slide if scrolling took place
+            event.preventDefault(); 
+            event.stopPropagation();
+        } else {
+            // Fix for issue when clicking an image with an anchor
+            if(event.target.tagName === "IMG") {
+                if (event.target.parentNode.getAttribute("href").includes("https:")) {
+                    // If there was no scrolling and the user clicked on an image
+                    // which has an anchor, then do not change slide and open
+                    // in a next window the site linked to image touched
+                    event.preventDefault(); 
+                    event.stopPropagation();
+                    window.open(event.target.parentNode.getAttribute("href"));
+                } 
+            }
+            
+            // Fix for issue when clicking the symbol of a <details><summary> ...
+            if (event.target.tagName === "SUMMARY") {
+                if(event.target.parentNode.tagName === "DETAILS") {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    // Manually toggle between open or closed <details>
+                    if(event.target.parentNode.open === true) {
+                        event.target.parentNode.open = false;
+                    } else {
+                        event.target.parentNode.open = true;
+                    }
+                }
+            }
+        }
+    }).on('touchmove', function(){
+        touchmoved = true;
+    }).on('touchstart', function(){
+        touchmoved = false;
+    });
+
+    //// Code to chage between slides depending on user screen swipe ////
+    // Such option is supossed to work already in Xaringan, but it was not working for me :(
+    let touchstartX = 0;
+    let touchendX = 0;
+    let swiped = false;
+
+    function conditional_swipe() {
+        // Swiped left
+        if (touchendX < touchstartX) {
+            if ( (touchstartX - touchendX) > (screen.availWidth)*0.25 ) slideshow.gotoNextSlide();
+        } else {
+            // Swiped right, because swiped equals true
+            if ( (touchendX - touchstartX) > (screen.availWidth)*0.25 ) slideshow.gotoPreviousSlide();
+        }
+    }
+        
+    $('div.remark-slide-container').on('touchstart', event => {
+        touchstartX = event.changedTouches[0].screenX;
+        swiped = false;
+    });
+
+    $('div.remark-slide-container').on('touchmove', function() { swiped = true; });
+
+    $('div.remark-slide-container').on('touchend', event => {
+        touchendX = event.changedTouches[0].screenX;
+        if (swiped === true) conditional_swipe();
+    });
+</script>
+<script>
+  ////  Creation of a table of contents for Xaringan  ////
+  let body;
+  let slidesParent, slides, headers;
+  let slidesHeaders = [];
+  let helpMenu;
+  let toc, tocDiv, tocTitle;
+  
+  let resizeSlides; // variable for manual slide resize (different than slides variable)
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set variables
+    body = document.querySelector('body');
+    helpMenu = document.querySelector('div.remark-help');
+    helpMenu.setAttribute('style','overflow: auto;'); // Show all keyboard commands for Xaringan
+    slidesParent = document.querySelector('div.remark-slides-area');
+
+    ////////////////////////////////////////////////////////////////////
+    //// Remove the headers which have been set not be added to TOC ////
+
+    // Important to search for headers only in div.remark-slides-area, 
+    // because, if not, there are  headers that get added more than once to the variable "headers"
+    headers = document.querySelectorAll('div.remark-slides-area h1, div.remark-slides-area h2, div.remark-slides-area h3, div.remark-slides-area h4, div.remark-slides-area h5, div.remark-slides-area h6');
+
+    // Convert some variables to arrays
+    headers = Array.prototype.slice.call(headers);
+    slides = Array.prototype.slice.call(slidesParent.children);
+
+    // Remove the header h1 "Help" from the Xaringan menu
+    for (let i =0; i< headers.length; i++){
+      if(headers[i].classList.length === 0 && headers[i].textContent === 'Help'){
+        headers.splice(i,1);
+      }
+    }
+
+    // Remove headers with class "no-toc"
+    headers = headers.filter(header => !( header.classList.contains('no-toc') ));
+    
+    // Remove headers which were applied ".no-toc[ some_header ]" in the R Markdown code
+    headers = headers.filter(header => !( header.parentNode.classList.contains('no-toc') && header.parentNode.tagName==='DIV'));
+
+    // Remove headers contained in a slide to which "class: no-toc" was applied
+    headers = headers.filter( (header) => {
+      let temporal = getDivSlideContainer(header).firstChild.firstChild.firstChild;
+      // Check that the child chosen is the div with class "remark-slide-content",
+      // the one to which the class "no-toc" would be added if "class: no-toc" was used
+      if ( temporal.classList.contains('remark-slide-content') && temporal.tagName === 'DIV' ) {
+        if( temporal.classList.contains('no-toc') ){
+          // Remove this header
+          return false;
+        } else {
+          // Do not remove this header
+          return true;
+        }
+      }
+    });
+    ////////////////////////////////////////////////////////////////////
+
+    // Group headers via the slide they belong to
+    for(let i=0; i < slides.length; i++){
+      let temporal = headers.filter(header => slides.indexOf(getDivSlideContainer(header)) === i);
+      if (temporal.length > 0){
+        slidesHeaders.push({ 
+          key: i,
+          value: temporal
+        });
+      }  
+    }
+
+    // Create an ordered list via slidesHeaders variable
+    tocDiv = document.createElement('div');
+    tocDiv.id = "toc-container";
+
+    tocTitle = document.createElement('p');
+    tocTitle.textContent = "Table of contents";
+    tocDiv.append(tocTitle);
+    tocDiv.append(document.createElement('hr'));
+
+    toc = document.createElement('ol');
+    toc.id = "xaringan-toc";
+    tocDiv.append(toc);
+    slidesHeaders.forEach( (element) => {
+      element.value.forEach( (header) => {
+        let tocItem = document.createElement('li');
+        let anchor = document.createElement('a')
+        // Insert header name
+        anchor.innerHTML = header.textContent;
+        // Pass info about header's slide container
+        anchor.setAttribute('data-slide',element.key)
+        
+        // Add header item to table of contents
+        toc.append(tocItem);
+        tocItem.append(anchor);
+        
+      })
+    });
+
+
+    ////////////////////////////////////////////////////////////
+    //// Set default stylings via JavaScript instead of CSS ////
+  
+    // Insert tocDiv in page (but hide it), to set its styles
+    body.append(tocDiv);
+
+    document.querySelector('html').setAttribute('style',"scroll-behavior: smooth;");
+    document.querySelector('#toc-container').setAttribute('style',"padding: 0; float: left; z-index: 100; position: absolute; bottom: 0; left: 0; display: block; border: 2px solid black; background-color: #F0F0F0; overflow: auto; min-width: 10vw;  height: 50vh; resize: horizontal;");
+    // Hide table of contents
+    tocDiv.style.display = "none";
+
+    document.querySelector('#toc-container p').setAttribute('style',"font-size: 17px; margin-top: 8px; text-align: center; margin-bottom: -10px;");
+    document.querySelector('#toc-container hr').setAttribute('style',"border: 0.1px solid gainsboro; width: 90%;");
+    document.querySelector('#xaringan-toc').setAttribute('style',"margin: 0; padding: 5px 30px 10px 40px;");
+    
+    // Style properties for anchors of table of contents
+    let css = "#xaringan-toc li a { cursor: pointer; color: blue; transition: all 260ms linear; }"+"\n"+"#xaringan-toc li a:hover { color: red; text-decoration: underline; }";
+    let style = document.createElement('style');
+    if (style.styleSheet) {
+        style.styleSheet.cssText = css;
+    } else {
+        style.appendChild(document.createTextNode(css));
+    }
+    document.querySelector('head').appendChild(style);
+    ////////////////////////////////////////////////////////////
+
+
+    // Pres key t to display Table of Contents
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'd') {
+        if (event.repeat) {
+          return;
+        }
+
+        // Update opacity, line-through and font-weight of toc's anchors
+        updateTocAnchorsStyle();
+
+        //// Best alternative I've found so far to insert table of contents ////
+        // slides[slideshow.getCurrentSlideIndex()].children[0].append(tocDiv);
+        // Such alternative has the issue that sometimes double the key press
+        // is required in order to show de TOC, due to it being "hidden"
+        // after changing slide from a slide where the TOC was displayed.
+        
+        // Default toc stylings
+        tocDiv.style.top = '';
+        tocDiv.style.width = 'auto';
+        tocDiv.style.height = '50vh';
+
+        if(tocDiv.style.display === 'block') {
+          tocDiv.style.display = 'none';
+        } else {
+          tocDiv.style.display = 'block';
+          // Insert table of contents on page
+          body.append(tocDiv);
+        }
+      }
+    });
+
+    // Make anchors in Table of Contents activate appropriate slide change when clicked
+    toc.children.forEach( (item) => {
+      item.firstChild.addEventListener('click', function(event) {
+        // Go to appropriate slide
+        slideshow.gotoSlide(1+parseInt(this.dataset.slide));
+
+        // Close and open table of contents in order to activate
+        // line-through and opacity change of previous anchors
+        switch (tocDiv.style.height) {
+          case '100vh':
+            document.dispatchEvent(new KeyboardEvent('keydown',{'key':'e'}));
+            document.dispatchEvent(new KeyboardEvent('keydown',{'key':'e'}));
+            break;
+          default:
+            // We assume the height is either 50vh or some custom one aparat from 100vh
+            document.dispatchEvent(new KeyboardEvent('keydown',{'key':'d'}));
+            document.dispatchEvent(new KeyboardEvent('keydown',{'key':'d'}));
+            break;
+        }
+
+        // Scroll the table of contents to the anchor just clicked
+        this.scrollIntoView();
+      })
+    });
+
+    // Press s in order to stick table of contents to the left empty side
+    // of Xaringan slides, if there is any such empty space
+    document.addEventListener('keydown', function() {
+      if (event.key === 'e') {
+        if (event.repeat) {
+          return;
+        }
+
+        // Update opacity, line-through and font-weight of toc's anchors
+        updateTocAnchorsStyle();
+
+        // Check if there is empty space where to insert the toc
+        let someSlide = document.querySelector('div.remark-slide-scaler');
+        if (parseInt(someSlide.style.left.slice(0,-2)) === 0) {
+        } else {
+          tocDiv.style.width = String(Math.round(parseInt(someSlide.style.left.slice(0,-2))*1))+'px';
+          tocDiv.style.height = '100vh';
+          tocDiv.style.top = '0';
+        }
+
+        if(tocDiv.style.display === 'block') {
+          tocDiv.style.display = 'none';
+        } else {
+          tocDiv.style.display = 'block';
+          // Insert table of contents on page
+          body.append(tocDiv);
+        }
+      }
+    });
+
+    // Select the slide divs which set the slide dimensions
+    resizeSlides = slides.map(slide => slide.firstChild);
+    resizeSlides.forEach(slide => slide.style.resize = "horizontal");
+
+    resizeSlides.forEach( (slide) => {
+      new ResizeObserver(resizeAllSlides).observe(slide);
+    });
+
+    // In the Help menu, show descriptions of the commands added
+    let newCommandsKeys = [["e","Show TOC with height equal to the page's"],
+                           ["d","Show TOC with half the page's height"],
+                           ["r","Move all the slides to the right side of the page"]
+                          ];
+    newCommandsKeys.forEach( (commandInfo) => {
+      let tableRow =  document.createElement('tr');
+      let tableData = document.createElement('td');
+      let newCommandKey = document.createElement('span');
+      newCommandKey.className = "key";
+      newCommandKey.textContent = commandInfo[0];
+      let commandAction = document.createElement('td');
+      commandAction.textContent = commandInfo[1];
+      // Append (as in the Help menu structure) the elements created
+      tableData.appendChild(newCommandKey);
+      tableRow.appendChild(tableData);
+      tableRow.appendChild(commandAction);
+      // Append new command info to Help menu
+      document.querySelector('div.remark-help table tbody').appendChild(tableRow);
+    });
+
+  });
+
+  function getDivSlideContainer(header) {
+    let temporal = header;
+    while (! temporal.parentNode.classList.contains('remark-slide-container')) {
+      temporal = temporal.parentNode;
+    }
+    return temporal.parentNode;
+  }
+
+  function pushSlidesToRight() {
+    // Get real width of current slide and push slide to the right of screen
+    let temporal = screen.availWidth - resizeSlides[slideshow.getCurrentSlideIndex()].getBoundingClientRect().width ;
+    resizeSlides.forEach(slide => { slide.style.left = String(Math.round(temporal))+'px'; });
+
+    // Close and open table of contents in order to fix width
+    if ( tocDiv.style.height === '100vh') {
+      document.dispatchEvent(new KeyboardEvent('keydown',{'key':'e'}));
+      document.dispatchEvent(new KeyboardEvent('keydown',{'key':'e'}));
+    }
+  }
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'r') {
+        if (event.repeat) {
+          return;
+        }
+        pushSlidesToRight();
+    }
+  });
+
+  function resizeAllSlides() {
+    let currentSlide = resizeSlides[slideshow.getCurrentSlideIndex()];
+    resizeSlides.forEach(slide => { 
+      // slide.style.width = String(Math.round(currentSlide.getBoundingClientRect().width))+'px';
+      slide.style.width = String(currentSlide.offsetWidth) + 'px';
+    });
+  }
+
+  $(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', async function() {
+    // Whenever a change from or to fullscreen window occurs,
+    // wait a while (because slides take a little time to get resized)
+    // and do the following:
+
+    await sleep(200);
+
+    // Resize the toc even if it was not open during this event
+    if (tocDiv.style.height === '100vh') {
+      document.dispatchEvent(new KeyboardEvent('keydown',{'key':'e'}));
+      document.dispatchEvent(new KeyboardEvent('keydown',{'key':'e'}));
+    } else {
+      document.dispatchEvent(new KeyboardEvent('keydown',{'key':'d'}));
+      document.dispatchEvent(new KeyboardEvent('keydown',{'key':'d'}));
+    }
+  });
+
+  function updateTocAnchorsStyle() {
+    // Update opacity, line-through and font-weight of toc's anchors
+    let currentSlide = slideshow.getCurrentSlideIndex();
+    toc.children.forEach( (element) => {
+      if ( currentSlide > 0 ) {
+        if ( parseInt(element.firstChild.dataset.slide) < currentSlide ) {
+          element.firstChild.style.opacity = 0.5;
+          element.firstChild.style.fontWeight = 400;
+          element.firstChild.style.textDecoration = "line-through";
+        } else {
+          if ( parseInt(element.firstChild.dataset.slide) === currentSlide ) {
+            element.firstChild.style.opacity = 1;
+            element.firstChild.style.fontWeight = 900;
+            element.firstChild.style.textDecoration = "";
+          } else {
+            element.firstChild.style.opacity = 1;
+            element.firstChild.style.fontWeight = 400;
+            element.firstChild.style.textDecoration = "";
+
+          }
+        }
+      } else {
+        // Currrent slide is the first one, so undo anchor style changes
+        element.firstChild.style.opacity = 1;
+        element.firstChild.style.fontWeight = 400;
+        element.firstChild.style.textDecoration = "";
+        
+        // Bold anchors from first slide
+        if (element.firstChild.dataset.slide === '0') {
+          element.firstChild.style.fontWeight = 900;
+        }
+      }
+    });
+  }
+
+  // Refresh toc after a slide change
+  slideshow.on('afterShowSlide', async function() {
+    // Wait some time so that the new slide index gets recognized
+    await sleep(100);
+
+    // Update the style of the table of contents' anchors
+    updateTocAnchorsStyle();
+  });
+
+  // Define the standard sleep() function
+  function sleep(miliseconds) {
+    return new Promise(resolve => setTimeout(resolve, miliseconds));
+  }
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

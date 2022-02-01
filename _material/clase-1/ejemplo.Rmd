@@ -1,5 +1,6 @@
 ---
-title: Ejemplo
+title: 
+always_allow_html: true
 output:
   html_document:
     toc: true
@@ -10,7 +11,7 @@ output:
     toc_depth: 3
     latex_engine: pdflatex
     extra_dependencies: ["tikz-cd","tikz","pgfplots"]
-
+  
   flexdashboard::flex_dashboard:
     theme: united
     orientation: rows
@@ -23,7 +24,7 @@ output:
         collapsed: TRUE
 
   xaringan::moon_reader:
-    css: ["kunoichi","rladies"]
+    css: [kunoichi, rladies]
     nature:
       navigation:
         scroll: false
@@ -33,28 +34,20 @@ output:
 # Instalamos los paquetes necesarios para producir
 # todas las versiones (ver YAML) de este docmento
 
-# Version PDF
-if(!requireNamespace('tinytex')) {
-  install.packages('tinytex')
-  tinytex::install_tinytex()  # instalar TinyTeX (para usar comandos de LaTeX)
-}
+#### Version PDF ####
+#install.packages('tinytex')
+#tinytex::install_tinytex()  # instalar TinyTeX (para usar comandos de LaTeX)
 
-# Version dashboard
-if(!requireNamespace('flexdashboard')) {
-  install.packages('flexdashboard') # instalar paquete si no lo tienes instalado
-}
+#### Version dashboard ####
+# install.packages('flexdashboard') # instalar paquete si no lo tienes instalado
 library(flexdashboard)
 
-# Version libro
-if(!requireNamespace('bookdown')) {
-  install.packages('bookdown') 
-}
+#### Version libro ####
+# install.packages('bookdown')
 library(bookdown)
 
-# Version diapositivas
-if(!requireNamespace('xaringan')) {
-  install.packages('xaringan') 
-}
+#### Version diapositivas ####
+# install.packages('xaringan')
 library(xaringan)
 ```
 
@@ -143,6 +136,6 @@ plot(pressure)
 ### Tabla interactiva
 
 ```{r, echo = FALSE}
-# eval= knitr::is_html_output()
+#install.packages('DT')
 DT::datatable(iris)
 ```

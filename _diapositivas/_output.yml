@@ -5,7 +5,7 @@ xaringan::moon_reader:
         in_header: "jQuery.js"
         after_body: ["my-custom-slides-script.html","xaringan-toc-css-and-js.html"]
     nature:
-        highlightStyle: github
+        highlightStyle: dracula
         highlightLines: true
         countIncrementalSlides: true
         navigation:
