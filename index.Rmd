@@ -18,23 +18,23 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Sesiones futuras
 ```{scss, echo=FALSE}
 #sesiones {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    table-layout: fixed;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  table-layout: fixed;
 
-    tr { background-color: rgb(200, 200, 200); }
+  tr { background-color: rgb(200, 200, 200); }
 
-    td {
-        border: 2px solid black;
+  td {
+    border: 2px solid black;
 
-        pre { 
-            border: collapse;
-            margin-top: 8%;
-            background-color: rgb(200, 200, 200);
-        } 
-    }
+    pre { 
+      border: collapse;
+      margin-top: 8%;
+      background-color: rgb(200, 200, 200);
+    } 
+  }
 }
 ```
 
@@ -43,18 +43,18 @@ knitr::opts_chunk$set(echo = TRUE)
 <table id = "sesiones">
     <tr>
         <td><pre>1. Markdown y YAML</pre></td>
-        <td><pre>4. Bookdown y Blogdown</pre></td>
-        <td><pre>7. Shiny</pre></td>
+        <td><pre>4. Distill, Blogdown y Bookdown</pre></td>
+        <td><pre>7. HTML y CSS</pre></td>
     </tr>
     <tr>
         <td><pre>2. Reportes parametrizados</pre></td>
-        <td><pre>5. Blogdown, pate 2</pre></td>
-        <td><pre>8. HTML y CSS</pre></td>
+        <td><pre>5. Dashboards y htmlwidgets</pre></td>
+        <td><pre>8. Javascript</pre></td>
     </tr>
     <tr>
         <td><pre>3. Xaringan y creación de un sitio web</pre></td>
-        <td><pre>6. Dashboards y htmlwidgets</pre></td>
-        <td><pre>9. Javascript</pre></td>
+        <td><pre>6. Shiny</pre></td>
+        <td><pre>9. R Markdown Intermedio</pre></td>
     </tr>
 </table>
 <!--#endregion-->
