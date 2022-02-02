@@ -191,8 +191,8 @@ class: middle
             hidden: true 
           share: [twitter, linkedin, facebook, google-plus, pinterest]
       ``` 
-- Esconder los anunciones en la sección de comentarios, modificando
-apropiadamente el archivo `CSS` señalado en `_site.yml`.
+- Esconder los anuncios (versión Desktop) en la sección de comentarios, 
+modificando apropiadamente el archivo `CSS` señalado en `_site.yml`.
 
 - [Más propiedades](https://ymlthis.r-lib.org/reference/yml_distill_opts.html)
 para incluir en el **encabezado YAML** de nuestros documentos creados con Distill.
@@ -269,12 +269,12 @@ Pasos para crear nuestro sitio web con **R Markdown** y el paquete **Blogdown**:
     ```r
     # Instalaciones
     install.packages("blogdown")
-    #blogdown::install_hugo()
-    blogdown::install.hugo(version = "0.79.1")
+    blogdown::install_hugo()
+    blogdown::hugo_version() # debe ser más actual que "0.80.0"
 
     # Creamos el sitio web
     library(blogdown)
-    #new_site(theme = "themefisher/meghna-hugo")
+    #new_site(theme = "themefisher/meghna-hugo") # otra plantilla
     new_site(theme = "hugo-apero/hugo-apero", 
               format = "toml",
               sample = FALSE,
@@ -285,30 +285,174 @@ Pasos para crear nuestro sitio web con **R Markdown** y el paquete **Blogdown**:
 
 ## Modificaciones básicas para personalizar el sitio web
 
+&lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
+
 - `config.toml` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; (comparar con el de mi portafolio)
+    &lt;p style="margin-bottom: -60px;"&gt; &amp;nbsp; &lt;/p&gt;
     - `title` 
     - `author` 
     - `[params]` 
+        - Cambiar `favicon` y `logo` vía
+        `themes/hugo-apero/static/img`&amp;nbsp;&amp;nbsp;.
+        - `theme` 
+        - `customtextFontFamily` 
+        - `customheadingFontFamily`
     - `[menu]`
 
+&lt;p style="margin-bottom: -70px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+- Para otras plantillas, se suele emplear el comando `blogdown::build_site()` 
+para que se actualicen los documentos del sitio web 
+(análogo a la función `rmarkdown::render_site()` que ya hemos visto).
+Sin embargo, para esta plantilla (hugo-apero), basta `push` los cambios 
+al repositorio asociado a este blog 
+(el cual también se ha vinculado con **Netlify**)
+para que se actualice la versión online del blog creado.
+
+???
+
+Tras publicar el blog en **Netlify**, cambiar el `baseURL` en el archivo
+`config.toml` por el link del blog online, por ejemplo: &lt;br&gt;
+`baseURL = "https://hugo-apero-docs.netlify.app/"`
+
+---
+class: middle
+
+- Para incluir cambios personalizados para el diseño visual **(CSS)**
+del blog, &lt;br&gt;
+modificar el archivo `themes/hugo-apero/assets/custom.scss`.&lt;br&gt;
+Para aplicar aquellas alteraciones al blog, en el archivo
+`config.toml` incluir en la línea 58 (del archivo default) 
+`custom_theme = "custom"` &amp;nbsp;.
+
+- También puedes añadir código de **JavaScript** que desees se aplique en cada
+página del blog, incluyendo tal código en el archivo&lt;br&gt;
+`themes/hugo-apero/assets/js/main.js` &amp;nbsp;&amp;nbsp;.
+
+- Asimismo, es posible añadir contenido a la sección `head` de cada
+sitio web del blog, modificando adecuadamente el archivo&lt;br&gt;
+`theme/hugo-apero/layouts/partials/head.html` &amp;nbsp;&amp;nbsp;.
+
 - `content/_index.md` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;(homepage)
-    - `description` 
+&lt;p style="margin-bottom: -60px;"&gt; &amp;nbsp; &lt;/p&gt;
+    - `description, image_left, title, ...`
+    - `images` &amp;nbsp;&amp;nbsp;(`themes/hugo-apero/static/img`)
+
+---
+class: middle
 
 - `content/blog/_index.md` 
-    - `sidebar` 
+&lt;p style="margin-bottom: -60px;"&gt; &amp;nbsp; &lt;/p&gt;
 
-- Personalizar el estilo visual del blog
-    - `themes/hugo-apero/assets/theme` 
-    - También podemos copiar el contenido
-    de alguna plantilla como las de esta carpeta, creando una carpeta 
-    `assets` y añadirles los archivos por mostrarles ahora.
+    - `sidebar` &amp;nbsp;&amp;nbsp;(la imagen debe llamarse `sidebar-listing` &amp;nbsp;)
+    - `layout` 
+        - list (blogs, projects, talks)
+        - list-sidebar (blogs, projects, talks)
+        - list-grid (solo blogs y projects)
 
+- **Cada sección es configurada por su archivo &amp;nbsp;`_index.md`**&amp;nbsp;&amp;nbsp;.
+
+- **Los thumbnails deben llamarse &amp;nbsp;`featured`&amp;nbsp;**
+**(o contener esa palabra en el nombre (ej: `mario-featured.png`))**
+**para que Hugo los reconozca como thumbnails**.
+
+- Creamos una nueva publicación en la sección **blog** via el 
+**RStudio** addin _New Post_:
+    - Señalamos la extensión
+    [**Rmarkdown**](https://bookdown.org/yihui/blogdown/output-format.html)
+    - Como contenido de aquella publicación, emplearemos el modelo
+    de la siguiente diapositiva.
+
+???
+
+Explicar por qué se usa la extensión **.Rmarkdown** y **.markdown** 
+en vez de **.Rmd** y **html**.
 
 ---
 
-## .Rmd vs .Rmarkdown
+```` 
+---
+author: Yoshi
+layout: single
+date: '2022-02-01'
+excerpt: |
+  Resumen corto.
+title: Ejemplo
+---
 
-&lt;https://bookdown.org/yihui/blogdown/output-format.html&gt;
+## Ejemplos
+
+```{r}
+DT::datatable(mtcars)
+```
+
+```{r}
+plot(pressure)
+```
+
+Ecuación $e^{i\pi} +1 = 0$ en línea.
+
+$$
+\sin^2\theta + \cos^2\theta = 1
+$$
+````
+
+---
+
+- Configuramos la sección **About** del blog:
+  &lt;p style="margin-bottom: -70px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+  - Solo realizar los siguientes cambios en `content/about/_index.md` &amp;nbsp;:
+  &lt;p style="margin-bottom: -50px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+      - `description` 
+      - `show_header` 
+      - `sidebar_left` 
+
+  - Cambiar todas las propiedades en `content/about/header/index.md` &amp;nbsp;.
+
+  - `content/about/main/index.md`
+      &lt;p style="margin-bottom: -50px;"&gt; &amp;nbsp; &lt;/p&gt;
+      
+      - `number_featured` 
+      - `intro` 
+
+  - `content/about/sidebar/index.md`
+      &lt;p style="margin-bottom: -50px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+      - `author` 
+      - `role` 
+      - `avatar_shape` 
+          - La imagen en esa ruta debe llamarse **avatar**
+          para que se muestre en el esta parte del blog.
+      - `show_social_links` 
+      - `audio_link_label` 
+          - El audio en aquel directorio debe llamarse **audio** 
+          para que se reconozca y se le apliquen estos cambios.
+      - `link_list` 
+
+---
+
+class: middle
+
+- Podemos incluir botones como los de la publicación **Palmer Penguins** 
+en la sección **Projects**. Para ello, veamos el archivo 
+&amp;nbsp;`content/project/penguins/index.md`&amp;nbsp;&amp;nbsp;.
+
+- Es posible crear **series** en las publicaciones del blog, por ejemplo,
+siguiendo el modelo de la plantilla para **spoonful-series**, copiando la carpeta,
+pegándola y alterándola adecuadamente; por ejemplo, cambiando el nombre a
+**xaringan-series** (`series` es necesario en el nombre para ser reconocida como tal)
+y alterando la propiedad `series` en el archivo `_index.md` de la carpeta _clonada_.
+
+&lt;p style="margin-bottom: 20px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+
+## Referencias para Blogdown
+
+- &lt;https://hugo-apero-docs.netlify.app/start/&gt;
+- &lt;https://www.youtube.com/watch?v=RksaNh5Ywbo&amp;ab_channel=R-LadiesTunis&gt;
+- &lt;https://www.apreshill.com/slides/blogdown-workshop-slides.html#1&gt;
 
 ---
 
