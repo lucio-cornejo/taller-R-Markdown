@@ -249,3 +249,14 @@ output:
     highlight: tango # un modelo predeterminado de cómo resaltar el código de la página web
 ---
 ```
+
+---
+class: center, middle
+
+Para explorar varias de las propiedades que pueden definir vía el 
+**encabezado YAML** para sus documentos **R Markdown**, pueden
+entrar a este 
+[link](https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-fieldguide.html),
+o, si desean incluso más opciones (y mejor explicado), 
+les recomiendo este [PDF](https://cran.r-project.org/web/packages/ymlthis/ymlthis.pdf)
+del paquete **ymlthis**.

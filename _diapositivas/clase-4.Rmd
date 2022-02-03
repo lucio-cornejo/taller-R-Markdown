@@ -1,5 +1,5 @@
 ---
-title: "Clase 4: Blogdown y Bookdown"
+title: "Clase 4: Distill, Blogdown y Bookdown"
 author: Lucio Cornejo
 ---
 class: center, middle, inverse, title-slide
@@ -14,7 +14,9 @@ knitr::opts_chunk$set(echo = TRUE)
 <h1 class = "celeste-ish" style="line-height: 90px; margin-top: -50px;">
     Clase 4:
     <p style="margin-bottom: -170px;"> &nbsp; </p>
-    Blogdown y Bookdown
+    Distill,<br>
+    Blogdown y<br>
+    Bookdown
 </h1>
 
 <h3 class = "celeste-ish" style = "position: absolute; bottom: 80px;">
@@ -442,16 +444,430 @@ y alterando la propiedad `series` en el archivo `_index.md` de la carpeta _clona
 
 ## Bookdown
 
-- [Modelo básico para crear el libro](https://github.com/seankross/bookdown-start)
+### Motivación
 
-- Modificaciones básicas
-    - `_output.yml` 
-        - Cambiar el título "A Minimal Bookdown Book"
-    - 
-
+- Limitaciones de **Markdown** que soluciona el paquete **Blogdown**:
+    - Numeración automática de figuras y tablas para formato HTML
+    - Referenciar tablas y figuras.
+    - Gran control sobre la apariencia de las figuras.<br>
+    (Actualmente, no es posible controlar el alineamiento de las
+    figuras empleando únicamente **Markdown** )
 
 ---
 
+<p style="margin-bottom: -70px;"> &nbsp; </p>
+
+- [Modelo simple para crear el libro](https://github.com/rstudio/bookdown-demo)
+
+- En nuestro caso, crearemos un repositorio en **GitHub** y un nuevo proyecto
+en **RStudio**, vinculado a ese repositorio (igual que hicimos con **BLogdown**).
+
+- Una vez dentro de aquel proyecto en **RStudio**, ejecutamos en la consola:<br>
+`bookdown::create_gitbook(".")` 
+
+- Antes de renderizar el libro, realicemos algunas modificaciones básicas:
+    - `_output.yml` 
+        - Propiedad `before` del `toc` 
+        - Podemos añadir `number_sections: false`&nbsp; encima de `css`<br>
+        para definir si enumeramos las secciones o no.
+    - `index.Rmd` 
+        - `tile`, `author` y `description`&nbsp;.
+    - `_bookdown.yml` 
+        - `delete_merged_file` 
+        - `chapter_name` 
+
+???
+
+Explicar que la opción **site: bookdown::bookdown_site** 
+en el encabezado YAML del archivo `index.Rmd` permite que
+**RStudio** renderize el libro **capítulo por capítulo**,
+haciendo click en el botón **Knit**, en vez de que se
+renderize el libro completo tras presionar aquel botón.
+
+---
+
+La sección `chapter_name` que acabamos de modificar solo afecta
+a la versión **HTML** del libro. Para alterar esa misma propiedad,
+pero para la versión **PDF** del libro, incluir lo siguiente en 
+el encabezado **YAML** del archivo `index.Rmd` &nbsp;:<br>
+```yaml
+header-includes:
+  - \AtBeginDocument{\renewcommand{\chaptername}{nombre_deseado }}
+```
+
+- Empleamos el comando `bookdown::render_book()` para renderizar
+el libro. 
+
+- Creamos las versiones del libro en los formatos establecidos en
+`_output.yml` via el comando `bookdown::render_book(output_format = 'all')`.
+
+- Análogamente a **Blogdown**, existe la función `bookdown::serve_book()`
+para visualizar rápidamente cómo los cambios en los archivos del libro
+alteran su presentación final.
+
+---
+
+## Ejemplo de YAML para `bookdown::gitbook` 
+
+```yaml
+bookdown::gitbook:
+  config:
+    toc:
+      collapse: section # subsection, NULL
+    edit: null # ver ejemplo en https://bookdown.org/yihui/bookdown
+    download: 
+    # En la carpeta _book, donde se encuentra index.html,
+    # puedes incluir archivos por descargar cuando se apriete
+    # el botón respectivo en la barra superior.
+      - ["otro_modelo.pdf","PDF"]
+      - ["otro_modelo.epub","EPUB"]
+    search: # Busca en todo el libro, no solo en página actual
+    # No funciona cuando se abre el libro vía su directorio;
+    # requiere un servidor (local o no)
+      engine: fuse # lunr
+      # ¿Por qué usar fuse.js?
+      # https://github.com/rstudio/bookdown/issues/1031
+      options:  
+      # Opciones para fuse.js https://fusejs.io/api/options.html
+        isCaseSensitive: true # Distinguirá mayúsculas que se inserten para buscar
+    fontsettings:
+      theme: night
+      family: serif
+      size: 2 # valor por default
+    sharing:
+      facebook: true
+      github: false
+      twitter: true
+      linkedin: false
+      weibo: false
+      instapaper: false
+      vk: false
+      whatsapp: false
+      all: ['facebook', 'twitter', 'linkedin', 'weibo', 'instapaper']
+    info: true
+```
+
+---
+class: middle
+
+## Referenciar entornos de ecuaciones
+
+```md
+\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  (\#eq:ecuacion)
+\end{equation} 
+
+Notemos que en la ecuación \@ref(eq:ecuacion) se cumple ...
+```
+
+```md
+\begin{align} 
+  g(X_{n}) &= g(\theta)+g'({\tilde{\theta}})(X_{n}-\theta) \notag \\
+  \sqrt{n}[g(X_{n})-g(\theta)] &= g'\left({\tilde{\theta}}\right)
+  \sqrt{n}[X_{n}-\theta ] (\#eq:alineado)
+\end{align} 
+
+La notación ahora es \@ref(eq:alineado)
+```
+
+Hay que asegurarse de no enumerar ecuaciones que no poseen _etiqueta_,
+ya sea alterando los entornos como `equation*` o empleando
+`\nonumber` o `\notag` apropiadamente.
+
+---
+
+## Entornos definidos vía `Pandoc` y `Bookdown` 
+
+### Ejemplo (funciona para formato HTML y PDF, no EPUB)
+
+```md
+::: {.theorem #famoso name="Identidad de Euler"}
+Para cualquier $\theta\in\mathbb{R}$ se cumple 
+
+$$e^{i\theta}= \cos\theta + i\sin\theta$$
+:::
+
+El teorema \@ref(thm:famoso) es el más elegante según ciertos matemáticos.
+```
+
+<p style="margin-bottom: 0px;"> &nbsp; </p>
+
+.center[
+
+### Posibilidades
+
+<p style="margin-bottom: -30px;"> &nbsp; </p>
+
+```{r, echo = FALSE, message=FALSE}
+entornos <- data.frame(
+      c("theorem","lemma","corollary","proposition","conjecture","definition","example","exercise","hypothesis"),
+      c("Theorem","Lemma","Corollary","Proposition","Conjecture","Definition","Example","Exercise","Hypothesis"),
+      c("thm","lem","cor","prp","cnj","def","exm","exr","hyp")
+)
+
+knitr::kable(entornos,
+            col.names=c("Entorno","Nombre impreso","Prefijo de etiqueta")
+)
+```
+]
+
+???
+
+Mostrar un ejemplo con el entorno **hypothesis**.
+
+---
+
+## Referencias de texto
+
+<p style="margin-bottom: -80px;"> &nbsp; </p>
+
+
+`(ref:ejemplo) ~~Referencias~~ de **una línea** y _sin espacio vacío al final_.` 
+
+````
+```{r, fig.cap="(ref:ejemplo)"}`r ''` 
+plot(pressure)
+```
+````
+
+<p style="margin-bottom: -25px;"> &nbsp; </p>
+
+## Referencia a imágenes y mayor control de los gráficos
+
+<p style="margin-bottom: -80px;"> &nbsp; </p>
+
+````
+```{r, etiqueta}`r ''`
+#| fig.cap: "Gráfica de ejemplo"
+#| fig.asp: 1             # proporción altura/ancho de la figura
+#| fig.width: 6           # 6 pulgadas de ancho para la imagen
+#| fig.align: "center"    # centrar la figura
+
+plot(pressure)
+```
+
+Referencia a la imagen \@ref(fig:etiqueta) .
+```` 
+
+---
+class: middle
+
+Podemos refenciar la imagen previa vía el nombre del chunk donde
+fue creada y la sintáxis `\@ref(fig:label)`, pero para que funcione
+**es necesario que aquel chunk tenga algún valor para _fig.cap_**.
+
+<p style="margin-bottom: -30px;"> &nbsp; </p>
+
+## Referencia a tablas
+
+<p style="margin-bottom: -80px;"> &nbsp; </p>
+
+Podemos emplear la función **kable** del paquete **knitr**
+para crear tablas y que se les asigne una **etiqueta** en
+base al nombre del chunk donde se crea la tabla.
+
+````
+```{r tabla}`r ''` 
+knitr::kable(
+  head(mtcars[, 1:8], 10), booktabs = TRUE,
+  caption = 'Tabla cualquiera'
+)
+```
+
+Referencia para \@ref(tab:tabla)
+````
+
+<p style="margin-bottom: -20px;"> &nbsp; </p>
+
+## _Cross-references_
+
+<p style="margin-bottom: -70px;"> &nbsp; </p>
+
+```md
+Link para sección [Render book]
+
+Link para [una de las secciones pasadas][Render book]
+```
+
+---
+class: middle
+
+## Personalización del texto de las etiquetas (para HTML)
+
+<p style="margin-bottom: -80px;"> &nbsp; </p>
+
+Algunas opciones que se pueden incluir en el archivo `_bookdown.yml`:
+
+```yaml
+language:
+  label:
+    fig: 'Figura '
+    tab: 'Tabla '
+    eq: 'Ecuación '
+    thm: 'Teorema '
+    lem: 'Lema '
+    cor: 'Corolario '
+    prp: 'Proposición '
+    cnj: 'Conjetura '
+    def: 'Definición '
+    exm: 'Ejemplo '
+    exr: 'Ejercicio '
+    hyp: 'Hipóthesis '
+    proof: 'Prueba. '
+    remark: 'Observación. '
+    solution: 'Solución. '
+```
+
+---
+class: middle
+
+## Resaltado del código mostrado
+
+<p style="margin-bottom: -50px;"> &nbsp; </p>
+
+### Incluir en archivo `_output.yml`
+
+```yaml
+bookdown::gitbook:
+  highlight: espresso # tango, pygments, kate, monochrome, espresso, zenburn, haddock, breezedark, default .
+```
+
+<p style="margin-bottom: 0px;"> &nbsp; </p>
+
+### Incluir en archivo `style.css`
+
+```css
+div.sourceCode *:not(button) {
+  background: inherit !important;
+}
+```
+
+---
+class: middle
+
+## Personalización vía HTML y JavaScript
+
+<p style="margin-bottom: -80px;"> &nbsp; </p>
+
+Así como en los paquetes previos expuestos en esta sesión,
+es posible anexar código de HTML o de JavaScript a cada página
+del documento/libro vía el archivo 
+&nbsp;`_output.yml`&nbsp; de la siguiente manera:
+
+```yaml
+bookdown::gitbook:
+  includes:
+    in_header: ejemplo-01.html    # incluir en el interior de <head>
+    before_body: ejemplo-02.html  # incluir al inicio del interior de <body>
+    after_body: ejemplo-03.html   # incluir al final del interior de <body>
+```
+
+---
+
+## `Bookdown`: _Transferencia de poderes_
+
+<p style="margin-bottom: -85px;"> &nbsp; </p>
+
+Si tu publicación consiste de un único documento (sea largo o no)
+en formato `html_document`&nbsp; , `pdf_document`&nbsp; o  `word_document`&nbsp;,
+puedes implementarle la
+**enumeración automática de figuras, tablas y ecuaciones**,
+además del **cross-referencing de figuras, tablas, ecuaciones y secciones**
+(funcionalidades que **Bookdown** implementó para **R Markdown**)
+cambiando de la siguiente manera el encabezado YAML de tu documento:
+
+```yaml
+# Ejemplo de "ANTES"
+output: 
+  html_document: default
+  pdf_document: default
+  word_document: default
+```
+
+```yaml
+# Ejemplo de "DESPUÉS"
+output: 
+  bookdown::html_document2: default
+  bookdown::pdf_document2: default
+  bookdown::word_document2: default
+```
+
+---
+
+<p style="margin-bottom: -60px;"> &nbsp; </p>
+
+## Renderizar un solo capítulo en vez de todo el libro
+
+<p style="margin-bottom: -85px;"> &nbsp; </p>
+
+`bookdown::preview_chapter('nombre_archivo_capitulo.Rmd')` 
+
+## Modificar el orden de los capítulos
+
+<p style="margin-bottom: -90px;"> &nbsp; </p>
+
+En el archivo `_bookdown.yml`, puedes definir el orden de los
+capítulos que establece tus documentos **R Markdown**, 
+de las siguientes maneras:
+
+```yaml
+# Orden para todos los outputs
+rmd_files: ["index.Rmd", "abstract.Rmd", "intro.Rmd"]
+```
+
+```yaml
+# Orden para cada tipo de output
+rmd_files: 
+  html: ["index.Rmd", "abstract.Rmd", "intro.Rmd"]
+  latex: ["abstract.Rmd", "intro.Rmd"]  # para PDF
+```
+
+## Formato `bookdown::bs4_book`
+
+<p style="margin-bottom: -90px;"> &nbsp; </p>
+
+Por ahora, basta remover &nbsp;`number_sections`&nbsp;
+y &nbsp;`highlight`&nbsp;
+de &nbsp;`_output.yml`&nbsp;&nbsp;, cambiar el formato
+en tal archivo y renderizar el libro.
+
+---
+
+## Publicamos el libro online de manera gratuita
+
+<p style="margin-bottom: -80px;"> &nbsp; </p>
+
+Una vez que ya hemos renderizado el libro por completo y está
+listo para ser publicado, podemos emplear **RStudio Connect**
+para la publicación. 
+
+<p style="margin-bottom: -30px;"> &nbsp; </p>
+
+### Pasos
+
+1. Crear una cuenta en [RStudio Connect](https://bookdown.org/connect/).
+
+1. Ejecutar `install.packages('rsconnect')` en la consola de **RStudio**.
+
+1. Ejecutar `bookdown::publish_book()` para publicar el libro.<br>
+Cuando emplees aquel comando por primera vez, se te pedirá
+una corta autentificación.
+
+1. En caso desees actualizar el libro, tras haberlo renderizado,
+ejectua el mismo comando `bookdown::publish_book()` tras haberte
+asegurado que **RStudio** está empleando como directorio la ruta
+donde se almacenan los archivos de tu libro.
+
+???
+
+Mostrar también cómo hacerlo vía Netlify y GitHub,
+para poder tener **version control**.
+
+---
+class: middle
+
 ## Referencias para Bookdown
 
-- <https://seankross.com/2016/11/17/How-to-Start-a-Bookdown-Book.html>
+- <https://bookdown.org/yihui/bookdown/>
+- [Formato bookdown::bs4_book](https://bookdown.org/yihui/bookdown/html.html#bs4-book)
