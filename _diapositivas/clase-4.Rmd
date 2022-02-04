@@ -44,8 +44,22 @@ knitr::opts_chunk$set(echo = TRUE)
     
     - Problema respecto a la [tabla de contenidos](https://github.com/yihui/xaringan/issues/217).
     
-    - Convertir las diapositivas a **PDF**:
-        - Paquete **pagedown**
+.scrollable[
+
+- Convertir las diapositivas a **PDF**:
+    - Paquete **pagedown**
+
+    - Si no les funciona pagedown::chrome_print, ni xaringanBuilder, ni 
+    [esta](https://www.garrickadenbuie.com/blog/print-xaringan-chromote/),
+    intenten emplear 
+    [**decktape**](https://github.com/astefanutti/decktape),
+    pues así sí me funcionó la conversión a PDF.
+
+        - Uso de xaringan::decktape:
+            - Instalar `decktape` como figura en el link anterior.
+            - `setwd("ruta_de_folder_que_contiene_tu_xaringan")`
+            - `xaringan::decktape("nombre_archivo_xaringan.html","nombre_para_pdf_xaringan.pdf")`
+]
       
 <p style="margin-bottom: -30px;"> &nbsp; </p>
 
@@ -61,7 +75,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ???
 
-Mostrar cómo incluir el script para íconos y el ícono para la 
+- Mostrar cómo incluir el script para íconos y el ícono para la 
 página principal del sitio, en la carpeta del sitio web,
 vía el archivo **_site.yml** 
 
@@ -77,21 +91,20 @@ vía el archivo **_site.yml**
 
 <p style="margin-bottom: -30px;"> &nbsp; </p>
 
-
 ### ¿Por qué usar Distill para crear un sitio web?
+
+> _La idea fue crear una plataforma para ayudar a científicos a aprovechar_
+> _los beneficios de la comunicación moderna vía HTML, la cual diseñadores_
+> _digitales y periodistas han estado usando para crear artículos_
+> _interactivos y atractivos ubicados donde están los lectores:_
+>  **online**<br>
+> --- https://www.rstudio.com/blog/distill/
+
+<p style="margin-bottom: -50px;"> &nbsp; </p>
 
 Es un formato más estable que **Blogdown**, ya que no
 requiere de **Hugo**, así que se evita problemas de compatibilidad
 (presentes o futuros) entre **Hugo** y **Blogdown**.
-
-<p style="margin-bottom: -50px;"> &nbsp; </p>
-
-> _La idea fue crear una platforma para ayudar a científicos a aprovechar_
-> _los beneficios de la comunicación moderna vía HTML, la cual diseñadores_
-> _digitales y periodistas han estado usando para crear artículos_
-> _interactivos y atractivos ubicados donde están los lectores:_<br>
-> ***en línea (online)***.<br>
-> --- https://www.rstudio.com/blog/distill/
 
 ???
 
@@ -274,7 +287,7 @@ Pasos para crear nuestro sitio web con **R Markdown** y el paquete **Blogdown**:
 
 <p style="margin-bottom: -80px;"> &nbsp; </p>
 
-- `config.toml` &nbsp;&nbsp;&nbsp;&nbsp; (comparar con el de mi portafolio)
+- `config.toml`
     <p style="margin-bottom: -60px;"> &nbsp; </p>
     - `title` 
     - `author` 

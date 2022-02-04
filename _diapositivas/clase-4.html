@@ -57,8 +57,22 @@ class: center, middle, inverse, title-slide
     
     - Problema respecto a la [tabla de contenidos](https://github.com/yihui/xaringan/issues/217).
     
-    - Convertir las diapositivas a **PDF**:
-        - Paquete **pagedown**
+.scrollable[
+
+- Convertir las diapositivas a **PDF**:
+    - Paquete **pagedown**
+
+    - Si no les funciona pagedown::chrome_print, ni xaringanBuilder, ni 
+    [esta](https://www.garrickadenbuie.com/blog/print-xaringan-chromote/),
+    intenten emplear 
+    [**decktape**](https://github.com/astefanutti/decktape),
+    pues así sí me funcionó la conversión a PDF.
+
+        - Uso de xaringan::decktape:
+            - Instalar `decktape` como figura en el link anterior.
+            - `setwd("ruta_de_folder_que_contiene_tu_xaringan")`
+            - `xaringan::decktape("nombre_archivo_xaringan.html","nombre_para_pdf_xaringan.pdf")`
+]
       
 &lt;p style="margin-bottom: -30px;"&gt; &amp;nbsp; &lt;/p&gt;
 
@@ -74,7 +88,7 @@ class: center, middle, inverse, title-slide
 
 ???
 
-Mostrar cómo incluir el script para íconos y el ícono para la 
+- Mostrar cómo incluir el script para íconos y el ícono para la 
 página principal del sitio, en la carpeta del sitio web,
 vía el archivo **_site.yml** 
 
@@ -90,21 +104,20 @@ vía el archivo **_site.yml**
 
 &lt;p style="margin-bottom: -30px;"&gt; &amp;nbsp; &lt;/p&gt;
 
-
 ### ¿Por qué usar Distill para crear un sitio web?
+
+&gt; _La idea fue crear una plataforma para ayudar a científicos a aprovechar_
+&gt; _los beneficios de la comunicación moderna vía HTML, la cual diseñadores_
+&gt; _digitales y periodistas han estado usando para crear artículos_
+&gt; _interactivos y atractivos ubicados donde están los lectores:_
+&gt;  **online**&lt;br&gt;
+&gt; --- https://www.rstudio.com/blog/distill/
+
+&lt;p style="margin-bottom: -50px;"&gt; &amp;nbsp; &lt;/p&gt;
 
 Es un formato más estable que **Blogdown**, ya que no
 requiere de **Hugo**, así que se evita problemas de compatibilidad
 (presentes o futuros) entre **Hugo** y **Blogdown**.
-
-&lt;p style="margin-bottom: -50px;"&gt; &amp;nbsp; &lt;/p&gt;
-
-&gt; _La idea fue crear una platforma para ayudar a científicos a aprovechar_
-&gt; _los beneficios de la comunicación moderna vía HTML, la cual diseñadores_
-&gt; _digitales y periodistas han estado usando para crear artículos_
-&gt; _interactivos y atractivos ubicados donde están los lectores:_&lt;br&gt;
-&gt; ***en línea (online)***.&lt;br&gt;
-&gt; --- https://www.rstudio.com/blog/distill/
 
 ???
 
@@ -289,7 +302,7 @@ Pasos para crear nuestro sitio web con **R Markdown** y el paquete **Blogdown**:
 
 &lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
 
-- `config.toml` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; (comparar con el de mi portafolio)
+- `config.toml`
     &lt;p style="margin-bottom: -60px;"&gt; &amp;nbsp; &lt;/p&gt;
     - `title` 
     - `author` 
@@ -1002,17 +1015,17 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       notes = Array.prototype.slice.call(notes);
 
       // For some reason, there is "repetition" of divs with the same comments ... delete delete
-      notes.splice(notes.length-1,1);
+      notes.splice(notes.length - 1,1);
       notes.splice(notes.length/2, notes.length/2);
 
       // Only work with the slides that had comments inserted via R Markdown
       notes = notes.filter(note => note.childElementCount > 0);
 
       // Work with the actual divs that contain the slide-number
-      notes = notes.map( note => note.parentNode.firstChild.firstChild.firstChild.lastChild);
+      notes = notes.map(note => note.parentNode.firstChild.firstChild.firstChild.lastChild);
 
       // Change color of text in slide-number divs
-      notes.forEach( note => note.style.color = "red");
+      notes.forEach(note => note.style.color = "red");
     });
 
     // Code to fix the change of slide when scrolling and when clicking some elements
