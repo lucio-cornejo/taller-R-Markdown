@@ -441,7 +441,6 @@ y alterando la propiedad `series` en el archivo `_index.md` de la carpeta _clona
 - <https://www.apreshill.com/slides/blogdown-workshop-slides.html#1>
 
 ---
-class: middle
 
 ## Bookdown
 
@@ -453,6 +452,21 @@ class: middle
     - Gran control sobre la apariencia de las figuras.<br>
     (Actualmente, no es posible controlar el alineamiento de las
     figuras empleando únicamente **Markdown** )
+
+### Ventajas
+
+- En el caso de libros creados en formato HTML, estos podrían ser
+  mucho más interactivos que el libro tradicional en PDF, ya sea debido
+  al uso de gráficos interactivos o incluso apliaciones más complejas
+  (e interactivas) que requieran de **Shiny** o JavaScript.
+
+- Los lectores del libro pueden sugerir correcciones o cambios (a quien
+creó el libro) vía un simple **pull request** en **GitHub**. 
+
+- La actualización del libro, ya sea para nuevas ediciones de este, o simples
+correcciones, se puede realizar rápidamente. Entonces, no es necesario esperar
+meses o años para obtener versiones nuevas de un texto, como podría ser el caso 
+para libros creados solo en formato PDF.
 
 ---
 

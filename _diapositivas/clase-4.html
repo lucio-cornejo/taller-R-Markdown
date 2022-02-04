@@ -456,7 +456,6 @@ y alterando la propiedad `series` en el archivo `_index.md` de la carpeta _clona
 - &lt;https://www.apreshill.com/slides/blogdown-workshop-slides.html#1&gt;
 
 ---
-class: middle
 
 ## Bookdown
 
@@ -468,6 +467,21 @@ class: middle
     - Gran control sobre la apariencia de las figuras.&lt;br&gt;
     (Actualmente, no es posible controlar el alineamiento de las
     figuras empleando únicamente **Markdown** )
+
+### Ventajas
+
+- En el caso de libros creados en formato HTML, estos podrían ser
+  mucho más interactivos que el libro tradicional en PDF, ya sea debido
+  al uso de gráficos interactivos o incluso apliaciones más complejas
+  (e interactivas) que requieran de **Shiny** o JavaScript.
+
+- Los lectores del libro pueden sugerir correcciones o cambios (a quien
+creó el libro) vía un simple **pull request** en **GitHub**. 
+
+- La actualización del libro, ya sea para nuevas ediciones de este, o simples
+correcciones, se puede realizar rápidamente. Entonces, no es necesario esperar
+meses o años para obtener versiones nuevas de un texto, como podría ser el caso 
+para libros creados solo en formato PDF.
 
 ---
 
@@ -615,62 +629,18 @@ El teorema \@ref(thm:famoso) es el más elegante según ciertos matemáticos.
 
 &lt;p style="margin-bottom: -30px;"&gt; &amp;nbsp; &lt;/p&gt;
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; Entorno &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Nombre impreso &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Prefijo de etiqueta &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; theorem &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Theorem &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; thm &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; lemma &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Lemma &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; lem &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; corollary &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Corollary &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; cor &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; proposition &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Proposition &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; prp &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; conjecture &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Conjecture &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; cnj &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; definition &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Definition &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; def &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; example &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Example &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exm &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; exercise &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Exercise &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exr &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; hypothesis &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Hypothesis &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; hyp &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|Entorno     |Nombre impreso |Prefijo de etiqueta |
+|:-----------|:--------------|:-------------------|
+|theorem     |Theorem        |thm                 |
+|lemma       |Lemma          |lem                 |
+|corollary   |Corollary      |cor                 |
+|proposition |Proposition    |prp                 |
+|conjecture  |Conjecture     |cnj                 |
+|definition  |Definition     |def                 |
+|example     |Example        |exm                 |
+|exercise    |Exercise       |exr                 |
+|hypothesis  |Hypothesis     |hyp                 |
 ]
 
 ???
@@ -1026,25 +996,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
 <script>
-    // Code to change color of slide number when the current slide has presentator notes
-    function change_slide_number_color() {
-        
-        // Check notes section of current slide
-        let notas = document.querySelector('div.remark-notes'); 
-        
-        // Get all the slide number div tags
-        let numero_diapositiva = document.querySelectorAll('div.remark-slide-number'); 
-        
-        // Check if the are notes in current slide
-        if( !(notas.children.length === 0) ) {
-            // Color current slide number when there are notes in current slide
-            numero_diapositiva[slideshow.getCurrentSlideIndex()].style.color = "red";
-        }
-    }
-    
-    // Repeating this function every 0.2 seconds does not affect the web's performance 
-    // (lag and loading time, for example) in any significant way, at least in my weak laptop.
-    setInterval(change_slide_number_color, 200)
+    // Chage color of slide-number-sections if there are comments in such slide
+    document.addEventListener('DOMContentLoaded', function () {
+      let notes = document.querySelectorAll('div.remark-slide-container > div.remark-slide-notes');
+      notes = Array.prototype.slice.call(notes);
+
+      // For some reason, there is "repetition" of divs with the same comments ... delete delete
+      notes.splice(notes.length-1,1);
+      notes.splice(notes.length/2, notes.length/2);
+
+      // Only work with the slides that had comments inserted via R Markdown
+      notes = notes.filter(note => note.childElementCount > 0);
+
+      // Work with the actual divs that contain the slide-number
+      notes = notes.map( note => note.parentNode.firstChild.firstChild.firstChild.lastChild);
+
+      // Change color of text in slide-number divs
+      notes.forEach( note => note.style.color = "red");
+    });
 
     // Code to fix the change of slide when scrolling and when clicking some elements
     let touchmoved;

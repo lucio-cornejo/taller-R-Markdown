@@ -1,5 +1,26 @@
 ---
-output: 
-  bookdown::html_document2:
-    
+title: Curva de nivel
+output: html_document
 ---
+
+<style>
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+```{r, setup}
+library(rgl)
+options(rgl.useNULL = TRUE) # Suppress the separate window.
+```
+
+See it work for this 3D plot without the hook:
+
+```{r}
+x <- seq(-100,100,0.1)
+y <- seq(-100,100,0.1)
+z <- (1 - (pmax(x,y))^2)^0.5
+  
+plot3d(x, y, z, col="skyblue")
+```

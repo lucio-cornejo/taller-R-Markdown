@@ -1,23 +1,22 @@
 <script>
-    // Code to change color of slide number when the current slide has presentator notes
-    function change_slide_number_color() {
-        
-        // Check notes section of current slide
-        let notas = document.querySelector('div.remark-notes'); 
-        
-        // Get all the slide number div tags
-        let numero_diapositiva = document.querySelectorAll('div.remark-slide-number'); 
-        
-        // Check if the are notes in current slide
-        if( !(notas.children.length === 0) ) {
-            // Color current slide number when there are notes in current slide
-            numero_diapositiva[slideshow.getCurrentSlideIndex()].style.color = "red";
-        }
-    }
-    
-    // Repeating this function every 0.2 seconds does not affect the web's performance 
-    // (lag and loading time, for example) in any significant way, at least in my weak laptop.
-    setInterval(change_slide_number_color, 200)
+    // Chage color of slide-number-sections if there are comments in such slide
+    document.addEventListener('DOMContentLoaded', function () {
+      let notes = document.querySelectorAll('div.remark-slide-container > div.remark-slide-notes');
+      notes = Array.prototype.slice.call(notes);
+
+      // For some reason, there is "repetition" of divs with the same comments ... delete delete
+      notes.splice(notes.length - 1,1);
+      notes.splice(notes.length/2, notes.length/2);
+
+      // Only work with the slides that had comments inserted via R Markdown
+      notes = notes.filter(note => note.childElementCount > 0);
+
+      // Work with the actual divs that contain the slide-number
+      notes = notes.map(note => note.parentNode.firstChild.firstChild.firstChild.lastChild);
+
+      // Change color of text in slide-number divs
+      notes.forEach(note => note.style.color = "red");
+    });
 
     // Code to fix the change of slide when scrolling and when clicking some elements
     let touchmoved;
