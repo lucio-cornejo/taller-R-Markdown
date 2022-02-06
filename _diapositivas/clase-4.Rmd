@@ -5,10 +5,22 @@ author: Lucio Cornejo
 class: center, middle, inverse, title-slide
 
 ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Activate some xaringanExtra tools
 xaringanExtra::use_panelset()
 xaringanExtra::use_tile_view()
 xaringanExtra::use_fit_screen()
-knitr::opts_chunk$set(echo = TRUE)
+# Style clipboard button for chunks
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+
 ```
 
 <h1 class = "celeste-ish" style="line-height: 90px; margin-top: -50px;">
@@ -50,7 +62,7 @@ knitr::opts_chunk$set(echo = TRUE)
     - Paquete **pagedown**
 
     - Si no les funciona pagedown::chrome_print, ni xaringanBuilder, ni 
-    [esta](https://www.garrickadenbuie.com/blog/print-xaringan-chromote/),
+    [esto](https://www.garrickadenbuie.com/blog/print-xaringan-chromote/),
     intenten emplear 
     [**decktape**](https://github.com/astefanutti/decktape),
     pues así sí me funcionó la conversión a PDF.
@@ -71,7 +83,7 @@ knitr::opts_chunk$set(echo = TRUE)
     
     - ¿Cómo añadir íconos al sitio web?
         - [Cómo obtener el script necesario.](https://www.youtube.com/watch?v=BATVa4vGZto&ab_channel=EasyTutorials)
-        - [Algunas opciones de iconos.](https://www.w3schools.com/icons/icons_reference.asp)
+        - [Algunas opciones de íconos.](https://www.w3schools.com/icons/icons_reference.asp)
 
 ???
 
@@ -148,7 +160,7 @@ automáticamente con su preview y link en la homepage; sin embargo,
 eso se tendría que hacer manualmente para "sitios web Distill".
 - Cuando se reconstruye un "sitio web Distill", las publicaciones se
 renderizan de nuevo, pero eso no ocurre para los "blog Distill", evitando
-así posible problemas de compatibilidad tras actualizar paquetes de **RR**.
+así posible problemas de compatibilidad tras actualizar paquetes de **R**.
 
 ---
 
@@ -182,15 +194,17 @@ class: middle
     el valor de `base_url` por el link con el cual se accederá al blog
     creado con **Distill** tras haberlo subido online:
     
-      ```yaml
-      base_url: https://mathematical-music-theory-blog.netlify.app/
-      collections:
-        posts:
-          disqus:
-            shortname: comentarios # nombre cualquiera, pero obligatorio
-            hidden: true 
-          share: [twitter, linkedin, facebook, google-plus, pinterest]
-      ``` 
+
+```yaml
+base_url: https://mathematical-music-theory-blog.netlify.app/
+collections:
+  posts:
+    disqus:
+      shortname: comentarios # nombre cualquiera, pero obligatorio
+      hidden: true 
+    share: [twitter, linkedin, facebook, google-plus, pinterest]
+```
+
 - Esconder los anuncios (versión Desktop) en la sección de comentarios, 
 modificando apropiadamente el archivo `CSS` señalado en `_site.yml`.
 
@@ -252,10 +266,10 @@ class: middle
 
 Lamentablemente, actualmente ya
 [no funciona](https://github.com/rstudio/blogdown/issues/638)
-el modelo mostrado, **hugo-acadecmic** (gcushen/hugo-academic),
+el modelo mostrado, **hugo-academic** (gcushen/hugo-academic),
 con **Blogdown**.
 
-Sin embargo, pueden emplear un modelo 
+Sin embargo, podrían emplear un modelo 
 [parecido](https://themes.gohugo.io/themes/meghna-hugo/).
 
 ---
@@ -276,9 +290,9 @@ Pasos para crear nuestro sitio web con **R Markdown** y el paquete **Blogdown**:
     library(blogdown)
     #new_site(theme = "themefisher/meghna-hugo") # otra plantilla
     new_site(theme = "hugo-apero/hugo-apero", 
-              format = "toml",
-              sample = FALSE,
-              empty_dirs = TRUE)
+             format = "toml",
+             sample = FALSE,
+             empty_dirs = TRUE)
     ```
 
 ---
@@ -488,7 +502,7 @@ para libros creados solo en formato PDF.
 - [Modelo simple para crear el libro](https://github.com/rstudio/bookdown-demo)
 
 - En nuestro caso, crearemos un repositorio en **GitHub** y un nuevo proyecto
-en **RStudio**, vinculado a ese repositorio (igual que hicimos con **BLogdown**).
+en **RStudio**, vinculado a ese repositorio (igual que hicimos con **Blogdown**).
 
 - Una vez dentro de aquel proyecto en **RStudio**, ejecutamos en la consola:<br>
 `bookdown::create_gitbook(".")` 
@@ -508,7 +522,7 @@ en **RStudio**, vinculado a ese repositorio (igual que hicimos con **BLogdown**)
 
 Explicar que la opción **site: bookdown::bookdown_site** 
 en el encabezado YAML del archivo `index.Rmd` permite que
-**RStudio** renderize el libro **capítulo por capítulo**,
+**RStudio** renderice el libro **capítulo por capítulo**,
 haciendo click en el botón **Knit**, en vez de que se
 renderize el libro completo tras presionar aquel botón.
 

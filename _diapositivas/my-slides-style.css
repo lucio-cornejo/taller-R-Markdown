@@ -57,3 +57,9 @@ li.panel-tab {
 .scrollable {
     overflow: auto;
 }
+
+/* Style clipboard button for chunks */
+.xaringanextra-clipboard-button > .fa-clipboard {
+  font-weight: 600;
+  transform: scale(1.25);
+}
