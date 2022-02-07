@@ -1,0 +1,21 @@
+---
+title: "Clase 5: Flexdashboard y htmlwidgets"
+author: Lucio Cornejo
+---
+class: center, middle, inverse, title-slide
+
+```{r, child = "_slides-setup.Rmd"}
+```
+
+<h1 class = "celeste-ish" style="line-height: 90px; margin-top: -50px;">
+    Clase 5:
+    <p style="margin-bottom: -170px;"> &nbsp; </p>
+    Flexdashboard y<br>
+    htmlwidgets
+</h1>
+
+<h3 class = "celeste-ish" style = "position: absolute; bottom: 80px;">
+  Autor: Lucio Cornejo
+</h3>
+
+---

@@ -4,7 +4,7 @@
     <title>Clase 2: Documentos parametrizados</title>
     <meta charset="utf-8" />
     <meta name="author" content="Lucio Cornejo" />
-    <script src="clase-2_files/header-attrs-2.11.4/header-attrs.js"></script>
+    <script src="clase-2_files/header-attrs-2.11/header-attrs.js"></script>
     <link href="clase-2_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="clase-2_files/remark-css-0.0.1/shinobi.css" rel="stylesheet" />
     <link href="clase-2_files/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -13,6 +13,13 @@
     <script src="clase-2_files/panelset-0.2.6/panelset.js"></script>
     <link href="clase-2_files/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
     <script src="clase-2_files/tile-view-0.2.6/tile-view.js"></script>
+    <script src="clase-2_files/xaringanExtra_fit-screen-0.2.6/fit-screen.js"></script>
+    <script src="clase-2_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="clase-2_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="clase-2_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="clase-2_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="clase-2_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="my-slides-style.css" type="text/css" />
   </head>
@@ -23,15 +30,18 @@ class: center, middle, inverse, title-slide
 
 
 
+
+
+
+
+
 &lt;h1 class = "celeste-ish"&gt;
     Clase 2:
     &lt;p style="margin-bottom: -120px;"&gt; &amp;nbsp; &lt;/p&gt;
     Reportes parametrizados
 &lt;/h1&gt;
 
-&lt;p style="margin-bottom: 150px;"&gt; &amp;nbsp; &lt;/p&gt;
-
-&lt;h3 class = "celeste-ish"&gt;
+&lt;h3 class = "celeste-ish" style = "position: absolute; bottom: 80px;"&gt;
   Autor: Lucio Cornejo
 &lt;/h3&gt;
 
@@ -368,7 +378,7 @@ class: middle
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
+"highlightStyle": "dracula",
 "highlightLines": true,
 "countIncrementalSlides": true,
 "navigation": {
@@ -458,25 +468,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
 <script>
-    // Code to change color of slide number when the current slide has presentator notes
-    function change_slide_number_color() {
-        
-        // Check notes section of current slide
-        let notas = document.querySelector('div.remark-notes'); 
-        
-        // Get all the slide number div tags
-        let numero_diapositiva = document.querySelectorAll('div.remark-slide-number'); 
-        
-        // Check if the are notes in current slide
-        if( !(notas.children.length === 0) ) {
-            // Color current slide number when there are notes in current slide
-            numero_diapositiva[slideshow.getCurrentSlideIndex()].style.color = "red";
-        }
-    }
-    
-    // Repeating this function every 0.2 seconds does not affect the web's performance 
-    // (lag and loading time, for example) in any significant way, at least in my weak laptop.
-    setInterval(change_slide_number_color, 200)
+    // Chage color of slide-number-sections if there are comments in such slide
+    document.addEventListener('DOMContentLoaded', function () {
+      let notes = document.querySelectorAll('div.remark-slide-container > div.remark-slide-notes');
+      notes = Array.prototype.slice.call(notes);
+
+      // For some reason, there is "repetition" of divs with the same comments ... delete delete
+      notes.splice(notes.length - 1,1);
+      notes.splice(notes.length/2, notes.length/2);
+
+      // Only work with the slides that had comments inserted via R Markdown
+      notes = notes.filter(note => note.childElementCount > 0);
+
+      // Work with the actual divs that contain the slide-number
+      notes = notes.map(note => note.parentNode.firstChild.firstChild.firstChild.lastChild);
+
+      // Change color of text in slide-number divs
+      notes.forEach(note => note.style.color = "red");
+    });
 
     // Code to fix the change of slide when scrolling and when clicking some elements
     let touchmoved;

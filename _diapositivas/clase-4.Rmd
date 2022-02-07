@@ -4,23 +4,7 @@ author: Lucio Cornejo
 ---
 class: center, middle, inverse, title-slide
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
-# Activate some xaringanExtra tools
-xaringanExtra::use_panelset()
-xaringanExtra::use_tile_view()
-xaringanExtra::use_fit_screen()
-# Style clipboard button for chunks
-htmltools::tagList(
-  xaringanExtra::use_clipboard(
-    button_text = "<i class=\"fa fa-clipboard\"></i>",
-    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
-    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
-  ),
-  rmarkdown::html_dependency_font_awesome()
-)
-
+```{r, child = "_slides-setup.Rmd"}
 ```
 
 <h1 class = "celeste-ish" style="line-height: 90px; margin-top: -50px;">

@@ -4,21 +4,18 @@ author: Lucio Cornejo
 ---
 class: center, middle, inverse, title-slide
 
-```{r setup, include=FALSE}
-xaringanExtra::use_panelset()
-xaringanExtra::use_tile_view()
-knitr::opts_chunk$set(echo = TRUE)
+```{r, child = "_slides-setup.Rmd"}
 ```
 
 <h1 class = "celeste-ish">
     Clase 1:
     <p style="margin-bottom: -120px;"> &nbsp; </p>
-    Markdown y YAML
+    Markdown y 
+    <p style="margin-bottom: -120px;"> &nbsp; </p>
+    YAML
 </h1>
 
-<p style="margin-bottom: 150px;"> &nbsp; </p>
-
-<h3 class = "celeste-ish">
+<h3 class = "celeste-ish" style = "position: absolute; bottom: 80px;">
   Autor: Lucio Cornejo
 </h3>
 

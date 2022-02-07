@@ -4,11 +4,7 @@ author: Lucio Cornejo
 ---
 class: center, middle, inverse, title-slide
 
-```{r setup, include=FALSE}
-xaringanExtra::use_panelset()
-xaringanExtra::use_tile_view()
-xaringanExtra::use_fit_screen()
-knitr::opts_chunk$set(echo = TRUE)
+```{r, child = "_slides-setup.Rmd"}
 ```
 
 <h1 class = "celeste-ish" style="line-height: 90px; margin-top: -50px;">
@@ -20,9 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
     con R Markdown
 </h1>
 
-<p style="margin-bottom: -5px;"> &nbsp; </p>
-
-<h3 class = "celeste-ish">
+<h3 class = "celeste-ish" style = "position: absolute; bottom: 80px;">
   Autor: Lucio Cornejo
 </h3>
 

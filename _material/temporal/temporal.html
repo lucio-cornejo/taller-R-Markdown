@@ -361,7 +361,383 @@ pre code {
 </div>
 
 
+<div id="bruh" class="section level2">
+<h2>bruh</h2>
+<pre class="r"><code>cor(pressure)</code></pre>
+<pre><code>##             temperature  pressure
+## temperature   1.0000000 0.7577923
+## pressure      0.7577923 1.0000000</code></pre>
+<pre class="r"><code>cor(pressure)</code></pre>
+<pre><code>##             temperature  pressure
+## temperature   1.0000000 0.7577923
+## pressure      0.7577923 1.0000000</code></pre>
+<pre class="r"><code>cor(pressure)</code></pre>
+<pre><code>##             temperature  pressure
+## temperature   1.0000000 0.7577923
+## pressure      0.7577923 1.0000000</code></pre>
+<pre class="r"><code>cor(pressure)</code></pre>
+<pre><code>##             temperature  pressure
+## temperature   1.0000000 0.7577923
+## pressure      0.7577923 1.0000000</code></pre>
+<pre class="r"><code>cor(pressure)</code></pre>
+<pre><code>##             temperature  pressure
+## temperature   1.0000000 0.7577923
+## pressure      0.7577923 1.0000000</code></pre>
+<pre class="r"><code>cor(pressure)</code></pre>
+<pre><code>##             temperature  pressure
+## temperature   1.0000000 0.7577923
+## pressure      0.7577923 1.0000000</code></pre>
+<pre class="r"><code>customHTML &lt;- readLines(&quot;https://raw.githubusercontent.com/lucio-cornejo/ejemplo-xaringan-TOC/master/xaringan-toc-css-and-js.html&quot;)
+for(i in 1:(length(customHTML))){
+  cat(customHTML[i],&quot;\n&quot;,sep=&quot;&quot;)
+}</code></pre>
+<script>
+  ////  Creation of a table of contents for Xaringan  ////
+  let body;
+  let slidesParent, slides, headers;
+  let slidesHeaders = [];
+  let helpMenu;
+  let toc, tocDiv, tocTitle;
+  
+  let resizeSlides; // variable for manual slide resize (different than slides variable)
 
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set variables
+    body = document.querySelector('body');
+    helpMenu = document.querySelector('div.remark-help');
+    helpMenu.setAttribute('style','overflow: auto;'); // Show all keyboard commands for Xaringan
+    slidesParent = document.querySelector('div.remark-slides-area');
+
+    ////////////////////////////////////////////////////////////////////
+    //// Remove the headers which have been set not be added to TOC ////
+
+    // Important to search for headers only in div.remark-slides-area, 
+    // because, if not, there are  headers that get added more than once to the variable "headers"
+    headers = document.querySelectorAll('div.remark-slides-area h1, div.remark-slides-area h2, div.remark-slides-area h3, div.remark-slides-area h4, div.remark-slides-area h5, div.remark-slides-area h6');
+
+    // Convert some variables to arrays
+    headers = Array.prototype.slice.call(headers);
+    slides = Array.prototype.slice.call(slidesParent.children);
+
+    // Remove the header h1 "Help" from the Xaringan menu
+    for (let i =0; i< headers.length; i++){
+      if(headers[i].classList.length === 0 && headers[i].textContent === 'Help'){
+        headers.splice(i,1);
+      }
+    }
+
+    // Remove headers with class "no-toc"
+    headers = headers.filter(header => !( header.classList.contains('no-toc') ));
+    
+    // Remove headers which were applied ".no-toc[ some_header ]" in the R Markdown code
+    headers = headers.filter(header => !( header.parentNode.classList.contains('no-toc') && header.parentNode.tagName==='DIV'));
+
+    // Remove headers contained in a slide to which "class: no-toc" was applied
+    headers = headers.filter( (header) => {
+      let temporal = getDivSlideContainer(header).firstChild.firstChild.firstChild;
+      // Check that the child chosen is the div with class "remark-slide-content",
+      // the one to which the class "no-toc" would be added if "class: no-toc" was used
+      if ( temporal.classList.contains('remark-slide-content') && temporal.tagName === 'DIV' ) {
+        if( temporal.classList.contains('no-toc') ){
+          // Remove this header
+          return false;
+        } else {
+          // Do not remove this header
+          return true;
+        }
+      }
+    });
+    ////////////////////////////////////////////////////////////////////
+
+    // Group headers via the slide they belong to
+    for(let i=0; i < slides.length; i++){
+      let temporal = headers.filter(header => slides.indexOf(getDivSlideContainer(header)) === i);
+      if (temporal.length > 0){
+        slidesHeaders.push({ 
+          key: i,
+          value: temporal
+        });
+      }  
+    }
+
+    // Create an ordered list via slidesHeaders variable
+    tocDiv = document.createElement('div');
+    tocDiv.id = "toc-container";
+
+    tocTitle = document.createElement('p');
+    tocTitle.textContent = "Table of contents";
+    tocDiv.append(tocTitle);
+    tocDiv.append(document.createElement('hr'));
+
+    toc = document.createElement('ol');
+    toc.id = "xaringan-toc";
+    tocDiv.append(toc);
+    slidesHeaders.forEach( (element) => {
+      element.value.forEach( (header) => {
+        let tocItem = document.createElement('li');
+        let anchor = document.createElement('a')
+        // Insert header name
+        anchor.innerHTML = header.textContent;
+        // Pass info about header's slide container
+        anchor.setAttribute('data-slide',element.key)
+        
+        // Add header item to table of contents
+        toc.append(tocItem);
+        tocItem.append(anchor);
+        
+      })
+    });
+
+    ////////////////////////////////////////////////////////////
+    //// Set default stylings via JavaScript instead of CSS ////
+  
+    // Insert tocDiv in page (but hide it), to set its styles
+    body.append(tocDiv);
+
+    document.querySelector('html').setAttribute('style',"scroll-behavior: smooth;");
+    document.querySelector('#toc-container').setAttribute('style',"padding: 0; float: left; z-index: 100; position: absolute; bottom: 0; left: 0; display: block; border: 2px solid black; background-color: #F0F0F0; overflow: auto; min-width: 10vw;  height: 50vh; resize: horizontal;");
+    // Hide table of contents
+    tocDiv.style.display = "none";
+
+    document.querySelector('#toc-container p').setAttribute('style',"font-size: 17px; margin-top: 8px; text-align: center; margin-bottom: -10px;");
+    document.querySelector('#toc-container hr').setAttribute('style',"border: 0.1px solid gainsboro; width: 90%;");
+    document.querySelector('#xaringan-toc').setAttribute('style',"margin: 0; padding: 5px 30px 10px 40px;");
+    
+    // Style properties for anchors of table of contents
+    let css = "#xaringan-toc li a { cursor: pointer; color: blue; transition: all 260ms linear; }"+"\n"+"#xaringan-toc li a:hover { color: red; text-decoration: underline; }";
+    let style = document.createElement('style');
+    if (style.styleSheet) {
+        style.styleSheet.cssText = css;
+    } else {
+        style.appendChild(document.createTextNode(css));
+    }
+    document.querySelector('head').appendChild(style);
+    ////////////////////////////////////////////////////////////
+
+    // Pres key d to display Table of Contents
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'd') {
+        if (event.repeat) {
+          return;
+        }
+
+        // Update opacity, line-through and font-weight of toc's anchors
+        updateTocAnchorsStyle();
+
+        //// Best alternative I've found so far to insert table of contents ////
+        // slides[slideshow.getCurrentSlideIndex()].children[0].append(tocDiv);
+        // Such alternative has the issue that sometimes double the key press
+        // is required in order to show de TOC, due to it being "hidden"
+        // after changing slide from a slide where the TOC was displayed.
+        
+        // Default toc stylings
+        tocDiv.style.top = '';
+        tocDiv.style.width = 'auto';
+        tocDiv.style.height = '50vh';
+
+        if(tocDiv.style.display === 'block') {
+          tocDiv.style.display = 'none';
+        } else {
+          tocDiv.style.display = 'block';
+          // Insert table of contents on page
+          body.append(tocDiv);
+        }
+      }
+    });
+
+    // Make anchors in Table of Contents activate appropriate slide change when clicked
+    toc.children.forEach( (item) => {
+      item.firstChild.addEventListener('click', function(event) {
+        // Go to appropriate slide
+        slideshow.gotoSlide(1+parseInt(this.dataset.slide));
+
+        // Close and open table of contents in order to activate
+        // line-through and opacity change of previous anchors
+        switch (tocDiv.style.height) {
+          case '100vh':
+            document.dispatchEvent(new KeyboardEvent('keydown',{'key':'e'}));
+            document.dispatchEvent(new KeyboardEvent('keydown',{'key':'e'}));
+            break;
+          default:
+            // We assume the height is either 50vh or some custom one aparat from 100vh
+            document.dispatchEvent(new KeyboardEvent('keydown',{'key':'d'}));
+            document.dispatchEvent(new KeyboardEvent('keydown',{'key':'d'}));
+            break;
+        }
+
+        // Scroll the table of contents to the anchor just clicked
+        this.scrollIntoView();
+      })
+    });
+
+    // Press e in order to stick table of contents to the left empty side
+    // of Xaringan slides, if there is any such empty space
+    document.addEventListener('keydown', function() {
+      if (event.key === 'e') {
+        if (event.repeat) {
+          return;
+        }
+
+        // Update opacity, line-through and font-weight of toc's anchors
+        updateTocAnchorsStyle();
+
+        // Check if there is empty space where to insert the toc
+        let someSlide = document.querySelector('div.remark-slide-scaler');
+        if (parseInt(someSlide.style.left.slice(0,-2)) === 0) {
+        } else {
+          tocDiv.style.width = String(Math.round(parseInt(someSlide.style.left.slice(0,-2))*1))+'px';
+          tocDiv.style.height = '100vh';
+          tocDiv.style.top = '0';
+        }
+
+        if(tocDiv.style.display === 'block') {
+          tocDiv.style.display = 'none';
+        } else {
+          tocDiv.style.display = 'block';
+          // Insert table of contents on page
+          body.append(tocDiv);
+        }
+      }
+    });
+
+    // Select the slide divs which set the slide dimensions
+    resizeSlides = slides.map(slide => slide.firstChild);
+    resizeSlides.forEach(slide => slide.style.resize = "horizontal");
+
+    resizeSlides.forEach( (slide) => {
+      new ResizeObserver(resizeAllSlides).observe(slide);
+    });
+
+    // In the Help menu, show descriptions of the commands added
+    let newCommandsKeys = [["e","Show TOC with height equal to the page's"],
+                           ["d","Show TOC with half the page's height"],
+                           ["r","Move all the slides to the right side of the page"]
+                          ];
+    newCommandsKeys.forEach( (commandInfo) => {
+      let tableRow =  document.createElement('tr');
+      let tableData = document.createElement('td');
+      let newCommandKey = document.createElement('span');
+      newCommandKey.className = "key";
+      newCommandKey.textContent = commandInfo[0];
+      let commandAction = document.createElement('td');
+      commandAction.textContent = commandInfo[1];
+      // Append (as in the Help menu structure) the elements created
+      tableData.appendChild(newCommandKey);
+      tableRow.appendChild(tableData);
+      tableRow.appendChild(commandAction);
+      // Append new command info to Help menu
+      document.querySelector('div.remark-help table tbody').appendChild(tableRow);
+    });
+
+  });
+
+  function getDivSlideContainer(header) {
+    let temporal = header;
+    while (! temporal.parentNode.classList.contains('remark-slide-container')) {
+      temporal = temporal.parentNode;
+    }
+    return temporal.parentNode;
+  }
+
+  function pushSlidesToRight() {
+    // Get real width of current slide and push slide to the right of screen
+    let temporal = screen.availWidth - resizeSlides[slideshow.getCurrentSlideIndex()].getBoundingClientRect().width ;
+    resizeSlides.forEach(slide => { slide.style.left = String(Math.round(temporal))+'px'; });
+
+    // Close and open table of contents in order to fix width
+    if ( tocDiv.style.height === '100vh') {
+      document.dispatchEvent(new KeyboardEvent('keydown',{'key':'e'}));
+      document.dispatchEvent(new KeyboardEvent('keydown',{'key':'e'}));
+    }
+  }
+
+  // Press key r in order to push slides to the right
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'r') {
+        if (event.repeat) {
+          return;
+        }
+        pushSlidesToRight();
+    }
+  });
+
+  function resizeAllSlides() {
+    let currentSlide = resizeSlides[slideshow.getCurrentSlideIndex()];
+    resizeSlides.forEach(slide => { 
+      // slide.style.width = String(Math.round(currentSlide.getBoundingClientRect().width))+'px';
+      slide.style.width = String(currentSlide.offsetWidth) + 'px';
+    });
+  }
+
+  $(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', async function() {
+    // Whenever a change from or to fullscreen window occurs,
+    // wait a while (because slides take a little time to get resized)
+    // and do the following:
+
+    await sleep(200);
+
+    // Resize the toc even if it was not open during this event
+    if (tocDiv.style.height === '100vh') {
+      document.dispatchEvent(new KeyboardEvent('keydown',{'key':'e'}));
+      document.dispatchEvent(new KeyboardEvent('keydown',{'key':'e'}));
+    } else {
+      document.dispatchEvent(new KeyboardEvent('keydown',{'key':'d'}));
+      document.dispatchEvent(new KeyboardEvent('keydown',{'key':'d'}));
+    }
+  });
+
+  function updateTocAnchorsStyle() {
+    // Update opacity, line-through and font-weight of toc's anchors
+    let currentSlide = slideshow.getCurrentSlideIndex();
+    toc.children.forEach( (element) => {
+      if ( currentSlide > 0 ) {
+        if ( parseInt(element.firstChild.dataset.slide) < currentSlide ) {
+          element.firstChild.style.opacity = 0.5;
+          element.firstChild.style.fontWeight = 400;
+          element.firstChild.style.textDecoration = "line-through";
+        } else {
+          if ( parseInt(element.firstChild.dataset.slide) === currentSlide ) {
+            element.firstChild.style.opacity = 1;
+            element.firstChild.style.fontWeight = 900;
+            element.firstChild.style.textDecoration = "";
+          } else {
+            element.firstChild.style.opacity = 1;
+            element.firstChild.style.fontWeight = 400;
+            element.firstChild.style.textDecoration = "";
+
+          }
+        }
+      } else {
+        // Currrent slide is the first one, so undo anchor style changes
+        element.firstChild.style.opacity = 1;
+        element.firstChild.style.fontWeight = 400;
+        element.firstChild.style.textDecoration = "";
+        
+        // Bold anchors from first slide
+        if (element.firstChild.dataset.slide === '0') {
+          element.firstChild.style.fontWeight = 900;
+        }
+      }
+    });
+  }
+
+  // Refresh toc after a slide change
+  slideshow.on('afterShowSlide', async function() {
+    // Wait some time so that the new slide index gets recognized
+    await sleep(100);
+
+    // Update the style of the table of contents' anchors
+    updateTocAnchorsStyle();
+  });
+
+  // Define the standard sleep() function
+  function sleep(miliseconds) {
+    return new Promise(resolve => setTimeout(resolve, miliseconds));
+  }
+</script>
+<p>variable vale 1</p>
+<p>sds</p>
+</div>
 
 
 
