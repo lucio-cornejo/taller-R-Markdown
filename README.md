@@ -27,6 +27,32 @@ Archivos para la creación del sitio web con el contenido del curso.
 - Formato PDF
   + Paquete [pagedown](https://rstudio.github.io/pagedown/) para simular un formato PDF, pero para la web.
 
+## Clase 5
+
+### Flexdashboard
+
+Para el video de youtube nomás:
+
+- Extra YAML header feautres:
+    - Navigation bar:
+    <https://pkgs.rstudio.com/flexdashboard/articles/using.html>
+    - Social links:
+    <https://pkgs.rstudio.com/flexdashboard/articles/using.html>
+    - Source code:
+    <https://pkgs.rstudio.com/flexdashboard/articles/using.html>
+    - Chart padding:
+    <https://pkgs.rstudio.com/flexdashboard/articles/using.html>
+
+- Explicar cómo funciona 
+[storyboard](https://warin.ca/dpr/dashboards.html#storyboards).
+
+### htmlwidgets
+
+Para el video de youtube nomás:
+
+- ¿Cómo crear a custom widget?
+
+
 ## **VS Code** 
 
 - R Studio knit tools implementation into VS Code:

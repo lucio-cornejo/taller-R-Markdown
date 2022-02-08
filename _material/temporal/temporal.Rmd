@@ -1,12 +1,24 @@
 ---
+title: Mi dashboard
 output: 
-  html_document:
-    keep_md: true
+  flexdashboard::flex_dashboard:
+    theme: default
+    orientation: columns
+    vertical_layout: fill
 ---
 
-```{r, results='asis', warning = FALSE}
-customHTML <- readLines("https://raw.githubusercontent.com/lucio-cornejo/ejemplo-xaringan-TOC/master/xaringan-toc-css-and-js.html")
-for(i in 1:(length(customHTML))){
-  cat(customHTML[i],"\n",sep="")
-}
+```{r setup, include=FALSE} 
+library(flexdashboard)
 ```
+
+# Layout 1
+
+## {.tabset}
+
+### Tab 1 {data-height=600}
+
+contenido 1
+
+### Tab 2 {data-height=400}
+
+contenido 2

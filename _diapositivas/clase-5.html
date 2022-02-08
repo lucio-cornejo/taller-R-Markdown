@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en" xml:lang="en">
   <head>
     <title>Clase 5: Flexdashboard y htmlwidgets</title>
     <meta charset="utf-8" />
@@ -47,6 +47,577 @@ class: center, middle, inverse, title-slide
 &lt;/h3&gt;
 
 ---
+
+## Flexdashboard
+
+&lt;p style="margin-bottom: -85px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+Un **dashboard** es como un _resumen_ empleado para mejorar la
+toma de decisiones, cuyo objetivo es **transformar data en información**.
+
+En un **dashboard** se recopilan datos y estos se presentan de manera 
+concisa para resaltar lo más importante que deducimos a partir
+de aquella información.
+
+Ejemplos de
+[proyectos](https://rstudio.github.io/flexdashboard/articles/examples.html)
+realizados con el paquete flexdashboard.
+
+&gt; Ok ok ... pero ... ¿de dónde viene el _flex_?
+
+El paquete **flexdashboard** emplea la propiedad
+&amp;nbsp;`display: flex`&amp;nbsp; de **CSS** para alterar 
+el ancho y altura de ciertos elementos de la página con el fin de 
+llenar _lo mejor posible_ el espacio disponible en 
+la pantalla del dispositivo.
+
+&lt;p style="margin-bottom: -30px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+## Instalación
+
+&lt;p style="margin-bottom: -85px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+```r
+install.packages('flexdashboard')
+```
+
+---
+class: middle
+
+## Encabezado YAML básico de proyecto flexdashboard
+
+```yaml
+---
+title: Proyecto con flexdashboard
+output:
+  flexdashboard::flex_dashboard:
+    orientation: columns  # rows
+    vertical_layout: fill # scroll
+---
+```
+
+&lt;p style="margin-bottom: -35px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+### `orientation` 
+
+Establece si añadimos secciones (al dashboard )
+por columnas o por filas.
+
+&lt;p style="margin-bottom: -35px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+### `vertical_layout`
+
+Con `fill`, los gráficos se autoajustan para cubrir toda la
+pantalla; pero, con `scroll`, los gráficos preservan su 
+altura natural, y la página permitirá desplazarse verticalmente
+_fuera de la pantalla_.
+
+---
+
+&lt;p style="margin-bottom: -85px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+## Modelo para `vertical_layout: scroll` 
+
+&lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+````yaml
+---
+output: 
+  flexdashboard::flex_dashboard:
+    vertical_layout: scroll
+---
+    
+### Gráfico 1
+    
+```{r} 
+AirPassengers
+```
+ 
+### Gráfico 2
+
+```{r} 
+plot(pressure)
+```
+ 
+### Gráfico 3
+
+```{r} 
+mtcars
+```
+````
+
+---
+class: middle
+
+## Manos a la obra
+
+Iniciaremos creando un documento **R Markdown** de este tipo:
+
+````text
+---
+title: Mi dashboard
+output: 
+  flexdashboard::flex_dashboard:
+    theme: default
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE} 
+library(flexdashboard)
+```
+
+# Layout 1
+
+````
+
+---
+class: middle
+
+## Creación de columnas y filas
+
+&lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+Los símbolos &amp;nbsp;`#`&amp;nbsp;, 
+&amp;nbsp;`##`&amp;nbsp; y 
+&amp;nbsp;`###`&amp;nbsp;
+adquieren un nuevo significado: &amp;nbsp;`DEMOSTRACIÓN` 
+
+&lt;br&gt;
+
+## Alteración de ancho y altura de las secciones creadas
+
+&lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+```md
+## {data-width=700}
+### {data-height=200}
+### {data-height=800}
+
+## {data-width=300}
+### {data-height=1}
+### {data-height=999}
+```
+
+&lt;br&gt;
+
+### Plantillas visuales para flexdashboard
+
+&lt;p style="margin-bottom: -40px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+&lt;details&gt;
+&lt;summary&gt;
+Presionar para revelar mis secretos
+&lt;/summary&gt;
+  
+default&lt;br&gt;
+cosmo&lt;br&gt;
+bootstrap&lt;br&gt;
+cerulean&lt;br&gt;
+journal&lt;br&gt;
+flatly&lt;br&gt;
+readable&lt;br&gt;
+spacelab&lt;br&gt;
+united&lt;br&gt;
+lumen&lt;br&gt;
+paper&lt;br&gt;
+sandstone&lt;br&gt;
+simplex&lt;br&gt;
+yeti&lt;br&gt;
+&lt;/details&gt;
+
+---
+class: middle
+
+## valueBox 
+
+````text
+### Mensaje 
+
+```{r, echo = FALSE} 
+valor &lt;- 13
+valueBox(valor, color="success")
+```
+
+````
+
+## gauge
+
+````text
+### Gráfico
+
+```{r, echo = FALSE} 
+level &lt;- 42
+gauge(level, min=0, max=100)
+```
+````
+
+---
+
+&lt;p style="margin-bottom: -70px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+.pull-left[
+
+## Uso de tabsets
+
+```text
+## {.tabset}
+
+### Tab 1 
+
+contenido 1
+
+### Tab 2
+
+contenido 2
+```
+
+]
+
+.pull-right[
+## Creación de nuevos layouts
+
+```text
+# Layout 1
+
+## 
+
+### Columna solitaria
+
+# Layout 2 {data-icon=fa-frog}
+
+## 
+
+### Columna extra solitaria
+
+```
+]
+
+&lt;p style="margin-bottom: -30px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+## Uso de íconos para el navegador
+
+- [Ejemplos](https://fontawesome.com/v5.15/icons) de íconos, aunque
+no todos están disponibles en flexdashboard.
+
+- **No dejar espacio entre los extremos del símbolo**
+&amp;nbsp;&amp;nbsp;_=_&amp;nbsp;&amp;nbsp;
+**al definir _data-icon="fa-sth"_**
+
+---
+class: middle
+
+## Storyboards
+
+&lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+Cuando se requiere presentar una secuencia de visualizaciones 
+de data (con comentarios respectivos) podemos emplear la opción 
+
+```yaml
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true
+```
+
+Revisemos el siguiente 
+[ejemplo](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-showcase-storyboard/htmlwidgets-showcase-storyboard.html)
+de una **storyboard** creada con **flexdashboard**.
+
+&lt;br&gt;
+
+## Referencias
+
+&lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+- &lt;https://pkgs.rstudio.com/flexdashboard/articles/&gt;
+- &lt;https://pkgs.rstudio.com/flexdashboard/articles/using.html&gt;
+- &lt;https://warin.ca/dpr/dashboards.html#storyboards&gt;
+
+---
+class: middle, center
+
+## htmlwidgets
+
+Este paquete de **R** nos permite emplear directamente en **R**
+(y**R Markdown** ) librerias de **JavaScript** especializadas
+en visualización de datos.
+
+Asimismo, la librería **htmlwidgets** nos da la posibilidad
+de crear nuestro propio **widget** para poder emplear vía **R** 
+alguna librería de **JavaScript** de nuestro interés.
+
+En esta sesión, trabajaremos con solo algunas de las 
+librerías de **JavaScript** que el paquete **htmlwidgets** 
+nos facilita utilizar en **R**.
+
+???
+
+Ejecutar los htmlwidgets en un archivo **.R** por separado.
+
+---
+
+## Leaflet
+
+&lt;p style="margin-bottom: -90px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+[Tutorial](https://rstudio.github.io/leaflet/)
+
+```r
+install.packages("leaflet")
+library(leaflet)
+```
+
+### Creación simple de un mapa
+
+```r
+map &lt;- leaflet()
+map &lt;- addTiles(map)
+map &lt;- addMarkers(map, lng=174.768, lat=-36.852, popup="The birthplace of R")
+map
+```
+
+### ¿Dónde me encuentro?
+
+[Obtener mis coordenadas](https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/demos/geo-location-demo.html?utm_medium=Exinfluencer&amp;utm_source=Exinfluencer&amp;utm_content=000026UJ&amp;utm_term=10006555&amp;utm_id=NA-SkillsNetwork-coursesedxorg-SkillsNetworkCoursesIBMDeveloperSkillsNetworkCD0101ENSkillsNetwork20336975-2021-01-01)
+
+```r
+map &lt;- leaflet() 
+map &lt;- setView(map, lng = -71.0589, lat = 42.3601, zoom = 17)
+map &lt;- addTiles(map)
+map
+```
+
+---
+class: middle
+
+## Dygraphs
+
+&lt;p style="margin-bottom: -90px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+[Tutorial](https://rstudio.github.io/dygraphs/)
+
+```r
+install.packages("dygraphs")
+library(dygraphs)
+```
+
+```r
+grafico &lt;- dygraph(mdeaths)
+grafico &lt;- dyRangeSelector(grafico)
+grafico
+```
+
+```r
+grafico &lt;- dygraph(nhtemp, main = "New Haven Temperatures")
+grafico &lt;- dyRangeSelector(grafico, dateWindow = c("1920-01-01", "1960-01-01"))
+grafico
+```
+
+---
+
+&lt;p style="margin-bottom: -90px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+## Plotly
+
+&lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+[Tutorial](https://plotly.com/r/)
+
+&lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+```r
+install.packages('plotly')
+library(plotly)
+```
+
+&lt;p style="margin-bottom: -45px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+### Diagrama de dispersión
+
+```r
+fig &lt;- plot_ly(data=cars, x=~speed,y=~dist)
+fig &lt;- layout(fig,
+              title="Speed vs Distance",
+              xaxis=list(title='Speed', range=c(0,30)),
+              yaxis=list(title="Distance", zeroline=FALSE)
+)
+fig &lt;- add_trace(fig,
+                text = ~paste("Speed: ",round(speed,2),"\nDistance: ",round(dist,2),sep=''),
+                hoverinfo = 'text',
+                marker=list(
+                            size=7.5,color='skyblue',
+                            line= list(color='rgba(255,0,0,0.75)',width=1)
+                            )
+)
+fig
+```
+
+???
+
+Remover la barra con botones:
+
+```r
+fig &lt;- plot_ly(...) 
+fig &lt;- config(fig, displayModeBar= FALSE)
+fig
+```
+
+---
+class: middle
+
+## Diagrama de cajas
+
+### Para una variable cuantitativa
+
+```r
+plot_ly(mtcars,y=~wt,type='box') %&gt;% layout(xaxis=list(showticklabels = F))
+
+# Intento de simular que plotly oculte los valores atípicos, 
+# ya que por ahora no se posee aquella funcionalidad 
+plot_ly(mtcars, y=~wt, type='box', marker=list(opacity=0)) 
+```
+
+&lt;p style="margin-bottom: 0px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+### Respecto a variables cualitativas, para una var. cuanti.
+
+```r
+# Boxplot vertical
+plot_ly(iris,y=~Sepal.Length,color=~Species,type='box') %&gt;% layout(xaxis=list(title='Species'),yaxis= list(zeroline=FALSE))
+
+# Boxplot horizontal
+plot_ly(iris,x=~Sepal.Length,color=~Species,type='box')
+```
+
+---
+class: middle
+
+### Gráficos 3D
+
+```r
+fig &lt;- plot_ly(z = ~volcano)
+fig &lt;- add_surface(fig,
+                   contours = list(
+                                   z = list(
+                                            show=TRUE,
+                                            usecolormap=TRUE,
+                                            highlightcolor="#ff0000",
+                                            project=list(z=TRUE)
+                                           )
+                                   )
+)
+fig &lt;- layout(fig,
+              scene = list(
+                          camera=list(
+                                      eye = list(x=1.87, y=0.88, z=-0.64)
+                                     )
+                          )
+)
+fig
+```
+
+---
+class: middle
+
+## visNetwork
+
+[Tutorial](http://www.htmlwidgets.org/showcase_visNetwork.html)
+
+```r
+install.packages('visNetwork')
+library(visNetwork)
+```
+
+```r
+nodes &lt;- data.frame(id = 1:6, title = paste("node", 1:6), 
+                    shape = c("dot", "square"),
+                    size = 10:15, color = c("blue", "red"))
+edges &lt;- data.frame(from = 1:5, to = c(5, 4, 6, 3, 3))
+
+grafo &lt;- visNetwork(nodes, edges)
+grafo &lt;- visOptions(grafo, highlightNearest = TRUE, nodesIdSelection = TRUE)
+grafo
+```
+
+---
+class: middle
+
+## networkD3
+
+[Tutorial](https://christophergandrud.github.io/networkD3/)
+
+```r
+install.packages('networkD3')
+library(networkD3)
+```
+
+```r
+data(MisLinks, MisNodes)
+forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
+             Target = "target", Value = "value", NodeID = "name",
+             Group = "group", opacity = 0.4)
+```
+
+---
+class: middle
+
+# DT
+
+[Tutorial](https://rstudio.github.io/DT/)
+
+```r
+install.packages('DT')
+library(DT)
+```
+
+```r
+datatable(iris, options = list(pageLength = 5))
+```
+
+```r
+datatable(mtcars,
+          extensions = "Buttons",
+          options = list(
+                         dom="Bfrtip",
+                         buttons=c("copy","print","csv")
+                        )
+)
+```
+
+
+---
+class: middle
+
+## threejs
+
+[Tutorial](https://github.com/bwlewis/rthreejs)
+
+```r
+install.packages('threejs')
+library(threejs)
+```
+
+```
+globejs(img ="ruta_de_imagen.png") 
+```
+
+---
+
+## rgl
+
+```r
+library(rgl)
+library(rglwidget)
+library(htmltools)
+```
+
+---
+
+
+## Referencias
+
+- &lt;http://www.htmlwidgets.org/&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
