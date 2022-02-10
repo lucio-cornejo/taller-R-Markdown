@@ -412,7 +412,7 @@ sino alguna(s) de sus páginas.
 <p style="margin-bottom: -80px;"> &nbsp; </p>
 
 ````md
-# Déjame que te cuente limeñe .. {.storyboard}
+# Déjame que te cuente limeñe ... {.storyboard}
 
 ### Frame 1 {data-commentary-width=1000}
 
