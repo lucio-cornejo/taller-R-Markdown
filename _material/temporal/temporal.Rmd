@@ -1,24 +1,30 @@
 ---
-title: Mi dashboard
-output: 
-  flexdashboard::flex_dashboard:
-    theme: default
-    orientation: columns
-    vertical_layout: fill
+output: html_document
 ---
 
-```{r setup, include=FALSE} 
-library(flexdashboard)
+```{r}
+library(rgl)
+options(rgl.useNULL=TRUE)
+knitr::opts_chunk$set(echo=FALSE)
 ```
 
-# Layout 1
+```{r}
+close3d()
+open3d()
 
-## {.tabset}
+x <- rnorm(100)
+y <- rnorm(100)
+z <- 0.2*x - 0.3*y + rnorm(100, sd = 0.3)
+fit <- lm(z ~ x + y)
+plot3d(x, y, z, type = "s", col = "red", size = 1)
 
-### Tab 1 {data-height=600}
+coefs <- coef(fit)
+a <- coefs["x"]
+b <- coefs["y"]
+c <- -1
+d <- coefs["(Intercept)"]
 
-contenido 1
+planes3d(a, b, c, d, alpha = 0.5)
 
-### Tab 2 {data-height=400}
-
-contenido 2
+rglwidget()
+```

@@ -18,12 +18,6 @@ knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
 
 ### Sección c11 {data-height=300}
 
-<style>
-  #sección-c11 > div {
-    overflow: auto;
-  }
-</style>
-
 ```{r instalaciones, eval=FALSE}
 # Creación de dashboards con R Markdown
 install.packages('flexdashboard')
@@ -35,7 +29,7 @@ install.packages('DT')
 ### Sección c12 {data-height=700}
 
 ```{r, echo = FALSE}
-#options(DT.options = list(scrollY="100vh"))
+options(DT.options = list(scrollY="100vh"))
 
 datatable(iris,
   extensions = "Buttons",

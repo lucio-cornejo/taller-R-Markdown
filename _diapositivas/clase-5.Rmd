@@ -2,6 +2,10 @@
 title: "Clase 5: Flexdashboard y htmlwidgets"
 author: Lucio Cornejo
 lang: en
+output: 
+  xaringan::moon_reader:
+    nature:
+      ratio: 16:9
 ---
 class: center, middle, inverse, title-slide
 
@@ -308,12 +312,12 @@ de una **storyboard** creada con **flexdashboard**.
 - <https://warin.ca/dpr/dashboards.html#storyboards>
 
 ---
-class: middle, center
+class: middle
 
 ## htmlwidgets
 
 Este paquete de **R** nos permite emplear directamente en **R**
-(y**R Markdown** ) librerias de **JavaScript** especializadas
+(y**R Markdown** ) librerías de **JavaScript** especializadas
 en visualización de datos.
 
 Asimismo, la librería **htmlwidgets** nos da la posibilidad
@@ -324,270 +328,858 @@ En esta sesión, trabajaremos con solo algunas de las
 librerías de **JavaScript** que el paquete **htmlwidgets** 
 nos facilita utilizar en **R**.
 
+
+```{r, include = FALSE}
+library(flipbookr)
+library(tidyverse)
+
+# Trying to reduce load time for these Xaringan slides
+knitr::opts_chunk$set(eval = FALSE)
+```
+
 ???
 
-Ejecutar los htmlwidgets en un archivo **.R** por separado.
+- Ejecutar los htmlwidgets en un archivo **.R** por separado.
+
+- Instalar el paquete `tidyverse`.
 
 ---
 
 ## Leaflet
 
-<p style="margin-bottom: -90px;"> &nbsp; </p>
+```{r, include = FALSE, eval = TRUE}
+library(leaflet)
+```
 
-[Tutorial](https://rstudio.github.io/leaflet/)
+<p style="margin-bottom: -3%;"> &nbsp; </p>
+
+.panelset.sideways[
+
+.panel[.panel-name[Configuración]
+Tutorial:<br>
+<https://rstudio.github.io/leaflet/>
+
+Listado de funciones:<br>
+<https://cran.r-project.org/web/packages/leaflet/leaflet.pdf>
 
 ```r
 install.packages("leaflet")
 library(leaflet)
 ```
+]
 
-### Creación simple de un mapa
+.panel[.panel-name[Creación de un mapa]
 
-```r
-map <- leaflet()
-map <- addTiles(map)
-map <- addMarkers(map, lng=174.768, lat=-36.852, popup="The birthplace of R")
-map
+```{r, eval = TRUE}
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
 ```
+]
 
-### ¿Dónde me encuentro?
+.panel[.panel-name[¿Dónde me encuentro?]
 
 [Obtener mis coordenadas](https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/demos/geo-location-demo.html?utm_medium=Exinfluencer&utm_source=Exinfluencer&utm_content=000026UJ&utm_term=10006555&utm_id=NA-SkillsNetwork-coursesedxorg-SkillsNetworkCoursesIBMDeveloperSkillsNetworkCD0101ENSkillsNetwork20336975-2021-01-01)
 
-```r
-map <- leaflet() 
-map <- setView(map, lng = -71.0589, lat = 42.3601, zoom = 17)
-map <- addTiles(map)
-map
+```{r}
+leaflet() %>%
+  setView(lng = -71.0589, lat = 42.3601, zoom = 17) %>%
+  addTiles()
 ```
 
+]
+
+.panel[.panel-name[Mapa de clusters]
+
+```{r, message = FALSE, warning = FALSE}
+leaflet(quakes) %>% 
+  addTiles() %>% 
+  addMarkers(clusterOptions = markerClusterOptions())
+```
+]
+]
+
+???
+
+Ejecutar secuencialmente el primer ejemplo de un mapa.
+
 ---
-class: middle
 
 ## Dygraphs
 
-<p style="margin-bottom: -90px;"> &nbsp; </p>
+```{r, include = FALSE, eval = TRUE}
+library(dygraphs)
+```
 
-[Tutorial](https://rstudio.github.io/dygraphs/)
+<p style="margin-bottom: -3%;"> &nbsp; </p>
+
+.panelset.sideways[
+
+.panel[.panel-name[Configuración]
+Tutorial:<br>
+<https://rstudio.github.io/dygraphs/>
+
+Listado de funciones:<br>
+<https://cran.r-project.org/web/packages/dygraphs/dygraphs.pdf>
 
 ```r
 install.packages("dygraphs")
 library(dygraphs)
 ```
+]
 
-```r
-grafico <- dygraph(mdeaths)
-grafico <- dyRangeSelector(grafico)
-grafico
+.panel[.panel-name[Ejemplo 1]
+
+```{r, fig.width = 10, eval = TRUE}
+dygraph(mdeaths) %>%
+  dyRangeSelector()
 ```
 
-```r
-grafico <- dygraph(nhtemp, main = "New Haven Temperatures")
-grafico <- dyRangeSelector(grafico, dateWindow = c("1920-01-01", "1960-01-01"))
-grafico
+]
+
+.panel[.panel-name[Ejemplo 2]
+
+```{r, fig.width = 10}
+dygraph(nhtemp, main = "New Haven Temperatures") %>%
+  dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01")) %>%
+  dyOptions(fillGraph = TRUE, fillAlpha = 0.25)
 ```
+
+]
+
+.panel[.panel-name[Ejemplo 3]
+
+```{r, fig.width = 10}
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dySeries(label = "Temp (F)", color = "black") %>%
+  dyShading(from = "1920-1-1", to = "1930-1-1", color = "rgba(255,0,0,0.25)") %>%
+  dyShading(from = "1947-1-1", to = "1955-1-1", color = "#E6E6FF")
+```
+
+]
+]
+
+???
+
+**Time-series** en R:
+
+<https://www.statmethods.net/advstats/timeseries.html>
 
 ---
 
-<p style="margin-bottom: -90px;"> &nbsp; </p>
-
 ## Plotly
 
-<p style="margin-bottom: -80px;"> &nbsp; </p>
+```{r, include = FALSE, eval = TRUE}
+library(plotly)
+```
 
-[Tutorial](https://plotly.com/r/)
+<p style="margin-bottom: -3%;"> &nbsp; </p>
 
-<p style="margin-bottom: -80px;"> &nbsp; </p>
+.panelset.sideways[
+
+.panel[.panel-name[Configuración]
+Tutorial:<br>
+<https://plotly.com/r/>
+
+Listado de funciones:<br>
+<https://cran.r-project.org/web/packages/plotly/plotly.pdf>
 
 ```r
 install.packages('plotly')
 library(plotly)
 ```
+]
 
-<p style="margin-bottom: -45px;"> &nbsp; </p>
+.panel[.panel-name[Ejemplo 1]
 
-### Diagrama de dispersión
+```{r, fig.width = 10}
+plot_ly(mtcars,y=~wt,type='box')
 
-```r
-fig <- plot_ly(data=cars, x=~speed,y=~dist)
-fig <- layout(fig,
-              title="Speed vs Distance",
-              xaxis=list(title='Speed', range=c(0,30)),
-              yaxis=list(title="Distance", zeroline=FALSE)
+#### Intento de simular que plotly oculte los valores atípicos, 
+#### ya que por ahora no se posee aquella funcionalidad 
+# plot_ly(mtcars, y=~wt, type='box', marker=list(opacity=0)) 
+```
+
+]
+
+.panel[.panel-name[Ejemplo 2]
+
+```{r, fig.width = 10}
+plot_ly(iris,x=~Sepal.Length,color=~Species,type='box') %>% 
+  layout(xaxis=list(showticklabels = TRUE)) %>%
+  config(displayModeBar= FALSE) # esconder barra de la parte superior
+```
+
+]
+
+.panel[.panel-name[Ejemplo 3]
+
+```{r, fig.width = 10}
+plot_ly(iris,y=~Sepal.Length,color=~Species,type='box') %>% 
+  layout(xaxis=list(title='Species'), yaxis= list(zeroline=FALSE)) # no esconder "marcas" en eje X
+```
+
+]
+
+.panel[.panel-name[Ejemplo 4]
+
+```{r, fig.width = 10}
+transformacion <- function(x) {
+  return(x^3 - x + 41)
+}
+
+dominio <- seq(-10,10,0.5)
+
+df <- data.frame(
+  x = dominio, 
+  y = transformacion(dominio), 
+  frame = 1:(length(dominio))
 )
-fig <- add_trace(fig,
-                text = ~paste("Speed: ",round(speed,2),"\nDistance: ",round(dist,2),sep=''),
-                hoverinfo = 'text',
-                marker=list(
-                            size=7.5,color='skyblue',
-                            line= list(color='rgba(255,0,0,0.75)',width=1)
+
+plot_ly(df,
+    x = ~x,
+    y = ~y,
+    frame = ~frame,
+    type = 'scatter',
+    mode = 'markers', # graficar cada coordenada por separado
+    showlegend = FALSE
+) %>%
+  add_trace(
+    marker=list(size=12,color='skyblue'),
+    text = ~paste("x: ",round(x,2),"\nf(x): ",round(y,2),sep=''),
+    hoverinfo = 'text' # mostrar texto cuando mouse este encima del punto
+) %>%
+  animation_opts(
+    frame = 100,      # tiempo (en ms) entre frames
+    transition = 0,   # Duración (en ms) de la transición entre frames
+    easing = "linear" # tipo de transición entre frames
+)
+```
+]
+
+.panel[.panel-name[Ejemplo 5]
+
+```{r, fig.width=10, eval = TRUE}
+accumulate_by <- function(dat, var) {
+  var <- lazyeval::f_eval(var, dat)
+  lvls <- plotly:::getLevels(var)
+  dats <- lapply(seq_along(lvls), function(x) {
+    cbind(dat[var %in% lvls[seq(1, x)], ], frame = lvls[[x]])
+  })
+  dplyr::bind_rows(dats)
+}
+
+txhousing %>%
+  filter(city %in% c("Abilene", "Bay Area")) %>%
+  accumulate_by(~date) %>%
+  plot_ly(
+    x = ~date, 
+    y = ~median,
+    frame = ~frame, 
+    split = ~city,
+    type = 'scatter',
+    mode = 'lines' # unir vía líneas los puntos consecutivos del gráfico
+) %>%
+  animation_opts(
+    frame = 50, 
+    transition = 0,
+    redraw = FALSE # dibujar el gráfico tras cada transición
+)
+```
+]
+]
+
+---
+
+`r chunk_reveal("plotly-3d", widths = c(0.5,0.5), title="### Gráficos 3D")`
+
+<style>
+  #plotly-3d {
+    margin-bottom: 2%; 
+  }
+
+  .panel1-plotly-3d-auto .remark-code-line {
+    width: 700px;
+  }
+
+  .panel2-plotly-3d-auto .remark-code-line {
+    display: none;
+  }
+
+  :root {
+    --code-highlight: rgba(200,0,100,0.5) !important;
+  }
+</style>
+
+```{r, plotly-3d, include = FALSE, eval = TRUE}
+plot_ly(z = ~volcano) %>%
+  add_surface(
+    contours = list(
+                    z = list(
+                            show=TRUE,
+                            usecolormap=TRUE,
+                            highlightcolor="red",
+                            project=list(z=TRUE)
                             )
+                    )
+) %>%
+  layout(
+    scene = list(
+                 camera=list(
+                             eye = list(x=1.87, y=0.88, z=-0.64)
+                            )
+                )
 )
-fig
-```
-
-???
-
-Remover la barra con botones:
-
-```r
-fig <- plot_ly(...) 
-fig <- config(fig, displayModeBar= FALSE)
-fig
 ```
 
 ---
-class: middle
-
-## Diagrama de cajas
-
-### Para una variable cuantitativa
-
-```r
-plot_ly(mtcars,y=~wt,type='box') %>% layout(xaxis=list(showticklabels = F))
-
-# Intento de simular que plotly oculte los valores atípicos, 
-# ya que por ahora no se posee aquella funcionalidad 
-plot_ly(mtcars, y=~wt, type='box', marker=list(opacity=0)) 
-```
-
-<p style="margin-bottom: 0px;"> &nbsp; </p>
-
-### Respecto a variables cualitativas, para una var. cuanti.
-
-```r
-# Boxplot vertical
-plot_ly(iris,y=~Sepal.Length,color=~Species,type='box') %>% layout(xaxis=list(title='Species'),yaxis= list(zeroline=FALSE))
-
-# Boxplot horizontal
-plot_ly(iris,x=~Sepal.Length,color=~Species,type='box')
-```
-
----
-class: middle
-
-### Gráficos 3D
-
-```r
-fig <- plot_ly(z = ~volcano)
-fig <- add_surface(fig,
-                   contours = list(
-                                   z = list(
-                                            show=TRUE,
-                                            usecolormap=TRUE,
-                                            highlightcolor="#ff0000",
-                                            project=list(z=TRUE)
-                                           )
-                                   )
-)
-fig <- layout(fig,
-              scene = list(
-                          camera=list(
-                                      eye = list(x=1.87, y=0.88, z=-0.64)
-                                     )
-                          )
-)
-fig
-```
-
----
-class: middle
 
 ## visNetwork
 
-[Tutorial](http://www.htmlwidgets.org/showcase_visNetwork.html)
+```{r, include = FALSE, eval = TRUE}
+library(visNetwork)
+```
+
+<p style="margin-bottom: -3%;"> &nbsp; </p>
+
+.panelset.sideways[
+
+.panel[.panel-name[Configuración]
+Tutorial:<br>
+<https://datastorm-open.github.io/visNetwork/>
+
+Listado de funciones:<br>
+<https://cran.r-project.org/web/packages/visNetwork/visNetwork.pdf>
 
 ```r
 install.packages('visNetwork')
 library(visNetwork)
 ```
+]
 
-```r
-nodes <- data.frame(id = 1:6, title = paste("node", 1:6), 
-                    shape = c("dot", "square"),
-                    size = 10:15, color = c("blue", "red"))
-edges <- data.frame(from = 1:5, to = c(5, 4, 6, 3, 3))
+.panel[.panel-name[Ejemplo 1]
+```{r}
+vertices <- data.frame(id = 1:4, 
+                  shape = c("circle", "square"), 
+                  label = LETTERS[1:4])
+aristas <- data.frame(from = c(2,4,3,3), to = c(1,2,4,2))
 
-grafo <- visNetwork(nodes, edges)
-grafo <- visOptions(grafo, highlightNearest = TRUE, nodesIdSelection = TRUE)
-grafo
+visNetwork(vertices, aristas, width = "100%") %>% 
+      visNodes(color = list(background = "lightblue", 
+                            border = "darkblue",
+                            highlight = "yellow"),
+               shadow = list(enabled = TRUE, size = 10))  %>%
+      visLayout(randomSeed = 12) # para tener siempre el mismo grafo   
+```
+]
+
+.panel[.panel-name[Ejemplo 2]
+```{r}
+aristas <- data.frame(from = c(2,3,5,7), to = c(1,4,6,10),
+                      length = c(100,250,500,700),
+                      width = c(1,2,3,5),
+                      arrows = c("to", "from", "to;from", "to"),
+                      dashes = c(TRUE, FALSE, TRUE, FALSE),
+                      smooth = c(FALSE, TRUE, FALSE, TRUE),
+                      shadow = c(FALSE, TRUE, FALSE, TRUE)
+) 
+
+vertices <- data.frame(id = 1:6, label=LETTERS[1:6], group = c("Y", "N"))
+visNetwork(vertices, aristas, height = "500px", width = "100%") %>%
+  visLayout(randomSeed = 42)
+```
+]
+
+.panel[.panel-name[Ejemplo 3]
+
+<https://datastorm-open.github.io/visNetwork/image_icon.html>
+
+```{r}
+vertices <- data.frame(id = 1:3, group = c("B", "A", "B"))
+aristas <- data.frame(from = c(1,2), to = c(2,3))
+
+visNetwork(vertices, aristas, width = "100%") %>%
+  visGroups(groupname = "A", shape = "icon", 
+            icon = list(code = "f0c0", size = 75)) %>%
+  visGroups(groupname = "B", shape = "icon", 
+            icon = list(code = "f007", color = "red")) %>%
+  addFontAwesome()
+```
+]
+
+
+.panel[.panel-name[Ejemplo 4]
+
+```{r}
+vertices <- data.frame(id = 1:7)
+aristas <- data.frame(from = c(1,2,2,2,3,3),
+                      to = c(2,3,4,5,6,7)
+)
+
+visNetwork(vertices, aristas, width = "100%") %>% 
+  visEdges(arrows = "middle") %>% 
+  visHierarchicalLayout()
+```
+]
+
+.panel[.panel-name[Ejemplo 5]
+```{r}
+vertices <- data.frame(id = 1:50)
+aristas <- data.frame(from = sample(1:50, 100, replace = TRUE),
+                      to = sample(1:50, 100, replace = TRUE)
+)
+
+visNetwork(vertices, aristas, width= "100%") %>%
+  visIgraphLayout(layout = "layout_in_circle") %>%
+  visNodes(size = 10)
+```
+]
+]
+
+???
+
+Actualizar página cada vez que muestro un nuevo ejemplo.
+
+---
+
+`r chunk_reveal("custom-graph-1", break_type = 5, widths = c(0.5,0.5), title="### Grafos aleatorios")`
+
+<style>
+  #grafos-aleatorios { margin-bottom: 2%; }
+</style>
+
+```{r custom-graph-1, include = FALSE, eval = TRUE}
+espacio_muestral <- prob::urnsamples(
+                       x = 1:6, size = 2,
+                       replace = FALSE,
+                       ordered = FALSE
+)
+
+vertices <- data.frame(
+                id = 1:6, 
+                title = paste(
+                          "node",
+                          1:6
+                        ), 
+                shape = "dot", size = 15, 
+                color = "lightblue"
+)
+
+aristas <- espacio_muestral %>% 
+              slice_sample(n=5)
+
+colnames(aristas) <- c("from","to")
+
+visNetwork(vertices, aristas)
 ```
 
 ---
-class: middle
 
-## networkD3
+## DT
 
-[Tutorial](https://christophergandrud.github.io/networkD3/)
-
-```r
-install.packages('networkD3')
-library(networkD3)
+```{r, include = FALSE, eval = TRUE}
+library(DT)
 ```
 
-```r
-data(MisLinks, MisNodes)
-forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
-             Target = "target", Value = "value", NodeID = "name",
-             Group = "group", opacity = 0.4)
-```
+<p style="margin-bottom: -3%;"> &nbsp; </p>
 
----
-class: middle
+.panelset.sideways[
 
-# DT
+.panel[.panel-name[Configuración]
+Tutorial:<br>
+<https://rstudio.github.io/DT/>
 
-[Tutorial](https://rstudio.github.io/DT/)
+Listado de funciones:<br>
+<https://cran.r-project.org/web/packages/DT/DT.pdf>
+
+Extensiones extra:<br>
+<https://datatables.net/extensions/index>
 
 ```r
 install.packages('DT')
 library(DT)
 ```
+]
+
+.panel[.panel-name[Tabla básica]
 
 ```r
 datatable(iris, options = list(pageLength = 5))
 ```
 
+]
+
+.panel[.panel-name[Tabla editable]
+
+```r
+datatable(head(mtcars), 
+            editable = 'cell' # 'row', 'column' 'all'
+)
+```
+
+]
+
+.panel[.panel-name[Botones extra]
+
 ```r
 datatable(mtcars,
+          editable = 'cell',
           extensions = "Buttons",
           options = list(
-                         dom="Bfrtip",
-                         buttons=c("copy","print","csv")
+                        dom="Bfrtip", # necesario para mostrar los botones
+                        buttons=c("copy","print","csv")
                         )
 )
 ```
 
+]
+]
+
+???
+
+Ejecutar aparte los códigos en **R**.
 
 ---
-class: middle
 
 ## threejs
 
-[Tutorial](https://github.com/bwlewis/rthreejs)
+```{r, include = FALSE, eval = TRUE}
+library(threejs)
+```
+
+<p style="margin-bottom: -3%;"> &nbsp; </p>
+
+.panelset.sideways[
+
+.panel[.panel-name[Configuración]
+Tutorial:<br>
+<https://github.com/bwlewis/rthreejs>
+
+Listado de funciones:<br>
+<https://cran.r-project.org/web/packages/threejs/threejs.pdf>
+
+Ejemplos para **R**:<br>
+<https://bwlewis.github.io/rthreejs/>
+
+El verdadero potencial de **three.js**:<br>
+<https://threejs.org/examples/>
 
 ```r
 install.packages('threejs')
 library(threejs)
 ```
 
+]
+
+.panel[.panel-name[Grafo interactivo]
+
+```{r, fig.width = 10, eval = TRUE}
+data(ego) # grafo social obtenido de Facebook
+graphjs(ego, bg="black")
 ```
-globejs(img ="ruta_de_imagen.png") 
+
+]
+
+.panel[.panel-name[Proyección 2D a esfera]
+
+```{r, fig.width = 10, eval = TRUE}
+# globejs(img = "ruta_local_de_alguna_imagen.png")
+globejs(img = xaringan:::karl)
 ```
+
+]
+
+.panel[.panel-name[Gráfico sobre el globo terrestre]
+
+```{r, fig.width = 10, message=FALSE, warning = FALSE}
+library(maps)
+library(maptools)
+
+data(world.cities, package="maps")
+ciudades <- world.cities[order(world.cities$pop,decreasing=TRUE)[1:1000],]
+
+globejs(bg = "white", 
+        lat=ciudades$lat,   # latitud
+        long=ciudades$long, # longitud
+        value = 100*(ciudades$pop/max(ciudades$pop)), # alturas para los valores
+        rotationlat = -0.34, # Rotación latitudinal inicial (en radianes) del globo
+        rotationlong =-0.38, # Rotación longitudinal inicial (en radianes) del globo
+        fov = 30 # Campo de visión (field of view) inicial
+)
+```
+
+]
+]
 
 ---
 
 ## rgl
 
-```r
+```{r, include = FALSE, eval = TRUE}
 library(rgl)
-library(rglwidget)
-library(htmltools)
+options(rgl.useNULL = TRUE) 
 ```
 
----
+<p style="margin-bottom: -3%;"> &nbsp; </p>
 
+.panelset.sideways[
+
+.panel[.panel-name[Configuración]
+Tutoriales:<br>
+- <https://cran.r-project.org/web/packages/rgl/vignettes/rgl.html>
+- <https://cran.r-project.org/web/packages/rgl/vignettes/WebGL.html>
+
+El segundo tutorial es de **gran** utilidad si poseen
+un nivel por lo menos básico de **JavaScript**.
+
+En caso no te funcione tras instalar el paquete:<br>
+<https://github.com/cran/rgl>
+
+Listado de funciones:<br>
+<https://cran.r-project.org/web/packages/rgl/rgl.pdf>
+
+```r
+install.packages('rgl')
+library(rgl)
+
+# Suprimir la ventana aparte que contiene el gráfico "rgl",
+# para que se grafique dentro del documento html creado.
+options(rgl.useNULL = TRUE) 
+```
+
+]
+
+.panel[.panel-name[Ejemplo 1]
+
+### Gráfico de dispersión
+
+```{r, fig.width = 10}
+{{close3d()}}
+{{open3d()}}
+
+numero_puntos <- 12*25
+x <- sort(rnorm(numero_puntos))
+y <- rnorm(numero_puntos)
+z <- rnorm(numero_puntos) + atan2(x,y)
+
+points3d(x, y, z, col = rainbow(numero_puntos))
+# lines3d(x, y, z, col = rainbow(numero_puntos))
+# segments3d(x, y, z, col = rainbow(numero_puntos))
+# triangles3d(x, y, z, col = rainbow(numero_puntos))
+# quads3d(x, y, z, col = rainbow(numero_puntos))
+
+{{rglwidget()}}
+```
+
+```{r, fig.width = 10}
+close3d()
+open3d()
+
+plot3d(x, y, z, col = rainbow(numero_puntos))
+rglwidget()
+```
+
+]
+
+.panel[.panel-name[Ejemplo 2]
+
+### Customización gráfica
+
+```{r, fig.width = 10}
+close3d()
+open3d()
+
+triangles3d(x, y, z, col = rainbow(numero_puntos))
+axes3d(tick = TRUE, nticks = 10)
+
+# Añadir algunas propiedades al gráfico 3D
+decorate3d(   
+  main = "Título",
+  box = TRUE, # Dibujar caja alrededor del gráfico
+  expand = 1.25, # Cuánto expandir la caja (si se dibuja) respecto al gráfico
+  aspect = c(0.5,1,1.5) # aspect ratio de los ejes
+)
+bg3d("#92E3ED") # color de fondo
+
+rglwidget(elementId = "ejemplo-2")
+```
+]
+
+.panel[.panel-name[Ejemplo 3]
+
+### Superficies de revolución
+
+```{r, fig.width = 10}
+close3d()
+open3d()
+
+x <- seq(from=1, to=5, by=0.5)
+y <- log(x)
+
+{{wire3d(turn3d(x, y, n = 20, smooth = FALSE))}}
+# shade3d(turn3d(x, y, n = 20, smooth = TRUE), col="green")
+# dot3d(turn3d(x, y, n = 20, smooth = FALSE), col="#EA42FF")
+
+rglwidget()
+```
+
+```{r, fig.width = 10}
+close3d()
+open3d()
+
+shade3d(turn3d(x, y, n = 20, 
+               smooth = TRUE # Renderización gráfica más "suave"
+               ),
+        col="green"
+)
+
+rglwidget()
+```
+
+]
+
+.panel[.panel-name[Ejemplo 4]
+
+### Animación de curva respecto al tiempo
+
+```{r, fig.width = 10, eval = TRUE}
+close3d()
+open3d()
+
+library(manipulateWidget) # instalarla si es necesario
+
+tiempo <- 0:500
+xyz <- data.frame(
+            x = cos(tiempo/20),
+            y = sin(tiempo/10),
+            z = tiempo
+)
+id_curva <- plot3d(xyz, type="l")["data"]  # curva por trazar
+id_esfera <- spheres3d(xyz[1,],      # este valor no importa, 
+                                     # se reemplaza al iniciar la animación
+                      radius = 8,    # radio de la esfera graficada
+                      col = "purple" # color de la esfera graficada
+)
+
+rglwidget(elementId = "curva-parametrizada") %>%
+  playwidget(list(
+    ageControl(births = tiempo, # Frames en los cuales la gráfica se actualizará
+              ages = c(
+                        0,  # Al inicio del frame del frame actual
+                        20, # Tras 20 frames del frame actual
+                        50  # Tras 50 frames del frame actual
+                      ),
+              colors = c(
+                          "green", # Color de vértice tras transcurrir 0 frames
+                          "red",   # Color de vértice tras transcurrir 20 frames
+                          "blue"   # Color de vértices tras transcurrir 100 frames
+                        ), 
+              objids = id_curva # Identificador que será actualizado via "colors",
+                                # en este caso, la curva graficada.
+    ),
+    
+    ageControl(births = 0,        # Actualizaciones iniciarán en el primer frame
+              ages = tiempo,      # Tras aquellas cantidad de frames (n-ésimo frame),
+              vertices = xyz,     # actualizar el gráfico con el n-ésimo vértice.
+              objids = id_esfera) # Las actualizaciones serán para el
+                                  # gráfico de una esfera (en posiciones distintas)
+              ),
+
+    start = 0, stop = max(tiempo), # cantidad de frames por considerar en la animación
+    rate = 50, # cantidad de frames por segundo
+    components = c("Reverse", "Play", "Slower", "Faster","Reset", "Slider", "Label"),
+    loop = TRUE # Repetir la animación cuando concluya.
+  )
+```
+
+]
+
+.panel[.panel-name[Ejemplo 5]
+
+### Combinando rgl y JavaScript
+
+```js
+////// Código de JavaScript //////
+rgl = document.getElementById('curva-parametrizada').rglinstance;
+rglObject = rgl.getObj(rgl.subsceneid); 
+
+//// Ejemplo particular: Rotaciones ////
+angulo = 10;
+
+// Una rotación respecto al eje X
+rglObject.par3d.userMatrix.rotate(angulo, 0, 1, 0);
+rgl.drawScene();
+
+// Una rotación respecto al eje Y
+rglObject.par3d.userMatrix.rotate(angulo, 1, 0, 0);
+rgl.drawScene();
+
+// Iniciar rotación constante respecto al eje X 
+let rotaX = setInterval(
+  function () {
+    rglObject.par3d.userMatrix.rotate(angulo, 0, 1, 0);
+    rgl.drawScene();
+  }
+, 200);
+
+// Iniciar rotación constante respecto al eje Y 
+let rotaY = setInterval(
+  function () {
+    rglObject.par3d.userMatrix.rotate(angulo, 1, 0, 0);
+    rgl.drawScene();
+  }
+, 200);
+
+// Detener alguna rotación
+clearInterval(rotaX);
+clearInterval(rotaY);
+```
+
+]
+]
+
+???
+
+Para el ejemplo 5:
+
+Alterar los siguientes valores asociados al gráfico:<br>
+- Ejemplo raro probablemente sin mucha utilidad
+    - `rgl.colLoc = 0` 1, 2 o 3 (mismo resultado que 3 para valores >=3)
+    - `rgl.drawScene()` 
+
+- Cambiar color de los valores en los ejes
+    - `rgl.canvas.style.backgroundColor = "blue"` 
+
+- Modificar tamaño de la caja contenedora:
+    - `rglObject.par3d.bbox[some_index] = some_number`
+    - `rgl.drawScene()` 
+
+- Alterar el nivel de zoom
+    - `rglObject.par3d.FOV = 10`
+    - `rglObject.par3d.zoom = 0.5` 
+
+- Cambiar las escalas de los ejes
+    - `rglObject.par3d.scale` 
+    - Para proyectar el gráfico sobre el eje XY:<br>
+    `rglObject.par3d.scale[2]=0`<br>
+    Requiere después hacer click en la figura para proyectarse.
+
+- Proyección (creo) respecto a los planos de R^3
+    - XY: `rglObject.par3d.userMatrix.scale(0,1,1)` 
+    - XZ: `rglObject.par3d.userMatrix.scale(1,1,0)`
+
+- Rotación
+    - `rglObject.par3d.userMatrix.rotate(angulo_en_grados,x,y,z)` 
+
+---
 
 ## Referencias
 
 - <http://www.htmlwidgets.org/>
+- <https://rstudio.github.io/leaflet/>
+- <https://rstudio.github.io/dygraphs/>
+- <https://plotly.com/r/>
+- <https://datastorm-open.github.io/visNetwork/>
+- <https://rstudio.github.io/DT/>
+- <https://github.com/bwlewis/rthreejs>
+- <https://cran.r-project.org/web/packages/rgl/vignettes/rgl.html>
