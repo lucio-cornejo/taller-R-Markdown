@@ -21,6 +21,8 @@ navbar:
           href: clase-3.html
         - text: "Clase 4: Distill, Blogdown y Bookdown"
           href: clase-4.html
+        - text: "Clase 5: Flexdashboard y htmlwidgets"
+          href: clase-5.html
 
     - text: " Diapositivas"
       icon: far fa-object-ungroup

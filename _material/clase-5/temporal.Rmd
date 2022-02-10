@@ -1,0 +1,8 @@
+---
+output: html_document
+---
+
+## ¿Viniste de la página del dashboard?
+
+- [x] Crear un dashboard.
+- [ ] Ver video de la sesión 4 in one sitting.

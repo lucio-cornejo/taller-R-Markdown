@@ -204,36 +204,48 @@ yeti<br>
 </details>
 
 ---
-class: middle
+
+
+.pull-left[
 
 ## valueBox 
+
+<p style="margin-bottom: -80px;"> &nbsp; </p>
 
 ````text
 ### Mensaje 
 
 ```{r, echo = FALSE}`r ''` 
-valor <- 13
-valueBox(valor, color="success")
+value <- 13
+valueBox(value, icon = "fa-trash",
+  href = "#htmlwidgets", 
+  # tal link solo dirige a páginas/layouts
+  color = ifelse(value > 10, "warning", "primary") 
+  # "succes" "danger" disponibles también)
 ```
-
 ````
 
+<p style="margin-bottom: -60px;"> &nbsp; </p>
+
 ## gauge
+
+<p style="margin-bottom: -80px;"> &nbsp; </p>
 
 ````text
 ### Gráfico
 
 ```{r, echo = FALSE}`r ''` 
 level <- 42
-gauge(level, min=0, max=100)
+gauge(level, min=0, max=100, symbol="%",
+      gaugeSectors( success = c(90,100),
+                    warning = c(70,89),
+                    danger  = c(0,69) ))
 ```
 ````
 
----
+]
 
-<p style="margin-bottom: -70px;"> &nbsp; </p>
-
-.pull-left[
+.pull-right[
 
 ## Uso de tabsets
 
@@ -249,37 +261,124 @@ contenido 1
 contenido 2
 ```
 
-]
+<p style="margin-bottom: -30px;"> &nbsp; </p>
 
-.pull-right[
 ## Creación de nuevos layouts
 
 ```text
 # Layout 1
-
 ## 
-
 ### Columna solitaria
 
 # Layout 2 {data-icon=fa-frog}
-
 ## 
-
 ### Columna extra solitaria
-
 ```
+
 ]
 
-<p style="margin-bottom: -30px;"> &nbsp; </p>
+---
+
+<p style="margin-bottom: -70px;"> &nbsp; </p>
 
 ## Uso de íconos para el navegador
 
+<p style="margin-bottom: -80px;"> &nbsp; </p>
+
 - [Ejemplos](https://fontawesome.com/v5.15/icons) de íconos, aunque
 no todos están disponibles en flexdashboard.
-
 - **No dejar espacio entre los extremos del símbolo**
 &nbsp;&nbsp;_=_&nbsp;&nbsp;
 **al definir _data-icon="fa-sth"_**
+
+<p style="margin-bottom: -60px;"> &nbsp; </p>
+
+## Cambiar la orientación de una página/layout
+
+<p style="margin-bottom: -80px;"> &nbsp; </p>
+
+```md
+# Filas {data-orientation=rows}
+
+## {data-height=700}
+### Columna 1 {data-width=300}
+### Columna 2 {data-width=700}
+
+## {data-height=300}
+### Columna 3
+### Columna 4
+```
+
+## Incluir en el sitio web el código Rmd del dashboard
+
+<p style="margin-bottom: -80px;"> &nbsp; </p>
+
+```yaml
+output:
+  flexdashboard::flex_dashboard:
+    source_code: embed
+```
+
+---
+class: middle
+
+## Customización de la barra de navegación
+
+```yaml
+output: 
+  flexdashboard::flex_dashboard:
+    favicon: favicon.ico # También puede ser .png .
+    logo: logo.png       # La imagen no será reescalada.
+    social:
+      - twitter
+      - facebook
+      - google-plus
+      - linkedin
+      - pinterest
+      - menu     # contiene todas las redes sociales disponibles por default
+    navbar:
+      - title: "About"
+        icon: far fa-folder-open  # misma manera que se definen en _site.yml
+        href: "temporal.html" # https://www.google.com
+        align: left # right
+```
+
+???
+
+El logo debería tener 48 pixels de altura para que "se vea bien" en el barra 
+de navegación de la plantilla "cosmo", pero 
+**otras plantillas podrían tener distintas alturas para la barra de navegación.** 
+
+---
+
+## Organizar las páginas/layouts en secciones
+
+<p style="margin-bottom: -70px;"> &nbsp; </p>
+
+```md
+# Página A.1 {data-navmenu="Sección A"}
+
+## Column
+### Fila A.1.1
+### Fila A.1.2
+
+# Página A.2 {data-navmenu="Sección A" data-icon="fa-frog"}
+
+##
+### Fila A.2.1
+
+[Link](#primer-secreto) al primer secreto.
+
+##
+### Fila A.2.2
+
+# Primer secreto {data-navmenu="Secretos" .hidden}
+
+Escondemos esta página del menú donde está contenida, pero
+aún es posible acceder a la página vía el link que usamos para llegar acá.
+
+[Math has a fatal flaw](https://www.youtube.com/watch?v=HeQX2HjkcNo&t=64s&ab_channel=Veritasium)
+```
 
 ---
 class: middle
@@ -289,7 +388,7 @@ class: middle
 <p style="margin-bottom: -80px;"> &nbsp; </p>
 
 Cuando se requiere presentar una secuencia de visualizaciones 
-de data (con comentarios respectivos) podemos emplear la opción 
+de data, con comentarios respectivos, podemos emplear la opción 
 
 ```yaml
 output: 
@@ -301,14 +400,55 @@ Revisemos el siguiente
 [ejemplo](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-showcase-storyboard/htmlwidgets-showcase-storyboard.html)
 de una **storyboard** creada con **flexdashboard**.
 
-<br>
+También es posible que no todo el dashboard posea el modo **storyboard**,
+sino alguna(s) de sus páginas.
+
+---
+
+<p style="margin-bottom: -70px;"> &nbsp; </p>
+
+## Página/layout en modo `storyboard` 
+
+<p style="margin-bottom: -80px;"> &nbsp; </p>
+
+````md
+# Déjame que te cuente limeñe .. {.storyboard}
+
+### Frame 1 {data-commentary-width=1000}
+
+```{r}`r ''` 
+plot(pressure)
+```
+
+---
+
+Comentario para el primer frame.
+
+Para **storyboard**, ya no se usan los encabezados de nivel 2.
+
+### Corta descripción para el segundo frame, pero corta en serio porque si nos sobrepasamos del espacio disponible en la sección de la página web para este texto, no será visible el texto que se sobrepasó al espacio disponible.
+
+```{r}`r ''` 
+#| echo: FALSE
+knitr::include_graphics(xaringan:::karl)
+```
+
+---
+
+Who dat?
+````
+
+---
+class: middle
 
 ## Referencias
 
 <p style="margin-bottom: -80px;"> &nbsp; </p>
 
 - <https://pkgs.rstudio.com/flexdashboard/articles/>
+
 - <https://pkgs.rstudio.com/flexdashboard/articles/using.html>
+
 - <https://warin.ca/dpr/dashboards.html#storyboards>
 
 ---
@@ -317,7 +457,7 @@ class: middle
 ## htmlwidgets
 
 Este paquete de **R** nos permite emplear directamente en **R**
-(y**R Markdown** ) librerías de **JavaScript** especializadas
+(y **R Markdown** ) librerías de **JavaScript** especializadas
 en visualización de datos.
 
 Asimismo, la librería **htmlwidgets** nos da la posibilidad
@@ -347,7 +487,8 @@ knitr::opts_chunk$set(eval = FALSE)
 
 ## Leaflet
 
-```{r, include = FALSE, eval = TRUE}
+```{r, include = FALSE}
+#| eval: TRUE
 library(leaflet)
 ```
 
@@ -370,7 +511,8 @@ library(leaflet)
 
 .panel[.panel-name[Creación de un mapa]
 
-```{r, eval = TRUE}
+```{r}
+#| eval: TRUE
 leaflet() %>%
   addTiles() %>%
   addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
@@ -407,7 +549,8 @@ Ejecutar secuencialmente el primer ejemplo de un mapa.
 
 ## Dygraphs
 
-```{r, include = FALSE, eval = TRUE}
+```{r, include = FALSE}
+#| eval: TRUE
 library(dygraphs)
 ```
 
@@ -430,7 +573,8 @@ library(dygraphs)
 
 .panel[.panel-name[Ejemplo 1]
 
-```{r, fig.width = 10, eval = TRUE}
+```{r, fig.width = 10}
+#| eval: TRUE
 dygraph(mdeaths) %>%
   dyRangeSelector()
 ```
@@ -469,7 +613,8 @@ dygraph(nhtemp, main = "New Haven Temperatures") %>%
 
 ## Plotly
 
-```{r, include = FALSE, eval = TRUE}
+```{r, include = FALSE}
+#| eval: TRUE
 library(plotly)
 ```
 
@@ -524,42 +669,7 @@ plot_ly(iris,y=~Sepal.Length,color=~Species,type='box') %>%
 .panel[.panel-name[Ejemplo 4]
 
 ```{r, fig.width = 10}
-transformacion <- function(x) {
-  return(x^3 - x + 41)
-}
-
-dominio <- seq(-10,10,0.5)
-
-df <- data.frame(
-  x = dominio, 
-  y = transformacion(dominio), 
-  frame = 1:(length(dominio))
-)
-
-plot_ly(df,
-    x = ~x,
-    y = ~y,
-    frame = ~frame,
-    type = 'scatter',
-    mode = 'markers', # graficar cada coordenada por separado
-    showlegend = FALSE
-) %>%
-  add_trace(
-    marker=list(size=12,color='skyblue'),
-    text = ~paste("x: ",round(x,2),"\nf(x): ",round(y,2),sep=''),
-    hoverinfo = 'text' # mostrar texto cuando mouse este encima del punto
-) %>%
-  animation_opts(
-    frame = 100,      # tiempo (en ms) entre frames
-    transition = 0,   # Duración (en ms) de la transición entre frames
-    easing = "linear" # tipo de transición entre frames
-)
-```
-]
-
-.panel[.panel-name[Ejemplo 5]
-
-```{r, fig.width=10, eval = TRUE}
+#| eval: TRUE
 accumulate_by <- function(dat, var) {
   var <- lazyeval::f_eval(var, dat)
   lvls <- plotly:::getLevels(var)
@@ -569,14 +679,15 @@ accumulate_by <- function(dat, var) {
   dplyr::bind_rows(dats)
 }
 
-txhousing %>%
-  filter(city %in% c("Abilene", "Bay Area")) %>%
-  accumulate_by(~date) %>%
+iris2 <- iris
+iris2$indices <- 1:nrow(iris2)
+
+iris2 %>%
+  accumulate_by(~indices) %>%
   plot_ly(
-    x = ~date, 
-    y = ~median,
+    x = ~indices, 
+    y = ~Sepal.Length,
     frame = ~frame, 
-    split = ~city,
     type = 'scatter',
     mode = 'lines' # unir vía líneas los puntos consecutivos del gráfico
 ) %>%
@@ -611,7 +722,8 @@ txhousing %>%
   }
 </style>
 
-```{r, plotly-3d, include = FALSE, eval = TRUE}
+```{r, plotly-3d, include = FALSE}
+#| eval: TRUE
 plot_ly(z = ~volcano) %>%
   add_surface(
     contours = list(
@@ -636,7 +748,8 @@ plot_ly(z = ~volcano) %>%
 
 ## visNetwork
 
-```{r, include = FALSE, eval = TRUE}
+```{r, include = FALSE}
+#| eval: TRUE
 library(visNetwork)
 ```
 
@@ -748,7 +861,8 @@ Actualizar página cada vez que muestro un nuevo ejemplo.
   #grafos-aleatorios { margin-bottom: 2%; }
 </style>
 
-```{r custom-graph-1, include = FALSE, eval = TRUE}
+```{r custom-graph-1, include = FALSE}
+#| eval: TRUE
 espacio_muestral <- prob::urnsamples(
                        x = 1:6, size = 2,
                        replace = FALSE,
@@ -777,7 +891,9 @@ visNetwork(vertices, aristas)
 
 ## DT
 
-```{r, include = FALSE, eval = TRUE}
+```{r, include = FALSE}
+#| eval: TRUE
+# options(DT.options = list(scrollY="100vh"))
 library(DT)
 ```
 
@@ -843,7 +959,8 @@ Ejecutar aparte los códigos en **R**.
 
 ## threejs
 
-```{r, include = FALSE, eval = TRUE}
+```{r, include = FALSE}
+#| eval: TRUE
 library(threejs)
 ```
 
@@ -873,7 +990,8 @@ library(threejs)
 
 .panel[.panel-name[Grafo interactivo]
 
-```{r, fig.width = 10, eval = TRUE}
+```{r, fig.width = 10}
+#| eval: TRUE
 data(ego) # grafo social obtenido de Facebook
 graphjs(ego, bg="black")
 ```
@@ -882,7 +1000,8 @@ graphjs(ego, bg="black")
 
 .panel[.panel-name[Proyección 2D a esfera]
 
-```{r, fig.width = 10, eval = TRUE}
+```{r, fig.width = 10}
+#| eval: TRUE
 # globejs(img = "ruta_local_de_alguna_imagen.png")
 globejs(img = xaringan:::karl)
 ```
@@ -915,7 +1034,8 @@ globejs(bg = "white",
 
 ## rgl
 
-```{r, include = FALSE, eval = TRUE}
+```{r, include = FALSE}
+#| eval: TRUE
 library(rgl)
 options(rgl.useNULL = TRUE) 
 ```
@@ -1042,7 +1162,8 @@ rglwidget()
 
 ### Animación de curva respecto al tiempo
 
-```{r, fig.width = 10, eval = TRUE}
+```{r, fig.width = 10}
+#| eval: TRUE
 close3d()
 open3d()
 
@@ -1176,10 +1297,17 @@ Alterar los siguientes valores asociados al gráfico:<br>
 ## Referencias
 
 - <http://www.htmlwidgets.org/>
+
 - <https://rstudio.github.io/leaflet/>
+
 - <https://rstudio.github.io/dygraphs/>
+
 - <https://plotly.com/r/>
+
 - <https://datastorm-open.github.io/visNetwork/>
+
 - <https://rstudio.github.io/DT/>
+
 - <https://github.com/bwlewis/rthreejs>
+
 - <https://cran.r-project.org/web/packages/rgl/vignettes/rgl.html>
