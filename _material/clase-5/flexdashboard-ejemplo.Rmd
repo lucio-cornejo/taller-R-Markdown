@@ -1,127 +1,120 @@
 ---
-title: Sesión 5
+title: Mi dashboard
 output: 
   flexdashboard::flex_dashboard:
-    logo: logo.png       # La imagen o será reescalada.
-    favicon: favicon.ico # puede ser .png también
+    theme: cosmo
     orientation: columns
-    source_code: embed
     vertical_layout: fill
-    # social:
-    #   - twitter
-    #   - facebook
-    #   - google-plus
-    #   - linkedin
-    #   - pinterest
-    #   - menu     # contiene todas las redes sociales disponibles por default
-    navbar:
-      - title: "About"
-        icon: far fa-folder-open  # misma manera que se definen en _site.yml
-        href: "temporal.html" # https://www.google.com
-        align: left
+    source_code: embed
+    favicon: favicon.ico # También puede ser .png .
+    social:
+      - menu 
 ---
 
-```{r setup, include=FALSE}
-library(DT)
+```{r setup, include=FALSE} 
 library(flexdashboard)
-knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
 ```
 
-# Flexdashboard
+# Layout 1
 
-## {data-width=600}
 
-### Sección c11 {data-height=300}
+## {data-width=600 .tabset}
 
-```{r instalaciones, eval=FALSE}
-# Creación de dashboards con R Markdown
-install.packages('flexdashboard')
+### Instalación {data-height=300}
 
-# Paquete para tablas interactivas
+```r
 install.packages('DT')
 ```
 
-### Sección c12 {data-height=700 .no-margin}
+```{r}
+library(DT)
+```
 
-```{r, echo = FALSE}
+### Data por "analizar" {data-height=700}
+
+```{r}
 options(DT.options = list(scrollY="100vh"))
+DT::datatable(iris)
+```
 
-datatable(iris,
-  extensions = "Buttons",
-  options = list(
-    dom="Bfrtip",
-    buttons=c("copy","print","csv")
-  )
+## 
+
+### Coeficiente de correlación lineal 
+
+```{r, echo = FALSE} 
+value <- round(cor(iris$Petal.Length,iris$Petal.Width),2)
+
+valueBox(value, icon = "fa-trash",
+  href = "#layout-2", 
+  color = "success"
 )
 ```
 
-## {data-width=400}
 
-### Mensaje para valueBox {data-height=600}
+### Valor absoluto del coef. de corrleación lineal
 
-```{r, echo = FALSE}
-value <- 13
-valueBox(
-  value, icon = "fa-trash",
-  href="#htmlwidgets", # solo dirige a páginas
-  color = ifelse(value > 10, "warning", "primary") # succes, danger
+```{r, echo = FALSE} 
+level <- abs(value)
+gauge(level, min=0, max=1, 
+      gaugeSectors( success = c(0.5,1),
+                    warning = c(0.25,0.49),
+                    danger  = c(0,0.249) )
 )
 ```
 
-### Sección c23 {data-height=400}
+# Layout 2 {data-icon="fa-frog" data-orientation=rows}
 
-```{r, echo = FALSE}
-level <- 42
-gauge(level, min=0,
-      max=100, symbol="%",
-      gaugeSectors(
-          success = c(90,100),
-          warning = c(70,89),
-          danger  = c(0,69)
-          )
-)
-```
+## 
 
-# Filas {data-orientation=rows}
+### Columna 2.1
 
-## {data-height=700}
-### Columna 1 {data-width=300}
-### Columna 2 {data-width=700}
+texto
 
-## {data-height=300}
-### Columna 3
-### Columna 4
+### Columna 2.2
 
+textoooo
+
+##
+
+### Columna 2.3
+
+lorem ipsum
 
 # Página A.1 {data-navmenu="Sección A"}
 
 ## Column
+
 ### Fila A.1.1
+
 ### Fila A.1.2
 
 # Página A.2 {data-navmenu="Sección A" data-icon="fa-frog"}
 
 ##
+
 ### Fila A.2.1
 
 [Link](#primer-secreto) al primer secreto.
 
 ##
+
 ### Fila A.2.2
+
 
 # Primer secreto {data-navmenu="Secretos" .hidden}
 
 Escondemos esta página del menú donde está contenida, pero
 aún es posible acceder a la página vía el link que usamos para llegar acá.
-
 [Math has a fatal flaw](https://www.youtube.com/watch?v=HeQX2HjkcNo&t=64s&ab_channel=Veritasium)
 
 
-# Déjame que te cuente limeñe .. {.storyboard}
+
+
+# Déjame que te cuente limeñe ... {.storyboard}
 
 ### Frame 1 {data-commentary-width=1000}
 
-```{r}
+```{r} 
 plot(pressure)
 ```
 
@@ -129,9 +122,12 @@ plot(pressure)
 
 Comentario para el primer frame.
 
+Para **storyboard**, ya no se usan los encabezados de nivel 2.
+
+
 ### Corta descripción para el segundo frame, pero corta en serio porque si nos sobrepasamos del espacio disponible en la sección de la página web para este texto, no será visible el texto que se sobrepasó al espacio disponible.
 
-```{r}
+```{r} 
 #| echo: FALSE
 knitr::include_graphics(xaringan:::karl)
 ```
@@ -139,19 +135,3 @@ knitr::include_graphics(xaringan:::karl)
 ---
 
 Who dat?
-
-# htmlwidgets {data-icon=fa-fighter-jet}
-
-## {.tabset .tabset-fade}
-
-### Leaflet
-
-```{r, echo = FALSE}
-library(leaflet)
-
-m <- leaflet() %>% addTiles()
-m
-```
-
-### DT
-y

@@ -220,8 +220,8 @@ value <- 13
 valueBox(value, icon = "fa-trash",
   href = "#htmlwidgets", 
   # tal link solo dirige a páginas/layouts
-  color = ifelse(value > 10, "warning", "primary") 
-  # "succes" "danger" disponibles también)
+  color = ifelse(value > 10, "warning", "primary"))
+  # "succes" "danger" disponibles también
 ```
 ````
 
@@ -266,13 +266,11 @@ contenido 2
 ## Creación de nuevos layouts
 
 ```text
-# Layout 1
-## 
-### Columna solitaria
-
 # Layout 2 {data-icon=fa-frog}
+
 ## 
-### Columna extra solitaria
+
+### Fila solitaria
 ```
 
 ]
@@ -758,8 +756,9 @@ library(visNetwork)
 .panelset.sideways[
 
 .panel[.panel-name[Configuración]
-Tutorial:<br>
-<https://datastorm-open.github.io/visNetwork/>
+Tutoriales:<br>
+- <https://datastorm-open.github.io/visNetwork/>
+- <https://cran.r-project.org/web/packages/visNetwork/vignettes/Introduction-to-visNetwork.html>
 
 Listado de funciones:<br>
 <https://cran.r-project.org/web/packages/visNetwork/visNetwork.pdf>
