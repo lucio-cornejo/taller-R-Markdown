@@ -1,0 +1,63 @@
+---
+title: Distill, Blogdown y Bookdown
+output: html_document
+---
+
+```{r, child="_yoshi-TOC.Rmd"}
+```
+
+<style>
+  /* Fix embedded video width for mobile */
+  @media (max-width: 767px) {
+    iframe { max-width: 90vw; }
+  }
+</style>
+
+## Video para la sesión 4
+
+Los tres paquetes que se exploraron en esta sesión no tienen
+relación/dependencia alguna entre sí. Entonces, podrían ver el
+siguiente video por secciones separadas (en días distintos o como deseen),
+ya que no se pierden casi nada sobre uno de los paquetes mostrados en
+el video si no vieron alguno de los otros.
+
+En la descripción del video de Youtube encontrarán los links necesarios.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WKUTifGb0nk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Paquete Distill
+
+## Paquete Blogdown
+
+Les comparto esta [guía](https://www.caitlincasar.com/post/blogdown/)
+en caso deseen explorar otras plantillas de **Blogdown**.
+
+## Paquete Bookdown
+
+### Creación de figuras
+
+Pese a que podemos emplear Markdown para insertar figuras, vía 
+`![texto](link o ruta)`, para poder emplear la referencia a imágenes
+y el control sobre aquellas que exploramos en el video, es mejor 
+importar imágenes vía el siguiente comando de **R**:<br>
+`knitr::include_graphics(link o ruta)`, dentro de un
+chunk de **R**.
+
+[Documentación](https://www.rdocumentation.org/packages/knitr/versions/1.37/topics/include_graphics)
+de la función `knitr::include_graphics`.
+
+### Creación de tablas
+
+Análogamente a como comenté en la sección _Creación de figuras_,
+una mejor alternativa para crear tablas en **Bookdown** es incluir
+en un chunk de **R** lo siguiente:<br>
+`knitr::kable(...)` 
+
+[Tutorial](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
+para el uso de la función `knitr::kable`.
+
+## Tarea
+
+Esta semana no hay tarea, pero sería ideal que usen alguno de los tres
+paquetes presentados en esta sesión, para iniciar algún proyecto de su 
+interés.
