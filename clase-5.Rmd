@@ -26,18 +26,31 @@ que deseamos para los gráficos que presentaremos usando los paquetes
 
 ## htmlwidgets
 
-En esta sesión, exploramos **siete widgets** _importados_ de librerías
+En esta sesión, empleamos **siete widgets** _importados_ de librerías
 de **JavaScript** gracias al paquete **htmlwidgets**.<br>
-Existen más **widgets** disponibles en **R**, así que es algo
-que podrían explorar también.
+Existen más **widgets** disponibles en **R**, así que podrían
+buscar más ejemplos de los vistos en clase.
 
 Todavía no exploraremos la funcionalidad del paquete **htmlwidgets**
 para poder crear **nuestro propio widget**, ya que aquello lo realizaremos
-en la última sesión del taller, después de haber explorado el lenguaje
-de programación **JavaScript**.
+en la última sesión del taller, después de haber aprendido lo básico
+del lenguaje de programación **JavaScript**.
 
 ## Tarea
 
-Esta semana no hay tarea, pero, les servirá empezar a explorar los
-paquetes expuestos esta clase, ya que serán los que usarán para
-el **proyecto final** que les pediré tras finalizar el taller.
+Para la siguiente sesión, deben haber creado un dashboard en el cual
+empleen al menos **tres** de los widgets presentados en clase, con el fin
+de explorar algún dataset (o datasets) que usteden hayan escogido.
+
+El objetivo de la tarea es que en la siguiente sesión, podamos potenciar
+el dashboard creado, convirtiéndolo en una aplicación web vía el uso
+del paquete **Shiny**.
+
+Aquel paquete nos permitirá condicionar la ejecución de cierto código 
+(sea de R, Python, JavaScript, etc), en función de la interacción del usuario
+con ciertos elementos del sitio web que crearemos.
+
+Ejemplos de proyectos creados con el paquete **Shiny**:
+
+- <https://dreamrs.shinyapps.io/memory-hex/>
+- <https://shiny.rstudio.com/gallery/kmeans-example.html>
