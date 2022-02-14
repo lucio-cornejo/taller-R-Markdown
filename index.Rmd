@@ -15,48 +15,24 @@ knitr::opts_chunk$set(echo = TRUE)
 <p style="margin-bottom: -50px;"> &nbsp; </p>
 <!--#region sesiones -->
 
-## Sesiones futuras
-```{scss, echo=FALSE}
-#sesiones {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  table-layout: fixed;
+## Sesiones
 
-  tr { background-color: rgb(200, 200, 200); }
+1. [Markdown y YAML](https://www.youtube.com/watch?v=NeF_aSqc1gc&list=PLm0X6MqpAzQJ57auak4J9syjBSjdvJQE1&index=3)
 
-  td {
-    border: 2px solid black;
+1. [Reportes parametrizados](https://www.youtube.com/watch?v=pD6ryYW_KGw&list=PLm0X6MqpAzQJ57auak4J9syjBSjdvJQE1&index=4)
 
-    pre { 
-      border: collapse;
-      margin-top: 8%;
-      background-color: rgb(200, 200, 200);
-    } 
-  }
-}
-```
+1. [Xaringan y creación de un sitio web](https://www.youtube.com/watch?v=uXfpvnFqRhQ&list=PLm0X6MqpAzQJ57auak4J9syjBSjdvJQE1&index=5)
 
-<p style="margin-bottom: -10px;"> &nbsp; </p>
+1. [Distill, Blogdown y Bookdown](https://www.youtube.com/watch?v=WKUTifGb0nk&list=PLm0X6MqpAzQJ57auak4J9syjBSjdvJQE1&index=6)
 
-<table id = "sesiones">
-    <tr>
-        <td><pre>1. Markdown y YAML</pre></td>
-        <td><pre>4. Distill, Blogdown y Bookdown</pre></td>
-        <td><pre>7. HTML y CSS</pre></td>
-    </tr>
-    <tr>
-        <td><pre>2. Reportes parametrizados</pre></td>
-        <td><pre>5. Dashboards y htmlwidgets</pre></td>
-        <td><pre>8. Javascript</pre></td>
-    </tr>
-    <tr>
-        <td><pre>3. Xaringan y creación de un sitio web</pre></td>
-        <td><pre>6. Shiny</pre></td>
-        <td><pre>9. R Markdown Intermedio</pre></td>
-    </tr>
-</table>
+1. [Dashboards y htmlwidgets](https://www.youtube.com/watch?v=5DX_xL_zq2I&list=PLm0X6MqpAzQJ57auak4J9syjBSjdvJQE1&index=7)
+
+1. [Shiny](https://www.youtube.com/playlist?list=PLm0X6MqpAzQJ57auak4J9syjBSjdvJQE1)
+
+1. [HTML, CSS y JavaScript](https://www.youtube.com/playlist?list=PLm0X6MqpAzQJ57auak4J9syjBSjdvJQE1)
+
+1. [Putting it all together](https://www.youtube.com/playlist?list=PLm0X6MqpAzQJ57auak4J9syjBSjdvJQE1)
+
 <!--#endregion-->
 
 <!--#region Instalaciones -->

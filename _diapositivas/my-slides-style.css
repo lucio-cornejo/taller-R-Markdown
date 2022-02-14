@@ -52,7 +52,7 @@ div.panelset:not(.sideways) li.panel-tab {
 }
 
 .scrollable {
-    overflow: auto;
+    overflow-y: auto;
 }
 
 /* Style clipboard button for chunks */
@@ -60,3 +60,9 @@ div.panelset:not(.sideways) li.panel-tab {
   font-weight: 600;
   transform: scale(1.25);
 }
+
+
+/* Change background color of all slides, except the first one */
+/* div.remark-slide-container:not(:first-child) div.remark-slide-content {
+  background-image: linear-gradient(to right, red 2%, transparent 2%);
+} */
