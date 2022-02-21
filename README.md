@@ -27,31 +27,36 @@ Archivos para la creación del sitio web con el contenido del curso.
 - Formato PDF
   + Paquete [pagedown](https://rstudio.github.io/pagedown/) para simular un formato PDF, pero para la web.
 
-## Clase 5
 
-### Flexdashboard
+## Last class
 
-Para el video de youtube nomás:
+- Custom CSS styling for html output.
+    - Display TOC to the right, instead of left (default).
 
-- Extra YAML header feautres:
-    - Navigation bar:
-    <https://pkgs.rstudio.com/flexdashboard/articles/using.html>
-    - Social links:
-    <https://pkgs.rstudio.com/flexdashboard/articles/using.html>
-    - Source code:
-    <https://pkgs.rstudio.com/flexdashboard/articles/using.html>
-    - Chart padding:
-    <https://pkgs.rstudio.com/flexdashboard/articles/using.html>
+- Bookdown
+    - Create an anchor to visualize the book's pdf version
+    when the output is bs4_book instead of gitbook.
 
-- Explicar cómo funciona 
-[storyboard](https://warin.ca/dpr/dashboards.html#storyboards).
+- Xaringan
+    - Create custom CSS clases for using with 
+    Remark's `.class-name[ ... ]` notation.
+    - Make slides scrollable
+        - Bad use of horizontal scroll can cause issues,
+        like a different slide showing in the background.
+        - Vertical scrolling can be detrimental if one
+        needs the slides to be available also in PDF,
+        due to missing the scrolling section in the 
+        screenshots of the slides.
+    - Use of `slideshow`'s functions and events.
 
-### htmlwidgets
-
-Para el video de youtube nomás:
-
-- ¿Cómo crear a custom widget?
-
+- htmlwidgets
+    - Inside a chunk for html output, use ggplot's 
+    function to turn to plotly, but not activate it
+    when latex output.
+    - Use custom JS functions with some wdigets, those
+    which have such compatibility already defined.
+    - Maybe show how to create a custom widget,
+    now that we have som JavaScript knowledge.
 
 ## **VS Code** 
 

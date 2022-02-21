@@ -38,6 +38,10 @@ Tachado:
 - Símbolo \ al final de una línea de texto.
 - Símbolo `<br>` (sin tildes reversas) al final de una línea de texto.
 
+Les recomiendo usar la segunda opción presentada para crear un line 
+break, ya que cuando el ouput del documento R Markdown es PDF, se 
+ignorará `<br>`, debido a ser código de HTML.
+
 ## Listas
 
 **Desordenadas** 
