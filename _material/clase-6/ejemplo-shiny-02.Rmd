@@ -1,0 +1,120 @@
+---
+runtime: shiny
+output: html_document
+---
+
+```{r setup, include = FALSE}
+library(shiny)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+fluidPage(
+  titlePanel("Widgets básicos"),
+  
+  fluidRow(
+    
+    column(width = 3,
+           h3("Botones"),
+           actionButton("action", "Acción"),
+           br(),
+           br(), 
+           submitButton("Enviar")),
+    
+    column(width = 3,
+           h3("Casilla simple"),
+           checkboxInput("checkBox", "Opción A", value = TRUE)),
+    
+    column(width = 3, 
+           checkboxGroupInput("checkGroup", 
+                              h3("Casilla múltiple"), 
+                              choices = list("Opción 1" = 1, 
+                                             "Opción 2" = 2, 
+                                             "Opción 3" = 3),
+                              selected = 1)),
+    
+    column(width = 3, 
+           dateInput("date", 
+                     h3("Campo de fecha"), 
+                     value = "2014-01-01"))   
+  ),
+  
+  fluidRow(
+    
+    column(width = 3,
+           dateRangeInput("dates", h3("Rango de fecha"))),
+    
+    column(width = 3,
+           fileInput("file", h3("Cargar archivo"))),
+    
+    column(width = 3, 
+           h3("Texto de ayuda"),
+           helpText("Esto no es un widget.")),
+    
+    column(width = 3, 
+           numericInput("num", 
+                        h3("Entrada numérica"), 
+                        value = 1))   
+  ),
+  
+  fluidRow(
+    
+    column(width = 3,
+           radioButtons("radio", h3("Opciones mutuamente excluyentes"),
+                        choices = list("Opción 1" = 1, "Opción 2" = 2,
+                                       "Opción 3" = 3),selected = 1)),
+    
+    column(width = 3,
+           selectInput("select", h3("Caja de opciones"), 
+                       choices = list("Opción 1" = 1, "Opción 2" = 2,
+                                      "Opción 3" = 3), selected = 1)),
+    
+    column(width = 3, 
+           sliderInput("slider1", h3("Control deslizante"),
+                       min = 0, max = 100, value = 50),
+           sliderInput("slider2", "",
+                       min = 0, max = 100, value = c(25, 75))
+    ),
+    
+    column(width = 3, 
+           textInput("text", h3("Entrada de texto"), 
+                     value = "Escribase algo ..."))   
+  )
+  
+)
+```
+
+```{r}
+helpText("Input de botón de acción")
+renderPrint({ input$action })
+
+helpText("Input de casilla simple")
+renderPrint({ input$checkBox })
+
+helpText("Input de casilla múltiple")
+renderPrint({ input$checkGroup })
+
+helpText("Input de campo de fecha")
+renderPrint({ input$date })
+
+helpText("Input de rango de fecha")
+renderPrint({ input$dates })
+
+helpText("Input de entrada numérica")
+renderPrint({ input$num })
+
+helpText("Input de opciones mutuamente excluyentes")
+renderPrint({ input$radio })
+
+helpText("Input de caja de opciones")
+renderPrint({ input$select })
+
+helpText("Input del primer control deslizante")
+renderPrint({ input$slider1 })
+
+helpText("Input del segundo control deslizante")
+renderPrint({ input$slider2 })
+
+helpText("Input de entrada de texto")
+renderPrint({ input$text })
+```

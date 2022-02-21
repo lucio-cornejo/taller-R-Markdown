@@ -1,0 +1,37 @@
+---
+title: Reportes parametrizados
+runtime: shiny
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Más información en: https://shiny.rstudio.com/articles/generating-reports.html
+```
+
+```{r ui}
+fluidPage(
+  sliderInput("slider", h3("Año"),
+              min = 1920, max = 1939,
+              value = 1930, step = 1),
+  downloadButton("report", "Descargar reporte")
+)
+```
+
+```{r server}
+output$report <- downloadHandler(
+  # "nombre-reporte.pdf" para versión PDF
+  filename = "ejemplo-shiny-03.html",
+  content = function(archivo) {
+    tempReport <- file.path(tempdir(), "ejemplo-shiny-03.Rmd")
+    file.copy("ejemplo-shiny-03.Rmd", tempReport, overwrite = TRUE)
+
+    parametros <- list(anio = input$slider)
+
+    rmarkdown::render(tempReport, output_file = archivo,
+      params = parametros,
+      envir = new.env(parent = globalenv())
+    )
+  }
+)
+```

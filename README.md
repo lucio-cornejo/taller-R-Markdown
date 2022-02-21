@@ -58,6 +58,10 @@ Archivos para la creación del sitio web con el contenido del curso.
     - Maybe show how to create a custom widget,
     now that we have som JavaScript knowledge.
 
+- Shiny
+    - Insert raw HTML into user interface:
+    <https://shiny.rstudio.com/articles/html-tags.html>  
+
 ## **VS Code** 
 
 - R Studio knit tools implementation into VS Code:
@@ -71,3 +75,8 @@ Archivos para la creación del sitio web con el contenido del curso.
 
 - Convert m4a to mp3 with ffmpeg in terminal
 `ffmpeg -i nombre.m4a -b:a 192K -vn nombre.mp3`
+
+
+## Shiny
+
+function fluidPage to create a display that automatically adjusts to the dimensions of your user’s browser window

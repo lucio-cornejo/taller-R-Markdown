@@ -70,6 +70,7 @@ aplicaciones.
 - [Movie explorer](https://shiny.rstudio.com/gallery/movie-explorer.html)
 
 ---
+class: middle
 
 ## Instalación
 
@@ -91,11 +92,79 @@ library(shiny)
 runExample("01_hello")
 ```
 
+&lt;p style="margin-bottom: -20px;"&gt; &amp;nbsp; &lt;/p&gt;
+
 ## Versión alternativa del primer ejemplo
 
-Analizemos rápidamente 
-[este archivo]()
+&lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+Analicemos rápidamente 
+[este archivo](https://github.com/lucio-cornejo/taller-r-markdown/blob/main/_material/clase-6/ejemplo-shiny-01.Rmd)
 .
+
+---
+class: middle
+
+## Más ejemplos
+
+Pueden ejecutar los siguientes comandos en **R** para ver modelos de
+aplicaciones donde se explican algunas de las funcionalidades básicas de
+**Shiny**:
+
+```r
+runExample("01_hello")       # un histograma
+runExample("02_text")        # tablas y data frames
+runExample("03_reactivity")  # una expresión reactiva
+runExample("04_mpg")         # variables globales
+runExample("05_sliders")     # barras deslizantes
+runExample("06_tabsets")     # paneles (tabsets)
+runExample("07_widgets")     # botones y texto de ayuda
+runExample("08_html")        # aplicación Shiny construida desde HTML
+runExample("09_upload")      # botón para cargar archivos
+runExample("10_download")    # botón para descargar archivos
+runExample("11_timer")       # mostrar la hora actual
+```
+
+???
+
+Ver rápidamente los ejemplos 5, 7, 9 y 10.
+
+---
+
+## Control widgets
+
+&lt;p style="margin-bottom: -80px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+Un widget es un elemento web con el cual los usuarios pueden interactuar.
+
+&lt;p style="margin-bottom: -60px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+![Basic Shiny widgets](images-and-gifs/basic-widgets.png)
+
+[Galería](https://shiny.rstudio.com/gallery/widget-gallery.html)
+con el código de los widgets disponibles vía **Shiny**.
+
+???
+
+Explorar rápidamente el archivo **ejemplo-shiny-02.Rmd** .
+---
+
+## Creación reactiva de elementos web
+
+&lt;p style="margin-bottom: 20px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+Función |	Elemento creado
+:---: | :---:
+renderDataTable |	Tabla de datos vía JavaScript
+renderImage |	imágenes cargadas vía link
+renderPlot |	gráficos
+renderPrint |	resultado impreso
+renderTable |	Tabla _convencional_ 
+renderText | Cadena de caracteres
+renderUI |	Elemento de HTML o su versión análoga en Shiny
+
+---
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

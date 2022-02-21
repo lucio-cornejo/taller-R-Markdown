@@ -10,24 +10,21 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```{r}
 # ui
+titlePanel("Hello Shiny!")
 
-fluidPage(
-  titlePanel("Hello Shiny!"),
+sidebarLayout(
 
-  sidebarLayout(
+  sidebarPanel(
+    sliderInput(inputId = "bins",
+                label = "Number of bins:",
+                min = 1,
+                max = 50,
+                value = 30
+                )
+  ),
 
-    sidebarPanel(
-      sliderInput(inputId = "bins",
-                  label = "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30
-                  )
-    ),
-
-    mainPanel(
-      plotOutput(outputId = "distPlot")
-    )
+  mainPanel(
+    plotOutput(outputId = "distPlot")
   )
 )
 ```
