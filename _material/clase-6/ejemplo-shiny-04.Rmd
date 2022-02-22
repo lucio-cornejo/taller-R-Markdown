@@ -5,7 +5,7 @@ output:
   flexdashboard::flex_dashboard:
     theme: cosmo
     orientation: columns
-    vertical_layout: scroll
+    vertical_layout: fill
     source_code: embed
 ---
 
@@ -89,7 +89,6 @@ radioButtons("variable_numerica",
 <div style="overflow-y: auto;">
 ```{r}
 renderPlotly({
-  # Alterar el input para usarlo como columna del data frame
   plot_ly(iris, type = "box",
           x = iris[[as.numeric(input$variable_numerica)]],
           color = ~Species) %>% 
@@ -106,7 +105,30 @@ renderPlotly({
 ```
 
 ```{r}
-#render
+renderVisNetwork({
+  espacio_muestral <- prob::urnsamples(
+                       x = 1:6, size = 2,
+                       replace = FALSE,
+                       ordered = FALSE
+  )
+
+  vertices <- data.frame(
+                id = 1:6, 
+                title = paste(
+                          "node",
+                          1:6
+                        ), 
+                shape = "dot", size = 15, 
+                color = "lightblue"
+  )
+
+  aristas <- espacio_muestral %>% 
+                slice_sample(n=input$)
+
+  colnames(aristas) <- c("from","to")
+
+  visNetwork(vertices, aristas)
+})
 ```
 
 ### DT
