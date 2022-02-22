@@ -173,6 +173,20 @@ vía un simple click de un botón.
 ]
 
 ---
+
+## Dashboards reactivos
+
+Ahora, emplearemos **Shiny** en conjunto al paquete
+**Flexdashboard** que utilizamos en la sesión pasada.
+
+Esto, con la finalidad de crear un dashboard cuyos
+gráficos y/o elementos se actualizan a medida que
+el usuario interactúe con ciertos elementos que 
+incluiremos en el sitio web.
+
+
+
+---
 class: middle
 
 ## Referencias

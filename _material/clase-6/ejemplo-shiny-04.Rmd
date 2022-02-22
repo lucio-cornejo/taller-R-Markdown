@@ -1,0 +1,143 @@
+---
+title: Shiny+Flexdashboard
+runtime: shiny
+output:
+  flexdashboard::flex_dashboard:
+    theme: cosmo
+    orientation: columns
+    vertical_layout: scroll
+    source_code: embed
+---
+
+```{r setup, include=FALSE} 
+# Cargamos los paquetes necesarios
+library(dplyr)
+library(shiny)
+library(flexdashboard)
+
+# htmlwidgets
+library(leaflet)
+library(dygraphs)
+library(plotly)
+library(visNetwork)
+library(DT)
+library(threejs)
+library(rgl)
+
+# Ocultar el código
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Widgets reactivos
+
+## {.tabset}
+
+### Leaflet
+
+```{r inputs-leaflet}
+sliderInput("longitud", label = "Longitud",
+            min = -180, max = 180,
+            value = -70, step = 1)
+
+sliderInput("latitud", label = "Latitud",
+            min = -90, max = 90,
+            value = 42, step = 0.5)
+```
+
+<div style="overflow-y: auto;">
+```{r}
+renderLeaflet({
+  leaflet() %>%
+    setView(lng = input$longitud, 
+            lat = input$latitud, 
+            zoom = 10) %>%
+    addTiles()
+})
+```
+</div>
+
+### Dygraphs
+
+```{r inputs-dygraphs}
+dateRangeInput("fechas", label = "Rango de fechas", 
+  start = "1912-12-31", end = "1971-1-1",
+  min = "1912-12-31", max = "1971-1-1", format = "yyyy-mm-dd"
+)
+```
+
+```{r}
+renderDygraph({
+  dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dySeries(label = "Temp (F)", color = "black") %>%
+  dyShading(from = input$fechas[1], to =  input$fechas[2], color = "rgba(255,0,0,0.25)") %>%
+  dyShading(from = "1947-1-1", to = "1955-1-1", color = "#E6E6FF")
+})
+```
+
+### Plotly
+
+```{r inputs-plotly}
+radioButtons("variable_numerica",
+  label = "Variables numéricas del data frame iris",
+  choices = list("Longitud de sépalo" = 1, "Ancho de sépalo" = 2,
+                 "Longitud de pétalo" = 3, "Ancho de pétalo" = 4
+                ),
+  selected = 1
+)
+```
+
+<div style="overflow-y: auto;">
+```{r}
+renderPlotly({
+  # Alterar el input para usarlo como columna del data frame
+  plot_ly(iris, type = "box",
+          x = iris[[as.numeric(input$variable_numerica)]],
+          color = ~Species) %>% 
+    layout(xaxis=list(showticklabels = TRUE)) %>%
+    config(displayModeBar= FALSE) 
+})
+```
+</div>
+
+### VisNetwork
+
+```{r inputs-visnetwork}
+
+```
+
+```{r}
+#render
+```
+
+### DT
+
+```{r inputs-dt}
+
+```
+
+```{r}
+#render
+```
+
+### Threejs
+
+```{r inputs-threejs}
+
+```
+
+```{r}
+#render
+```
+
+### Rgl
+
+```{r inputs-rgl}
+
+```
+
+```{r}
+#render
+```
+
+
+
