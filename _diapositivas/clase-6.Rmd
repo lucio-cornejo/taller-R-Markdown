@@ -137,13 +137,16 @@ renderText | Cadena de caracteres
 renderUI |	Elemento de HTML o su versión análoga en Shiny
 
 ---
-class: middle
 
 ## Reportes parametrizados: Parte II
 
 Volveremos a trabajar con el primer reporte parametrizado
 que se creó en este taller, el de temperaturas mensuales
 promedio en Nottingham.
+
+<p style="margin-bottom: 10px;"> &nbsp; </p>
+
+.pull-left[
 
 ### Versión 1
 
@@ -152,7 +155,11 @@ que en la página web donde se visualiza tal reporte sea
 posible modificar el **año de interés** y que se actualice 
 la data y gráficos relevantes del reporte.
 
-[Modelo]()
+[Modelo](https://github.com/lucio-cornejo/taller-r-markdown/blob/main/_material/clase-6/ejemplo-shiny-03_1.Rmd)
+
+]
+
+.pull-right[
 
 ### Versión 2
 
@@ -161,6 +168,17 @@ Crearemos una aplicación web donde se pueda fijar el
 parametrizada del reporte (_respecto al año fijado_)
 vía un simple click de un botón.
 
-[Modelo]()
+[Modelo](https://github.com/lucio-cornejo/taller-r-markdown/blob/main/_material/clase-6/ejemplo-shiny-03_2.Rmd)
+
+]
 
 ---
+class: middle
+
+## Referencias
+
+- [Tutorial básico de Shiny](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/)
+
+- [Libro esencial de Shiny](https://mastering-shiny.org/)
+
+- [Generar reportes descargables](https://shiny.rstudio.com/articles/generating-reports.html)

@@ -37,6 +37,8 @@ navbar:
           href: _diapositivas/clase-4.html
         - text: "Clase 5: Flexdashboard y htmlwidgets"
           href: _diapositivas/clase-5.html
+        - text: "Clase 6: Shiny"
+          href: _diapositivas/clase-6.html
           
     - text: "Archivos Rmd de las clases"
       icon: far fa-folder-open

@@ -4,22 +4,22 @@
     <title>Clase 6: Shiny</title>
     <meta charset="utf-8" />
     <meta name="author" content="Lucio Cornejo" />
-    <script src="clase-06_files/header-attrs-2.11/header-attrs.js"></script>
-    <link href="clase-06_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="clase-06_files/remark-css-0.0.1/shinobi.css" rel="stylesheet" />
-    <link href="clase-06_files/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
-    <link href="clase-06_files/remark-css-0.0.1/duke-blue.css" rel="stylesheet" />
-    <link href="clase-06_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
-    <script src="clase-06_files/panelset-0.2.6/panelset.js"></script>
-    <link href="clase-06_files/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
-    <script src="clase-06_files/tile-view-0.2.6/tile-view.js"></script>
-    <script src="clase-06_files/xaringanExtra_fit-screen-0.2.6/fit-screen.js"></script>
-    <script src="clase-06_files/clipboard-2.0.6/clipboard.min.js"></script>
-    <link href="clase-06_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
-    <script src="clase-06_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script src="clase-6_files/header-attrs-2.11/header-attrs.js"></script>
+    <link href="clase-6_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="clase-6_files/remark-css-0.0.1/shinobi.css" rel="stylesheet" />
+    <link href="clase-6_files/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link href="clase-6_files/remark-css-0.0.1/duke-blue.css" rel="stylesheet" />
+    <link href="clase-6_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="clase-6_files/panelset-0.2.6/panelset.js"></script>
+    <link href="clase-6_files/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="clase-6_files/tile-view-0.2.6/tile-view.js"></script>
+    <script src="clase-6_files/xaringanExtra_fit-screen-0.2.6/fit-screen.js"></script>
+    <script src="clase-6_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="clase-6_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="clase-6_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
-    <link href="clase-06_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-    <link href="clase-06_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <link href="clase-6_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="clase-6_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="my-slides-style.css" type="text/css" />
   </head>
@@ -165,6 +165,50 @@ renderUI |	Elemento de HTML o su versión análoga en Shiny
 
 ---
 
+## Reportes parametrizados: Parte II
+
+Volveremos a trabajar con el primer reporte parametrizado
+que se creó en este taller, el de temperaturas mensuales
+promedio en Nottingham.
+
+&lt;p style="margin-bottom: 10px;"&gt; &amp;nbsp; &lt;/p&gt;
+
+.pull-left[
+
+### Versión 1
+
+Modificaremos el reporte previo con el fin
+que en la página web donde se visualiza tal reporte sea
+posible modificar el **año de interés** y que se actualice 
+la data y gráficos relevantes del reporte.
+
+[Modelo](https://github.com/lucio-cornejo/taller-r-markdown/blob/main/_material/clase-6/ejemplo-shiny-03_1.Rmd)
+
+]
+
+.pull-right[
+
+### Versión 2
+
+Crearemos una aplicación web donde se pueda fijar el 
+**año de interés** para el reporte y descargar la versión
+parametrizada del reporte (_respecto al año fijado_)
+vía un simple click de un botón.
+
+[Modelo](https://github.com/lucio-cornejo/taller-r-markdown/blob/main/_material/clase-6/ejemplo-shiny-03_2.Rmd)
+
+]
+
+---
+class: middle
+
+## Referencias
+
+- [Tutorial básico de Shiny](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/)
+
+- [Libro esencial de Shiny](https://mastering-shiny.org/)
+
+- [Generar reportes descargables](https://shiny.rstudio.com/articles/generating-reports.html)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
