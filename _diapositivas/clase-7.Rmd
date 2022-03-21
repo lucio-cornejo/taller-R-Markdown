@@ -1,0 +1,122 @@
+---
+title: "Clase 6: Front-end básico"
+author: Lucio Cornejo
+lang: en
+---
+class: center, middle, inverse, title-slide
+
+```{r, child = "_slides-setup.Rmd"}
+```
+
+<h1 class = "celeste-ish" style="line-height: 90px; margin-top: -50px;">
+    Clase 7:
+    <p style="margin-bottom: -170px;"> &nbsp; </p>
+    Front-end básico
+</h1>
+
+<h3 class = "celeste-ish" style = "position: absolute; bottom: 80px;">
+  Autor: Lucio Cornejo
+</h3>
+
+---
+class: middle
+
+## Front-end
+
+- Front-end sirve para crear la parte de la página
+web que el usuario puede ver e interactuar.
+
+- Consiste de tres herramientas fundamentales:
+    - HTML
+        - Define el contenido de la página web.
+    - CSS
+        - Estiliza el sitio web.
+    - JavaScript
+        - Añade interactividad a la página.
+
+---
+class: middle
+
+## HTML
+
+- ***Hyper Text Markup Language*** 
+
+- Consiste en el uso de etiquetas/elementos
+para estructurar el contenido del sitio web.
+
+- En realidad ya estamos familiarizados con
+varios elementos HTML, debido a nuestro 
+conocimiento de Markdown.
+
+- Exploremos algunos paralelos entre HTML y R Markdown,
+creando una página web simple, **desde cero**.
+
+???
+
+- Recordar instalar la extension
+[Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+y activar _Toggle Auto Save_ en VS Code.
+
+- Guardar en una nueva carpeta los archivos por crear
+en esta sesión.
+
+---
+
+## CSS
+
+- Sirve para estilizar el contenido de la página web.
+
+### Potencial
+
+- Algunos proyectos creados usando **solamente** CSS
+    - [Ejemplo 1](https://codepen.io/jaysalvat/pen/kazzOj)
+    - [Ejemplo 2](https://codepen.io/amit_sheen/pen/XWMXwvJ)
+
+### Google fonts
+
+- [Ejemplos](https://fonts.google.com/)
+
+### Clases e identificadores
+
+---
+
+## JavaScript
+
+- Es un lenguaje de programación que puede
+emplearse en los navegadores web (Chrome, Firefox, Safari, etc)
+para añadir interactividad y reactividad al sitio web.
+
+- [Inputs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
+para añadir interactividad a la página.
+---
+
+## Front-end + R Markdown
+
+- Exploremos primero el contenido HTML del archivo ejemplo
+proporcionado por R Studio para un documento R Markdown.
+
+
+---
+
+## HTML + R Markdown
+
+- Programar vía R Markdown la creación de elementos HTML.
+    - `results='asis'`
+    - `cat(...)` 
+
+--- 
+
+## CSS + R Markdown
+
+- Personalizar el estilo de los documentos creados
+con R Markdown.
+
+- Uso de variables de lenguajes de programación,
+dentro de texto de CSS.
+
+--- 
+
+## JavaScript + R Markdown
+
+- Arreglar errores de R Markdown o potenciar 
+algunos de sus paquetes.

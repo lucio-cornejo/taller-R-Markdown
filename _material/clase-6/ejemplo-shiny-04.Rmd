@@ -44,7 +44,6 @@ sliderInput("latitud", label = "Latitud",
             value = 42, step = 0.5)
 ```
 
-<div style="overflow-y: auto;">
 ```{r}
 renderLeaflet({
   leaflet() %>%
@@ -54,7 +53,6 @@ renderLeaflet({
     addTiles()
 })
 ```
-</div>
 
 ### Dygraphs
 
@@ -105,30 +103,30 @@ renderPlotly({
 ```
 
 ```{r}
-renderVisNetwork({
-  espacio_muestral <- prob::urnsamples(
-                       x = 1:6, size = 2,
-                       replace = FALSE,
-                       ordered = FALSE
-  )
-
-  vertices <- data.frame(
-                id = 1:6, 
-                title = paste(
-                          "node",
-                          1:6
-                        ), 
-                shape = "dot", size = 15, 
-                color = "lightblue"
-  )
-
-  aristas <- espacio_muestral %>% 
-                slice_sample(n=input$)
-
-  colnames(aristas) <- c("from","to")
-
-  visNetwork(vertices, aristas)
-})
+# renderVisNetwork({
+#   espacio_muestral <- prob::urnsamples(
+#                        x = 1:6, size = 2,
+#                        replace = FALSE,
+#                        ordered = FALSE
+#   )
+# 
+#   vertices <- data.frame(
+#                 id = 1:6, 
+#                 title = paste(
+#                           "node",
+#                           1:6
+#                         ), 
+#                 shape = "dot", size = 15, 
+#                 color = "lightblue"
+#   )
+# 
+#   aristas <- espacio_muestral %>% 
+#                 slice_sample(n=input$)
+# 
+#   colnames(aristas) <- c("from","to")
+# 
+#   visNetwork(vertices, aristas)
+# })
 ```
 
 ### DT
@@ -160,6 +158,3 @@ renderVisNetwork({
 ```{r}
 #render
 ```
-
-
-

@@ -82,13 +82,13 @@ renderUI({
       tags$li(
         paste0("En ", as.character(mes_max_temperatura),
                ", se registró la temperatura promedio mensual máxima del año ",
-               as.character(input$slider,".")
+               input$slider,"."
               )
       ),
       tags$li(
         paste0("En ", as.character(mes_min_temperatura),
                ", se registró la temperatura promedio mensual mínima del año ",
-               as.character(input$slider,".")
+              input$slider,"."
               )
       )
     )
