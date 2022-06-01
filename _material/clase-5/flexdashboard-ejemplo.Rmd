@@ -44,9 +44,9 @@ DT::datatable(iris)
 ```{r, echo = FALSE} 
 value <- round(cor(iris$Petal.Length,iris$Petal.Width),2)
 
-valueBox(value, icon = "fa-trash",
+flexdashboard::valueBox(value, icon = "fa-trash",
   href = "#layout-2", 
-  color = "success"
+  color = "red"
 )
 ```
 
